@@ -37,19 +37,32 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                     });
 
             $urlRouterProvider.otherwise('/');
-            
+
             $authProvider.withCredentials = false;
-            
+
             $authProvider.baseUrl = 'http://localhost:8080/';
-            
+
             $authProvider.facebook({
                 clientId: '959764637427221',
-                redirectUri: (window.location.origin + '/Social' || window.location.protocol + '//' + window.location.host) + '/',
-                url: 'http://localhost:8080/auth/facebook'
+                //for cloud
+                redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
+                //for local
+                //redirectUri: (window.location.origin + '/Social' || window.location.protocol + '//' + window.location.host) + '/',
+                //for local                
+                //url: 'http://localhost:8080/auth/facebook'
+                //for cloud
+                url: 'http://tourgoat.cfapps.io/auth/facebook'
             });
 
             $authProvider.google({
-                clientId: '631036554609-v5hm2amv4pvico3asfi97f54sc51ji4o.apps.googleusercontent.com'
+                clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
+                //for local
+                // url: 'http://localhost:8080/auth/google',
+                //for cloud 
+                url: 'http://tourgoat.cfapps.io/auth/google',
+                //for local
+                //redirectUri: (window.location.origin + '/Social' || window.location.protocol + '//' + window.location.host) + '/'
+                redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
             });
 
             $authProvider.github({
