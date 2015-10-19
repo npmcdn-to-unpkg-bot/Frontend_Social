@@ -43,7 +43,7 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
             //for local
             //$authProvider.baseUrl = 'http://localhost:8080/';
             //for cloud 
-             $authProvider.baseUrl = 'http://app-tourgoat.rhcloud.com/';
+             $authProvider.baseUrl = 'http://tourgoat.cfapps.io/';
 
             $authProvider.facebook({
                 clientId: '959764637427221',
