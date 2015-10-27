@@ -46,7 +46,8 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                 $authProvider.facebook({
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin + '/Social' || window.location.protocol + '//' + window.location.host) + '/',
-                    url: 'http://localhost:8080/auth/facebook'
+                    url: 'http://localhost:8080/auth/facebook',
+                    scope: ['email','public_profile']
                 });
 
                 $authProvider.google({
@@ -61,7 +62,8 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                 $authProvider.facebook({
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
-                    url: 'http://tourgoat.cfapps.io/auth/facebook'
+                    url: 'http://tourgoat.cfapps.io/auth/facebook',
+                    scope: ['email','user_birthday' , 'user_photos' , 'user_location' , 'user_hometown' , 'user_about_me']
                 });
                 $authProvider.google({
                     clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
