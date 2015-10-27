@@ -1,14 +1,19 @@
 angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider) {
             $stateProvider
-                    .state('home', {
+                    .state('index', {
+                        url: '/index',
+                        controller: 'homeCtrl'
+//                        templateUrl: 'pages/home.html'
+                    })
+                     .state('home', {
                         url: '/',
-                        controller: 'HomeCtrl',
-                        templateUrl: 'partials/home.html'
+                        controller: 'homeCtrl'
+//                        templateUrl: 'pages/home.html'
                     })
                     .state('login', {
                         url: '/login',
-                        templateUrl: 'partials/login.html',
+                        templateUrl: 'pages/login.html',
                         controller: 'LoginCtrl',
                         resolve: {
                             skipIfLoggedIn: skipIfLoggedIn
@@ -16,7 +21,7 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                     })
                     .state('signup', {
                         url: '/signup',
-                        templateUrl: 'partials/signup.html',
+                        templateUrl: 'pages/signup.html',
                         controller: 'SignupCtrl',
                         resolve: {
                             skipIfLoggedIn: skipIfLoggedIn
@@ -29,7 +34,7 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                     })
                     .state('profile', {
                         url: '/profile',
-                        templateUrl: 'partials/profile.html',
+                        templateUrl: 'pages/profile.html',
                         controller: 'ProfileCtrl',
                         resolve: {
                             loginRequired: loginRequired

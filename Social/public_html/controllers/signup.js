@@ -1,5 +1,6 @@
 angular.module('MyApp')
-  .controller('SignupCtrl', function($scope, $location, $auth, toastr) {
+  .controller('SignupCtrl', function($scope, $location, $auth, toastr, $rootScope) {
+    $rootScope.homeSlide = false;
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function() {

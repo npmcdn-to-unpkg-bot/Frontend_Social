@@ -77,12 +77,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Theme Styles -->
-    <!--<link rel="stylesheet" href="css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
     <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/animate.min.css">
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <!--<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+    <!--<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
     <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
 
@@ -110,6 +110,8 @@
     <!-- Responsive Styles -->
     <link rel="stylesheet" href="css/responsive.css">
   
+    <!-- custom Styles -->
+    <link rel="stylesheet" href="stylesheets/custom.css">
   
    <!--Third-party Libraries--> 
     <script src="./vendor/angular.js"></script>
@@ -146,15 +148,17 @@
                 <div class="container">
                     
                     <ul class="quick-menu pull-left">
-                        <li><a href="#/">Home</a></li>
-                        <li ng-if="isAuthenticated()"><a href="#/profile">My Account</a></li>
+                        <li><a href="#index">Home</a></li>
+                        <li ng-if="isAuthenticated()"><a href="#profile">My Account</a></li>
                     </ul>
                     <ul ng-if="!isAuthenticated()" class="quick-menu pull-right">
-                        <li><a href="#/login">Login</a></li>
-                        <li><a href="#/signup">Sign up</a></li>
+                 
+                        <li><a href="#signup" id="becomeATourGuide">Become a Tour Guide</a></li>
+                        <li><a href="#login" >Login</a></li>
+                        <li><a href="#signup">Sign up</a></li>
                     </ul>
                     <ul ng-if="isAuthenticated()" class="quick-menu pull-right" >
-                        <li><a href="#/logout">Logout</a></li>
+                        <li><a href="#logout">Logout</a></li>
                     </ul>
                 </div>
             </div>
@@ -165,137 +169,87 @@
                     Mobile Menu Toggle
                 </a>
 
-               <div class="container">
+<!--               <div class="container">
                     <h1 class="logo  pull-left" style="padding-bottom: 1px">
                         <a href="index.html" title="TourGoat - home">
                             <img src="images/logo.png" alt="TourGoat Logo" />
                         </a>
                     </h1>
              
-                </div>
+                </div>-->
                 
                 <nav ng-controller="NavbarCtrl" id="mobile-menu-01" class="mobile-menu collapse">
                     <ul class="mobile-topnav container">
-                        <li><a href="#/">HOME</a></li>
-                        <li ng-if="isAuthenticated()"><a href="#/profile">MY ACCOUNT</a></li>
+                        <li><a href="#index">HOME</a></li>
+                        <li ng-if="isAuthenticated()"><a href="#profile">MY ACCOUNT</a></li>
                 
-
-                        <li ng-if="!isAuthenticated()"><a href="#/login" >LOGIN</a></li>
-                        <li ng-if="!isAuthenticated()"><a href="#/signup" >SIGNUP</a></li>
+                         <li ng-if="!isAuthenticated()"><a href="#login" >BECOME Tour Guide</a></li>
+                        <li ng-if="!isAuthenticated()"><a href="#login" >LOGIN</a></li>
+                        <li ng-if="!isAuthenticated()"><a href="#signup" >SIGNUP</a></li>
 
           
-                        <li ng-if="isAuthenticated()"><a href="#/logout" >LOGOUT</a></li>
+                        <li ng-if="isAuthenticated()"><a href="#logout" >LOGOUT</a></li>
                     </ul>
                     
                 </nav>
             </div>
-<!--           <div id="travelo-signup" class="travelo-signup-box travelo-box">
-            <div class="login-social">
-                    <a class="button login-facebook" ng-click="authenticate('facebook')"><i class="soap-icon-facebook"></i>Login with Facebook</a>
-                    <a class="button login-googleplus" ng-click="authenticate('google')"><i class="soap-icon-googleplus"></i>Login with Google+</a>
-           
-                </div>
-               
-               
-               
-                <div class="seperator"><label>OR</label></div>
-                <div class="simple-signup">
-                    <div class="text-center signup-email-section">
-                        <a href="#" class="signup-email"><i class="soap-icon-letter"></i>Sign up with Email</a>
-                    </div>
-                    <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund olicy, and Host Guarantee Terms.</p>
-                </div>
-                <div class="email-signup">
-                    <form>
-                        <div class="form-group">
-                            <input type="text" class="input-text full-width" placeholder="first name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="input-text full-width" placeholder="last name">
-                        </div>
-                        <div class="form-group">
-                            <input type="text" class="input-text full-width" placeholder="email address">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="input-text full-width" placeholder="password">
-                        </div>
-                        <div class="form-group">
-                            <input type="password" class="input-text full-width" placeholder="confirm password">
-                        </div>
-                        <div class="form-group">
-                            <div class="checkbox">
-                                <label>
-                                    <input type="checkbox"> Tell me about Travelo news
-                                </label>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <p class="description">By signing up, I agree to Travelo's Terms of Service, Privacy Policy, Guest Refund Policy, and Host Guarantee Terms.</p>
-                        </div>
-                        <button type="submit" class="full-width btn-medium">SIGNUP</button>
-                    </form>
-                </div>
-                <div class="seperator"></div>
-                <p>Already a Travelo member? <a href="#travelo-login" class="goto-login soap-popupbox">Login</a></p>
-           </div>-->
-<!--            <div id="travelo-login" class="travelo-login-box travelo-box" ng-controller="LoginCtrl">
-                <div class="login-social">
-                    <a class="button login-facebook" ng-click="authenticate('facebook')"><i class="soap-icon-facebook"></i>Login with Facebook</a>
-                    <a class="button login-googleplus" ng-click="authenticate('google')"><i class="soap-icon-googleplus"></i>Login with Google+</a>
-           
-                </div>
-                
-                <div class="seperator"><label>OR</label></div>
-                <form method="post" ng-submit="login()" name="loginForm">
-                    <div class="form-group has-feedback">
-                        <input type="text" class="input-text full-width" name="email" ng-model="user.email"  required autofocus placeholder="email address">
-                         <span class="ion-at form-control-feedback"></span>
-                    </div>
-                    <div class="form-group  has-feedback">
-                        <input type="password" class="input-text full-width" name="password" ng-model="user.password" placeholder="Password" required>
-                        <span class="ion-key form-control-feedback"></span>
-                    </div>
-                    <button type="submit" ng-disabled="loginForm.$invalid" class="btn btn-lg  btn-block btn-success ">Log in</button>
-                    <div class="form-group">
-                        <a href="#" class="forgot-password pull-right">Forgot password?</a>
-                        <div class="checkbox checkbox-inline">
-                            <label>
-                                <input type="checkbox"> Remember me
-                            </label>
-                        </div>
-                    </div>
-                </form>
-                <div class="seperator"></div>
-                <p>Don't have an account? <a href="#travelo-signup" class="goto-signup soap-popupbox">Sign up</a></p>
-            </div>-->
+
         </header>
-<!--         <div id="slideshow">
-            <div class="fullwidthbanner-container">
+    
+            
+      
+         <div id="slideshow" ng-show="homeSlide">
+            <div class="fullwidthbanner-container"  >
                 <div class="revolution-slider" style="height: 0; overflow: hidden;">
                     <ul>     
-                        SLIDE  
-                         Slide1 
+                        <!--SLIDE-->  
+                         <!--Slide1--> 
                         <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500">
-                             MAIN IMAGE 
-                            <img src="http://placehold.it/2080x646" alt="">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample1.jpg" alt="http://placehold.it/2080x646">
                         </li>
                         
-                         Slide2 
+                         <!--Slide2--> 
                         <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
-                             MAIN IMAGE 
-                            <img src="http://placehold.it/2080x646" alt="">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample2.jpg" alt="http://placehold.it/2080x646">
                         </li>
                         
-                         Slide3 
+                         <!--Slide3--> 
                         <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             MAIN IMAGE 
-                            <img src="http://placehold.it/2080x646" alt="">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample3.jpg" alt="http://placehold.it/2080x646">
+                        </li>
+                          <!--Slide4--> 
+                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample4.jpg" alt="http://placehold.it/2080x646">
+                        </li>
+                          <!--Slide5--> 
+                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample5.jpg" alt="http://placehold.it/2080x646">
+                        </li>
+                          <!--Slide6--> 
+                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample6.jpg" alt="http://placehold.it/2080x646">
+                        </li>
+                          <!--Slide7--> 
+                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample7.jpg" alt="http://placehold.it/2080x646">
+                        </li>
+                          <!--Slide8--> 
+                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
+                             <!--MAIN IMAGE--> 
+                            <img src="images/homeSlide/sample8.jpg" alt="http://placehold.it/2080x646">
                         </li>
                     </ul>
                 </div>
             </div>
-        </div>-->
-
+        </div>
+  
         <div ui-view></div>
         
         <section id="content">
@@ -1213,7 +1167,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
     <!-- Twitter Bootstrap -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     
-    <!-- load revolution slider scripts -->
+     <!--load revolution slider scripts--> 
     <script type="text/javascript" src="components/revolution_slider/js/jquery.themepunch.plugins.min.js"></script>
     <script type="text/javascript" src="components/revolution_slider/js/jquery.themepunch.revolution.min.js"></script>
     
@@ -1241,7 +1195,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
             tjq('.revolution-slider').revolution(
             {
                 dottedOverlay:"none",
-                delay:8000,
+                delay:2000,
                 startwidth:1170,
                 startheight:646,
                 onHoverStop:"on",
