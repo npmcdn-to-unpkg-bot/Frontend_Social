@@ -3,13 +3,13 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
             $stateProvider
                     .state('index', {
                         url: '/index',
-                        controller: 'homeCtrl'
-//                        templateUrl: 'pages/home.html'
+                        controller: 'homeCtrl',
+                        templateUrl: 'pages/home.html'
                     })
                      .state('home', {
                         url: '/',
-                        controller: 'homeCtrl'
-//                        templateUrl: 'pages/home.html'
+                        controller: 'homeCtrl',
+                        templateUrl: 'pages/home.html'
                     })
                     .state('login', {
                         url: '/login',

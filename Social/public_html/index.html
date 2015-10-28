@@ -1,64 +1,3 @@
-<!--<!DOCTYPE html>
-<html ng-app="MyApp">
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>TourGoat</title>
-  <link href="favicon.png" rel="shortcut icon">
-  <link href="https://fonts.googleapis.com/css?family=Roboto|Montserrat:400,700|Open+Sans:400,300,600" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-  <link href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" rel="stylesheet">
-  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-  <link href="https://cdn.jsdelivr.net/animatecss/3.2.0/animate.css" rel="stylesheet">
-  <link href="./stylesheets/angular-toastr.css" rel="stylesheet">
-  <link href="./stylesheets/styles.css" rel="stylesheet">
-  
-   Third-party Libraries 
-<script src="./vendor/angular.js"></script>
-<script src="./vendor/angular-animate.js"></script>
-<script src="./vendor/angular-messages.js"></script>
-<script src="./vendor/angular-resource.js"></script>
-<script src="./vendor/angular-sanitize.js"></script>
-<script src="./vendor/angular-ui-router.js"></script>
-<script src="./vendor/angular-toastr.tpls.js"></script>
-<script src="./vendor/satellizer.js"></script>
-</head>
-<body>
-<div ng-controller="NavbarCtrl" class="navbar navbar-default navbar-static-top">
-  <div class="navbar-header">
-    <a class="navbar-brand" href="/"><i class="ion-ios7-pulse-strong"></i> Satellizer</a>
-  </div>
-  <ul class="nav navbar-nav">
-    <li><a href="#/">Home</a></li>
-    <li ng-if="isAuthenticated()"><a href="#/profile">Profile</a></li>
-  </ul>
-  <ul ng-if="!isAuthenticated()" class="nav navbar-nav pull-right">
-    <li><a href="#/login">Login</a></li>
-    <li><a href="#/signup">Sign up</a></li>
-  </ul>
-  <ul ng-if="isAuthenticated()" class="nav navbar-nav pull-right">
-    <li><a href="#/logout">Logout</a></li>
-  </ul>
-</div>
-
-<div ui-view></div>
-
-
-
- Application Code 
-<script src="./app.js"></script>
-<script src="./directives/passwordStrength.js"></script>
-<script src="./directives/passwordMatch.js"></script>
-<script src="./controllers/home.js"></script>
-<script src="./controllers/login.js"></script>
-<script src="./controllers/signup.js"></script>
-<script src="./controllers/logout.js"></script>
-<script src="./controllers/profile.js"></script>
-<script src="./controllers/navbar.js"></script>
-<script src="./services/account.js"></script>
-</body>
-</html>-->
-
 <!DOCTYPE html>
 <!--[if IE 8]>          <html class="ie ie8"> <![endif]-->
 <!--[if IE 9]>          <html class="ie ie9"> <![endif]-->
@@ -66,11 +5,11 @@
 <html ng-app="MyApp"> <!--<![endif]-->
 <head>
     <!-- Page Title -->
-    <title>TourGaot</title>
+    <title>TourGoat</title>
     
     <!-- Meta Tags -->
     <meta charset="utf-8">
-    <meta name="keywords" content="HTML5 Template" />
+    <meta name="keywords" content="TourGoat Tour Goat tourist tourguide visit location travle tourist guide new place" />
     <meta name="description" content="Travelo | Responsive HTML5 Travel Template">
     <meta name="author" content="SoapTheme">
 
@@ -169,14 +108,14 @@
                     Mobile Menu Toggle
                 </a>
 
-<!--               <div class="container">
+               <div class="container">
                     <h1 class="logo  pull-left" style="padding-bottom: 1px">
                         <a href="index.html" title="TourGoat - home">
                             <img src="images/logo.png" alt="TourGoat Logo" />
                         </a>
                     </h1>
              
-                </div>-->
+                </div>
                 
                 <nav ng-controller="NavbarCtrl" id="mobile-menu-01" class="mobile-menu collapse">
                     <ul class="mobile-topnav container">
@@ -198,72 +137,7 @@
     
             
       
-         <div id="slideshow" ng-show="homeSlide">
-            <div class="fullwidthbanner-container"  >
-                <div class="revolution-slider" style="height: 0; overflow: hidden;">
-                    <ul>     
-                        <!--SLIDE-->  
-                         <!--Slide1--> 
-                        <li data-transition="zoomin" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample1.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                        
-                         <!--Slide2--> 
-                        <li data-transition="zoomout" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample2.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                        
-                         <!--Slide3--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample3.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                          <!--Slide4--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample4.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                          <!--Slide5--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample5.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                          <!--Slide6--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample6.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                          <!--Slide7--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample7.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                          <!--Slide8--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample8.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                            <!--Slide9--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample9.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                            <!--Slide10--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample10.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                            <!--Slide11--> 
-                        <li data-transition="slidedown" data-slotamount="7" data-masterspeed="1500">
-                             <!--MAIN IMAGE--> 
-                            <img src="images/homeSlide/sample11.jpg" alt="http://placehold.it/2080x646">
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
+         
   
         <div ui-view></div>
         
@@ -1205,7 +1079,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
     <script type="text/javascript" src="js/theme-scripts.js"></script>
     <script type="text/javascript" src="js/scripts.js"></script>
     
-    <script type="text/javascript">
+<!--    <script type="text/javascript">
         tjq(document).ready(function() {
             tjq('.revolution-slider').revolution(
             {
@@ -1223,7 +1097,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
                 hideTimerBar:"on",
             });
         });
-    </script>
+    </script>-->
  <!--Application Code--> 
 <script src="./app.js"></script>
 <script src="./directives/passwordStrength.js"></script>

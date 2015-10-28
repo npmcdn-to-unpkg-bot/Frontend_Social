@@ -1,6 +1,5 @@
 angular.module('MyApp')
   .controller('ProfileCtrl', function($scope, $auth, toastr, Account,$rootScope) {
-    $rootScope.homeSlide = false;
     $scope.getProfile = function() {
       Account.getProfile()
         .then(function(response) {
