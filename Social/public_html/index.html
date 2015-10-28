@@ -15,6 +15,7 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
+    
     <!-- Theme Styles -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/font-awesome.min.css">
@@ -61,6 +62,8 @@
     <script src="./vendor/angular-ui-router.js"></script>
     <script src="./vendor/angular-toastr.tpls.js"></script>
     <script src="./vendor/satellizer.js"></script>
+    
+    
    <!-- CSS for IE -->
     <!--[if lte IE 9]>
         <link rel="stylesheet" type="text/css" href="css/ie.css" />
@@ -88,7 +91,7 @@
                     
                     <ul class="quick-menu pull-left">
                         <li><a href="#index">Home</a></li>
-                        <li ng-if="isAuthenticated()"><a href="#profile">My Account</a></li>
+                        <li ng-if="isAuthenticated()"><a href="#profiles">My Account</a></li>
                     </ul>
                     <ul ng-if="!isAuthenticated()" class="quick-menu pull-right">
                  
@@ -120,7 +123,7 @@
                 <nav ng-controller="NavbarCtrl" id="mobile-menu-01" class="mobile-menu collapse">
                     <ul class="mobile-topnav container">
                         <li><a href="#index">HOME</a></li>
-                        <li ng-if="isAuthenticated()"><a href="#profile">MY ACCOUNT</a></li>
+                        <li ng-if="isAuthenticated()"><a href="#profiles">MY ACCOUNT</a></li>
                 
                          <li ng-if="!isAuthenticated()"><a href="#login" >BECOME Tour Guide</a></li>
                         <li ng-if="!isAuthenticated()"><a href="#login" >LOGIN</a></li>
@@ -135,10 +138,7 @@
 
         </header>
     
-            
-      
-         
-  
+      <!--This is a place to swap pages-->   
         <div ui-view></div>
         
         <section id="content">
@@ -1108,6 +1108,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
 <script src="./controllers/logout.js"></script>
 <script src="./controllers/profile.js"></script>
 <script src="./controllers/navbar.js"></script>
+<script src="./controllers/test.js"></script>
 <script src="./services/account.js"></script>
 
 </body>

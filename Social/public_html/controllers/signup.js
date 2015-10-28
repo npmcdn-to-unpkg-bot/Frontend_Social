@@ -10,4 +10,14 @@ angular.module('MyApp')
           toastr.error(response.data.message);
         });
     };
+       $scope.authenticate = function(provider) {
+      $auth.authenticate(provider)
+        .then(function() {
+          toastr.success('You have successfully signed in with ' + provider);
+          $location.path('/');
+        })
+        .catch(function(response) {
+          toastr.error(response.data.message);
+        });
+    };
   });

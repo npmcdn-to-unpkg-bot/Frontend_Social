@@ -3,8 +3,9 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
             $stateProvider
                     .state('index', {
                         url: '/index',
-                        controller: 'homeCtrl',
-                        templateUrl: 'pages/home.html'
+                        controller: 'testCtrl',
+//                        templateUrl: 'pages/home.html'
+                          templateUrl: 'pages/dashboard1.html'
                     })
                      .state('home', {
                         url: '/',

@@ -16,7 +16,7 @@ angular.module('MyApp')
                 navigationType:"none",
                 shadow:0,
                 spinner:"spinner4",
-                hideTimerBar:"on",
+                hideTimerBar:"on"
             });
         });
  
