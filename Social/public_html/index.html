@@ -91,15 +91,16 @@
                     
                     <ul class="quick-menu pull-left">
                         <li><a href="#index">Home</a></li>
-                        <li ng-if="isAuthenticated()"><a href="#profiles">My Account</a></li>
+                        
                     </ul>
                     <ul ng-if="!isAuthenticated()" class="quick-menu pull-right">
                  
-                        <li><a href="#signup" id="becomeATourGuide">Become a Tour Guide</a></li>
+                        <li><a href="#signup" style="font-size: 1.2em; color: #FFFFCC" id="becomeATourGuide">Become A TOUR GUIDE </a></li>
                         <li><a href="#login" >Login</a></li>
                         <li><a href="#signup">Sign up</a></li>
                     </ul>
                     <ul ng-if="isAuthenticated()" class="quick-menu pull-right" >
+                        <li ng-if="isAuthenticated()"><a href="#profile">My Account</a></li>
                         <li><a href="#logout">Logout</a></li>
                     </ul>
                 </div>
@@ -111,22 +112,21 @@
                     Mobile Menu Toggle
                 </a>
 
-               <div class="container">
+<!--               <div class="container">
                     <h1 class="logo  pull-left" style="padding-bottom: 1px">
                         <a href="index.html" title="TourGoat - home">
                             <img src="images/logo.png" alt="TourGoat Logo" />
                         </a>
                     </h1>
              
-                </div>
+                </div>-->
                 
                 <nav ng-controller="NavbarCtrl" id="mobile-menu-01" class="mobile-menu collapse">
                     <ul class="mobile-topnav container">
                         <li><a href="#index">HOME</a></li>
-                        <li ng-if="isAuthenticated()"><a href="#profiles">MY ACCOUNT</a></li>
-                
-                         <li ng-if="!isAuthenticated()"><a href="#login" >BECOME Tour Guide</a></li>
+                         <li ng-if="!isAuthenticated()"><a href="#login" >BECOME TOUR GUIDE</a></li>
                         <li ng-if="!isAuthenticated()"><a href="#login" >LOGIN</a></li>
+                        <li ng-if="isAuthenticated()"><a href="#profile">MY ACCOUNT</a></li>
                         <li ng-if="!isAuthenticated()"><a href="#signup" >SIGNUP</a></li>
 
           
@@ -1028,11 +1028,11 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
             </div>
             <div class="bottom gray-area">
                 <div class="container">
-                    <div class="logo pull-left">
+<!--                    <div class="logo pull-left">
                         <a href="index.html" title="Travelo - home">
                             <img src="images/logo.png" alt="Travelo HTML5 Template" />
                         </a>
-                    </div>
+                    </div>-->
                     <div class="pull-right">
                         <a id="back-to-top" href="#" class="animated" data-animation-type="bounce"><i class="soap-icon-longarrow-up circle"></i></a>
                     </div>
@@ -1108,7 +1108,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
 <script src="./controllers/logout.js"></script>
 <script src="./controllers/profile.js"></script>
 <script src="./controllers/navbar.js"></script>
-<script src="./controllers/test.js"></script>
+<script src="./controllers/myaccount.js"></script>
 <script src="./services/account.js"></script>
 
 </body>

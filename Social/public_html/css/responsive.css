@@ -303,7 +303,8 @@
 @media (min-width: 1200px) {
   .container {
     padding-left: 0;
-    padding-right: 0; }
+    padding-right: 0;
+    }
 
   /* add clearfix in the grid system */
   .row.add-clearfix > .col-lg-2:nth-child(2n+1) {

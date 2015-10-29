@@ -3,9 +3,9 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
             $stateProvider
                     .state('index', {
                         url: '/index',
-                        controller: 'testCtrl',
-//                        templateUrl: 'pages/home.html'
-                          templateUrl: 'pages/dashboard1.html'
+                        controller: 'homeCtrl',
+                        templateUrl: 'pages/home.html'
+              
                     })
                      .state('home', {
                         url: '/',
@@ -35,12 +35,29 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                     })
                     .state('profile', {
                         url: '/profile',
-                        templateUrl: 'pages/profile.html',
-                        controller: 'ProfileCtrl',
+                          controller: 'ProfileCtrl',
+                          templateUrl: 'pages/profile.html',
+                        resolve: {
+                            loginRequired: loginRequired
+                        }
+                    })
+                       .state('settings', {
+                        url: '/settings',
+                          controller: 'myaccountCtrl',
+                          templateUrl: 'pages/myaccount.html',
                         resolve: {
                             loginRequired: loginRequired
                         }
                     });
+                    
+//                    .state('profiles', {
+//                        url: '/profiles',
+//                        templateUrl: 'pages/profile.html',
+//                        controller: 'ProfileCtrl',
+//                        resolve: {
+//                            loginRequired: loginRequired
+//                        }
+//                    });
 
             $urlRouterProvider.otherwise('/');
 
@@ -53,7 +70,8 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin + '/Social' || window.location.protocol + '//' + window.location.host) + '/',
                     url: 'http://localhost:8080/auth/facebook',
-                    scope: ['email','public_profile']
+//                    scope: ['email','user_birthday' , 'user_photos' , 'user_location' , 'user_hometown' , 'user_about_me']
+                    scope: ['email']
                 });
 
                 $authProvider.google({
@@ -69,7 +87,8 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
                     url: 'http://tourgoat.cfapps.io/auth/facebook',
-                    scope: ['email','user_birthday' , 'user_photos' , 'user_location' , 'user_hometown' , 'user_about_me']
+//                    scope: ['email','user_birthday' , 'user_photos' , 'user_location' , 'user_hometown' , 'user_about_me']
+                    scope: ['email']
                 });
                 $authProvider.google({
                     clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
