@@ -1,5 +1,7 @@
 angular.module('MyApp')
   .controller('SignupCtrl', function($scope, $location, $auth, toastr) {
+     
+      
     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function() {
@@ -20,4 +22,6 @@ angular.module('MyApp')
           toastr.error(response.data.message);
         });
     };
+    
+    
   });
