@@ -6266,8 +6266,8 @@ ul.check-circle li:before {
   /* 3.1.2. Header Styles */
 }
 #header .topnav {
-  height: 30px;
-  background: #01b7f2;
+  height: 35px;
+  background: rgba(6, 171, 224, 0.84);
   width: 100%;
 }
 #header .topnav ul.quick-menu > li {
@@ -7412,7 +7412,7 @@ ul.menu.mini li:hover a, ul.menu.mini li.active a {
 #header .mobile-menu .mobile-topnav > li {
   float: left;
   position: relative;
-  color: #40cbf8;
+  color: rgba(9, 170, 222, 0.91);
 }
 #header .mobile-menu .mobile-topnav > li > a {
   font-size: 0.9333em;

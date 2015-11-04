@@ -63,6 +63,7 @@
     <script src="./vendor/angular-toastr.tpls.js"></script>
     <script src="./vendor/satellizer.js"></script>
     
+
     
    <!-- CSS for IE -->
     <!--[if lte IE 9]>
@@ -100,9 +101,12 @@
                         <li><a href="#signup">Sign up</a></li>
                     </ul>
                     <ul ng-if="isAuthenticated()" class="quick-menu pull-right" >
-                        <li><a>{{user.firstName}}</a></li> 
-                        <li><img class="profile-picture" ng-src="{{user.picture || 'http://placehold.it/50'}}"></li>
-                        <li><a href="#profile">My Account</a></li>
+                        <li><a href="#profile"> 
+                                <img class="img-rounded" ng-src="{{user.picture || 'http://placehold.it/30'}}" alt="User Image"/>
+                                <span style="margin-left: 8px">{{user.firstName}}</span> <span>{{user.lastName}}</span>
+                            </a>
+                        </li> 
+                        <!--<li><a href="#profile">My Account</a></li>-->
                         <li><a href="#logout">Logout</a></li>
                     </ul>
                 </div>

@@ -57,12 +57,11 @@
                     <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.dateOfBirth.$invalid && signupForm.dateOfBirth.$dirty }">
 
                         <input class="form-control input-lg" name="dateOfBirth" type="date"  max="2000-12-31" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" required>
-                        <span class="ion-person form-control-feedback"></span>
+                        <span class="fa fa-calendar form-control-feedback"></span>
                         <div class="help-block text-danger" ng-if="signupForm.dateOfBirth.$dirty" ng-messages="signupForm.dateOfBirth.$error">
                             <div ng-message="required">You must enter your date of birth.</div>
                         </div>
                     </div>
-
 
                     <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></small></p>
                     <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Sign up</button>
