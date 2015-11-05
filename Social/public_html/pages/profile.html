@@ -287,22 +287,25 @@
                         <div class="view-profile">
                             <article class="image-box style2 box innerstyle personal-details">
                                 <figure>
-                                    <a title="" href="#"><img  class="img-rounded img-responsive" width="270" height="263" alt=""  ng-src="{{user.picture|| 'http://placehold.it/270x263'}}"></a>
+                                    <a title="" href="#"><img  class="img-rounded img-responsive" width="270" height="263" alt=""  ng-src="{{user.picture|| 'images/profile/profile_Img.png'}}"></a>
 
                                 </figure>
                                 <div class="details">
                                     <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
-                                    <h2 class="box-title fullname">{{user.lastName}} {{user.firstName}}</h2>
+                                    <h2 class="box-title fullname">{{user.lastName || "No record"}} {{user.firstName || "No record"}}</h2>
                                     <dl class="term-description">
-                                        <dt>user name:</dt><dd>{{user.email}}</dd>
-                                        <dt>first name:</dt><dd>{{user.firstName}}</dd>
-                                        <dt>last name:</dt><dd>{{user.lastName}}</dd>
-                                        <dt>phone number:</dt><dd>coming soon</dd>
-                                        <dt>Date of birth:</dt><dd>coming soon</dd>
-                                        <dt>Street Address and number:</dt><dd>coming soon</dd>
-                                        <dt>Town / City:</dt><dd>coming soon</dd>
-                                        <dt>ZIP code:</dt><dd>coming soon</dd>
-                                        <dt>Country:</dt><dd>coming soon</dd>
+                                        <dt>user name:</dt><dd>{{user.email || "No record"}}</dd>
+                                        <dt>first name:</dt><dd>{{user.firstName || "No record"}}</dd>
+                                        <dt>last name:</dt><dd>{{user.lastName || "No record"}}</dd>
+                                        <dt>gender:</dt><dd>{{user.gender || "No record"}}</dd>
+                                        <dt>Date of birth:</dt><dd>{{user.gender || "No record"}}</dd>
+                                        <dt>phone number:</dt><dd>{{user.lastName || "No record"}}</dd>
+                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth || "No record"}}</dd>
+                                        <dt>Street Address and number:</dt><dd>{{user.lastName || "No record"}}</dd>
+                                        <dt>Town / City:</dt><dd>{{user.lastName || "No record"}}</dd>
+                                        <dt>State:</dt><dd>{{user.lastName || "No record"}}</dd>
+                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.lastName || "No record"}}</dd>
+                                        <dt>Country:</dt><dd>{{user.lastName || "No record"}}</dd>
                                     </dl>
                                 </div>
                             </article>
