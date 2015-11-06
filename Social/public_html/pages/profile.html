@@ -292,26 +292,27 @@
                                 </figure>
                                 <div class="details">
                                     <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
-                                    <h2 class="box-title fullname">{{user.lastName || "No record"}} {{user.firstName || "No record"}}</h2>
+                                    <h2 class="box-title fullname">{{user.lastName|| "No record"}} {{user.firstName|| "No record"}}</h2>
                                     <dl class="term-description">
-                                        <dt>user name:</dt><dd>{{user.email || "No record"}}</dd>
-                                        <dt>first name:</dt><dd>{{user.firstName || "No record"}}</dd>
-                                        <dt>last name:</dt><dd>{{user.lastName || "No record"}}</dd>
-                                        <dt>gender:</dt><dd>{{user.gender || "No record"}}</dd>
-                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth || "No record"}}</dd>
-                                        <dt>phone number:</dt><dd>{{user.address.phone || "No record"}}</dd>
-                                        <dt>Street Address and number:</dt><dd>{{user.address.streetAddress || "No record"}}</dd>
-                                        <dt>Town / City:</dt><dd>{{user.address.city || "No record"}}</dd>
-                                        <dt>State:</dt><dd>{{user.address.states || "No record"}}</dd>
-                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.zipCode || "No record"}}</dd>
-                                        <dt>Country:</dt><dd>{{user.address.country || "No record"}}</dd>
+                                        <dt>user name:</dt><dd>{{user.email|| "No record"}}</dd>
+                                        <dt>first name:</dt><dd>{{user.firstName|| "No record"}}</dd>
+                                        <dt>last name:</dt><dd>{{user.lastName|| "No record"}}</dd>
+                                        <dt>gender:</dt><dd>{{user.gender|| "No record"}}</dd>
+                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth|| "No record"}}</dd>
+                                        <dt>phone number:</dt><dd>{{user.address.phone|| "No record"}}</dd>
+                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "No record"}}</dd>
+                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2 || "No record"}}</dd>
+                                        <dt>Town / City:</dt><dd>{{user.address.city|| "No record"}}</dd>
+                                        <dt>State:</dt><dd>{{user.address.states|| "No record"}}</dd>
+                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "No record"}}</dd>
+                                        <dt>Country:</dt><dd>{{user.address.country|| "No record"}}</dd>
                                     </dl>
                                 </div>
                             </article>
                             <hr>
                             <!--this is to notify the user-->
-                            <div class="notification-area">
-                                <div class="info-box block">
+                            <div class="notification-area" ng-if="user.isProfileComplete == false">
+<!--                                <div class="info-box block">
                                     <span class="close"></span>
                                     <p>This is your Dashboard, the place to check your Profile, respond to Reservation Requests, view upcoming Trip Information, and much more.</p>
                                     <br />
@@ -319,9 +320,8 @@
                                         <li><span class="skin-color">Learn How It Works</span> — Watch a short video that shows you how Travelo works.</li>
                                         <li><span class="skin-color">Get Help</span> — View our help section and FAQs to get started on Travelo. </li>
                                     </ul>
-                                </div>
+                                </div>-->
                             </div>
-                            <hr>
                             <h2>About You</h2>
                             <div class="intro">
                                 <p>Vestibulum tristique, justo eu sollicitudin sagittis, metus dolor eleifend urna, quis scelerisque purus quam nec ligula. Suspendisse iaculis odio odio, ac vehicula nisi faucibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere semper sem ac aliquet. Duis vel bibendum tellus, eu hendrerit sapien. Proin fringilla, enim vel lobortis viverra, augue orci fringilla diam, sed cursus elit mi vel lacus. Nulla facilisi. Fusce sagittis, magna non vehicula gravida, ante arcu pulvinar arcu, aliquet luctus arcu purus sit amet sem. Mauris blandit odio sed nisi porttitor egestas. Mauris in quam interdum purus vehicula rutrum quis in sem. Integer interdum lectus at nulla dictum luctus. Sed risus felis, posuere id condimentum non, egestas pulvinar enim. Praesent pretium risus eget nisi ullamcorper fermentum. Duis lacinia nisi ac rhoncus vestibulum.</p>
@@ -416,79 +416,67 @@
                             </div>
                         </div>
                         <div class="edit-profile">
-                            <form class="edit-profile-form">
+                            <form class="edit-profile-form" method="post" ng-submit="updateProfile()" name="signupForm">
                                 <h2>Personal Details</h2>
                                 <div class="col-sm-9 no-padding no-float">
                                     <div class="row form-group">
                                         <div class="col-sms-6 col-sm-6">
                                             <label>First Name</label>
-                                            <input type="text" class="input-text full-width" placeholder="">
+                                            <input type="text" class="form-control input-text full-width" name="lastName" ng-model="user.lastName" placeholder="">
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Last Name</label>
-                                            <input type="text" class="input-text full-width" placeholder="">
+                                            <input type="text" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" placeholder="">
                                         </div>
                                     </div>
                                     <div class="row form-group">
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Email Address</label>
-                                            <input type="text" class="input-text full-width" placeholder="">
+                                            <input type="text" class="form-control input-text full-width" name="email" ng-model="user.email" placeholder="">
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Verify Email Address</label>
-                                            <input type="text" class="input-text full-width" placeholder="">
+                                            <input type="text" class=" form-control input-text full-width" name="email" ng-model="user.email" placeholder="">
                                         </div>
                                     </div>
+                                   
                                     <div class="row form-group">
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Country Code</label>
-                                            <input type="text" class="input-text full-width" placeholder="United States (+1)">
 
-                                        </div>
                                         <div class="col-sms-6 col-sm-6">
-                                            <label>Phone Number</label>
-                                            <input type="text" class="input-text full-width" placeholder="">
+                                            <label>Date of Birth</label>
+                                            <input class="form-control input-text full-width " name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" >
                                         </div>
-                                    </div>
-                                    <label>Date of Birth</label>
-                                    <div class="row form-group">
+
                                         <div class="col-sms-6 col-sm-6">
-                                            <input class="input-text full-width " name="dateOfBirth" type="date"  max="2000-12-31" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" >
+                                            <label>Gender</label>
+                                            <select class="full-width " name="gender" ng-model="user.gender">
+                                                <option value="select">Select gender</option>
+                                                <option value="female">female</option>
+                                                <option value="male">male</option>
+                                            </select>
                                         </div>
-                                        <div class="col-sms-4 col-sm-2">
-                                            <div class="selector">
-                                                <select class="full-width">
-                                                    <option value="">month</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                        <div class="col-sms-4 col-sm-2">
-                                            <div class="selector">
-                                                <select class="full-width">
-                                                    <option value="">year</option>
-                                                </select>
-                                            </div>
-                                        </div>
+
                                     </div>
+                                   
                                     <hr>
                                     <h2>Contact Details</h2>
                                     <div class="row form-group">
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Address 1</label>
-                                            <input type="text" class="input-text full-width">
+                                            <input type="text" class="input-text full-width" name="streetAddress1" ng-model="user.address.streetAddress1">
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Address 2</label>
-                                            <input type="text" class="input-text full-width">
+                                            <input type="text" class="input-text full-width" name="streetAddress2" ng-model="user.address.streetAddress2">
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>City</label>
-                                            <input type="text" class="input-text full-width">
+                                            <input type="text" class="input-text full-width" name="city" ng-model="user.address.city">
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>State</label>
                                             <div>
-                                                <select class="full-width ">
+                                                <select class="full-width " name="states" ng-model="user.address.states">
                                                     <option value="select">Select State</option>
                                                     <option value="AL">AL</option>
                                                     <option value="AK">AK</option>
@@ -548,13 +536,13 @@
                                     <div class="row form-group">
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Zip Code / Postal / Region</label>
-                                            <input type="text" class="input-text full-width">
+                                            <input type="text" class="input-text full-width"  name="zipCode" ng-model="user.address.zipCode" >
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
 
                                             <label>Country</label>
                                             <div >
-                                                <select class="full-width">
+                                                <select class="full-width" name="country" ng-model="user.address.country">
                                                     <option value="select">Select Country</option>
                                                     <option value="Afganistan">Afghanistan</option>
                                                     <option value="Albania">Albania</option>
@@ -806,7 +794,17 @@
                                                 </select>
                                             </div>
                                         </div>
+                                    </div>
+                                    <div class="row form-group">
+                                        <div class="col-sms-6 col-sm-6">
+                                            <label>Country Code</label>
+                                            <input type="text" class=" form-control input-text full-width" name="countryCode" ng-model="user.address.countryCode" placeholder="United States (+1)">
 
+                                        </div>
+                                        <div class="col-sms-6 col-sm-6">
+                                            <label>Phone Number</label>
+                                            <input type="text" class=" form-control input-text full-width" name="phone" ng-model="user.address.phone" placeholder="">
+                                        </div>
                                     </div>
                                     <!--                                            <div class="row form-group">
                                                                                     <div class="col-sms-6 col-sm-6">
@@ -829,7 +827,7 @@
                                         <textarea rows="5" class="input-text full-width" placeholder="please tell us about you"></textarea>
                                     </div>
                                     <div class="from-group">
-                                        <button style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
+                                        <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
                                         <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 
                                     </div>
 
