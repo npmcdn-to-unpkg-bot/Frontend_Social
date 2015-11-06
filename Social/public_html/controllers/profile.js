@@ -3,7 +3,8 @@ angular.module('MyApp')
     $scope.getProfile = function() {
       Account.getProfile()
         .then(function(response) {
-          $rootScope.user = response.data;
+           $rootScope.user = response.data;
+           $rootScope.user.dateOfBirth  =  new Date($rootScope.user.dateOfBirth);
             console.log($rootScope.user);
         })
         .catch(function(response) {

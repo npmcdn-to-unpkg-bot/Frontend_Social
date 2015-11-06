@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('LoginCtrl', function($scope, $location, $auth, toastr, $rootScope, Account) {
+  .controller('LoginCtrl', function($scope, $location, $auth, toastr, $rootScope) {
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function() {
@@ -10,6 +10,7 @@ angular.module('MyApp')
         .catch(function(response) {
 //          toastr.error(response.data.message, response.status);
             toastr.error('The user name or password is incorrect');
+
         });
     };
     $scope.authenticate = function(provider) {
