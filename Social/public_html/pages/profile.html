@@ -292,20 +292,20 @@
                                 </figure>
                                 <div class="details">
                                     <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
-                                    <h2 class="box-title fullname">{{user.lastName|| "No record"}} {{user.firstName|| "No record"}}</h2>
+                                    <h2 class="box-title fullname">{{user.lastName|| "required field"}} {{user.firstName|| "required field"}}</h2>
                                     <dl class="term-description">
-                                        <dt>user name:</dt><dd>{{user.email|| "No record"}}</dd>
-                                        <dt>first name:</dt><dd>{{user.firstName|| "No record"}}</dd>
-                                        <dt>last name:</dt><dd>{{user.lastName|| "No record"}}</dd>
-                                        <dt>gender:</dt><dd>{{user.gender|| "No record"}}</dd>
-                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth|| "No record"}}</dd>
-                                        <dt>phone number:</dt><dd>{{user.address.phone|| "No record"}}</dd>
-                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "No record"}}</dd>
-                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2 || "No record"}}</dd>
-                                        <dt>Town / City:</dt><dd>{{user.address.city|| "No record"}}</dd>
-                                        <dt>State:</dt><dd>{{user.address.states|| "No record"}}</dd>
-                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "No record"}}</dd>
-                                        <dt>Country:</dt><dd>{{user.address.country|| "No record"}}</dd>
+                                        <dt>user name:</dt><dd>{{user.email|| "required field"}}</dd>
+                                        <dt>first name:</dt><dd>{{user.firstName|| "required field"}}</dd>
+                                        <dt>last name:</dt><dd>{{user.lastName|| "required field"}}</dd>
+                                        <dt>gender:</dt><dd>{{user.gender|| "required field"}}</dd>
+                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth|| "required field"}}</dd>
+                                        <dt>phone number:</dt><dd>{{user.address.phone|| "required field"}}</dd>
+                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "required field"}}</dd>
+                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2 || "required field"}}</dd>
+                                        <dt>Town / City:</dt><dd>{{user.address.city|| "required field"}}</dd>
+                                        <dt>State:</dt><dd>{{user.address.states|| "required field"}}</dd>
+                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "required field"}}</dd>
+                                        <dt>Country:</dt><dd>{{user.address.country|| "required field"}}</dd>
                                     </dl>
                                 </div>
                             </article>
@@ -324,8 +324,9 @@
                             </div>
                             <h2>About You</h2>
                             <div class="intro">
-                                <p>Vestibulum tristique, justo eu sollicitudin sagittis, metus dolor eleifend urna, quis scelerisque purus quam nec ligula. Suspendisse iaculis odio odio, ac vehicula nisi faucibus eu. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse posuere semper sem ac aliquet. Duis vel bibendum tellus, eu hendrerit sapien. Proin fringilla, enim vel lobortis viverra, augue orci fringilla diam, sed cursus elit mi vel lacus. Nulla facilisi. Fusce sagittis, magna non vehicula gravida, ante arcu pulvinar arcu, aliquet luctus arcu purus sit amet sem. Mauris blandit odio sed nisi porttitor egestas. Mauris in quam interdum purus vehicula rutrum quis in sem. Integer interdum lectus at nulla dictum luctus. Sed risus felis, posuere id condimentum non, egestas pulvinar enim. Praesent pretium risus eget nisi ullamcorper fermentum. Duis lacinia nisi ac rhoncus vestibulum.</p>
+                                <p> {{user.aboutYou || "please tell us about you"}} </p>
                             </div>
+                           
                             <hr>
                             <h2>Today’s Suggestions</h2>
                             <div class="suggestions image-carousel style2" data-animation="slide" data-item-width="170" data-item-margin="22">
@@ -422,11 +423,11 @@
                                     <div class="row form-group">
                                         <div class="col-sms-6 col-sm-6">
                                             <label>First Name</label>
-                                            <input type="text" class="form-control input-text full-width" name="lastName" ng-model="user.lastName" placeholder="">
+                                            <input type="text" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" placeholder="">
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Last Name</label>
-                                            <input type="text" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" placeholder="">
+                                            <input type="text" class="form-control input-text full-width" name="lastName" ng-model="user.lastName" placeholder="">
                                         </div>
                                     </div>
                                     <div class="row form-group">
@@ -813,6 +814,11 @@
                                                                                     </div>
                                                                                 </div>-->
                                     <hr>
+                                    <h2>Describe Yourself</h2>
+                                    <div class="form-group">
+                                        <textarea rows="7" name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about you"></textarea>
+                                    </div>
+                                    <hr>
                                     <h2>Upload Profile Photo</h2>
                                     <div class="row form-group">
                                         <div class="col-sms-12 col-sm-6 no-float">
@@ -821,11 +827,13 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <hr>
-                                    <h2>Describe Yourself</h2>
-                                    <div class="form-group">
-                                        <textarea rows="5" class="input-text full-width" placeholder="please tell us about you"></textarea>
-                                    </div>
+                                 
+<!--                                    <input type="file" ng-model="user.profPictures" id="profPictures" name="profPictures" multiple>
+                                  <br>
+                                   <button ng-click="add()">Add</button>
+                                    <p>{{data}}</p>-->
+                                    <br>
+                                    <br>
                                     <div class="from-group">
                                         <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
                                         <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 

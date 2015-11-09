@@ -16,11 +16,32 @@ angular.module('MyApp')
         });
     };
     $scope.updateProfile = function() {
+//        ---------
+//    $scope.data = 'none';
+//    
+//    $scope.add = function(){
+//      var f = document.getElementById('file').files[0],
+//          r = new FileReader();
+//      r.onloadend = function(e){
+//        $scope.data = e.target.result;
+//        $scope.user. = e.target.result;
+//      };
+//      r.readAsBinaryString(f);
+//    };
+//----------
+// $scope.onFileSelect = function($files) {
+//    
+//      //$files: an array of files selected, each file has name, size, and type.
+//    for (var i = 1; i < $files.length; i++) {
+//      $scope.user.pictures[i].image = $files[i];
+//     
+//    }
+//  };
+//-----------
       Account.updateProfile($scope.user)
         .then(function() {
             $location.path('/profile');
                 toastr.success('Profile has been updated');
-                  
         })
         .catch(function(response) {
           toastr.error(response.data.message, response.status);
