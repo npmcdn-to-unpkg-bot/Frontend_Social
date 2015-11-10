@@ -15,32 +15,3 @@ and open the template in the editor.
     font-size: 90%; 
     background: #f8f7f7; 
 }*/
-
-
-.datefield {
-    /* display: inline; */
-    padding: 0.9em;
-    border: inset 1px #eee;
-    background: #FFF;
-    /*border-radius: 5px;*/
-    color: #667;
-}
-
-.datefield * {
-    display: inline-block;
-}
-
-.datefield input {
-    width: 2.7em;
-    /* margin-right: -0.1em; */
-    margin-left: 1.0em;
-    padding: 0px 0.4em;
-    border: none;
-    font-size: 120%;
-    background: none;
-    color: #000;
-}
-
-.datefield input#year { width: 6.5em; /* font-size: larger; */}
-.datefield input:focus { outline:none; }
-

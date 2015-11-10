@@ -14,7 +14,7 @@ angular.module('MyApp')
 
                 },
                 updateProfile: function (profileData) {
-                    return $http.put('/api/me', profileData);
+                    return $http.put('http://localhost:8080/updateProfile', profileData);
                 }
             };
         });

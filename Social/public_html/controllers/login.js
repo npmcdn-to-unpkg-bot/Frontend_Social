@@ -4,17 +4,20 @@ angular.module('MyApp')
       $auth.login($scope.user)
         .then(function() {
           toastr.success('You have successfully signed in');
-          $location.path('/');
+       
+          $location.path('/profile');
         })
         .catch(function(response) {
-          toastr.error(response.data.message, response.status);
+//          toastr.error(response.data.message, response.status);
+            toastr.error('The user name or password is incorrect');
+
         });
     };
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function() {
           toastr.success('You have successfully signed in with ' + provider);
-          $location.path('/');
+          $location.path('/profile');
         })
         .catch(function(response) {
           toastr.error(response.data.message);

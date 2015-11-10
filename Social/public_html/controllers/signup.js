@@ -1,6 +1,6 @@
 angular.module('MyApp')
   .controller('SignupCtrl', function($scope, $location, $auth, toastr) {
-    $scope.signup = function() {
+     $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function() {
           $location.path('/login');
@@ -14,10 +14,11 @@ angular.module('MyApp')
       $auth.authenticate(provider)
         .then(function() {
           toastr.success('You have successfully signed in with ' + provider);
-          $location.path('/');
+          $location.path('/profile');
         })
         .catch(function(response) {
           toastr.error(response.data.message);
         });
     };
+
   });

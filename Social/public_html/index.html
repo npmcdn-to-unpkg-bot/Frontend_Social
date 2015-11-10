@@ -63,6 +63,7 @@
     <script src="./vendor/angular-toastr.tpls.js"></script>
     <script src="./vendor/satellizer.js"></script>
     
+
     
    <!-- CSS for IE -->
     <!--[if lte IE 9]>
@@ -100,7 +101,13 @@
                         <li><a href="#signup">Sign up</a></li>
                     </ul>
                     <ul ng-if="isAuthenticated()" class="quick-menu pull-right" >
-                        <li><a href="#profile">My Account</a></li>
+                        <li><a href="#profile"> 
+
+                                <img width="30" height="30" class="img-rounded" ng-src="{{user.picture || 'images/profile/profile_Img.png'}}" alt="User Image"/>
+                                &nbsp<span>Welcome,&nbsp {{::user.firstName }}</span>
+                            </a>
+                        </li> 
+                        <!--<li><a href="#profile">My Account</a></li>-->
                         <li><a href="#logout">Logout</a></li>
                     </ul>
                 </div>
@@ -1053,6 +1060,8 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
     <script type="text/javascript" src="js/jquery.placeholder.js"></script>
     <script type="text/javascript" src="js/jquery-ui.1.10.4.min.js"></script>
     
+
+    
     <!-- Twitter Bootstrap -->
     <script type="text/javascript" src="js/bootstrap.min.js"></script>
     
@@ -1109,6 +1118,11 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
 <script src="./controllers/profile.js"></script>
 <script src="./controllers/navbar.js"></script>
 <script src="./services/account.js"></script>
+
+<!--Image upload js-->
+ <script type="text/javascript" src="js/imgUpload/ng-file-upload-shim.min.js"></script>
+ <script type="text/javascript" src="js/imgUpload/ng-file-upload.min.js"></script>
+    
 
 </body>
 </html>

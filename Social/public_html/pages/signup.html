@@ -24,8 +24,8 @@
                             <div ng-message="required">You must enter your first name.</div>
                         </div>
                     </div>
-                     <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.lastName.$invalid && signupForm.lastName.$dirty }">
-                        <input class="form-control input-lg" type="text" name="lastName" ng-model="user.lastName" placeholder="Last Name" required autofocus>
+                    <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.lastName.$invalid && signupForm.lastName.$dirty }">
+                        <input class="form-control input-lg" type="text" name="lastName" ng-model="user.lastName" placeholder="Last Name" required >
                         <span class="ion-person form-control-feedback"></span>
                         <div class="help-block text-danger" ng-if="signupForm.lastName.$dirty" ng-messages="signupForm.lastName.$error">
                             <div ng-message="required">You must enter your last name.</div>
@@ -53,19 +53,16 @@
                             <div ng-message="compareTo">Password must match.</div>
                         </div>
                     </div>
-                    <!----------------->
-                    <!--TODO this part not finish-->
-                    <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.dob.$invalid && signupForm.confirmPassword.$dirty }">
-                        <div id="date2" class="datefield" >
-                            <!--<span class="ion-person form-control-feedback" ></span>-->
-                            <input id="month" type="tel" maxlength="2" placeholder="MM"/> /
-                            <input id="day" type="tel" maxlength="2" placeholder="DD"/> /
-                            <input id="year" type="tel" maxlength="4" placeholder="YYYY" />
-                        </div> 
+
+                    <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.dateOfBirth.$invalid && signupForm.dateOfBirth.$dirty }">
+
+                        <input class="form-control input-lg" name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" required>
+                        <span class="fa fa-calendar form-control-feedback"></span>
+                        <div class="help-block text-danger" ng-if="signupForm.dateOfBirth.$dirty" ng-messages="signupForm.dateOfBirth.$error">
+                            <div ng-message="required">You must enter your date of birth.</div>
+                        </div>
                     </div>
 
-                    <!----------------------------->
-                    
                     <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#">terms & conditions</a> and <a href="#">privacy policy</a></small></p>
                     <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Sign up</button>
                     <br/>
