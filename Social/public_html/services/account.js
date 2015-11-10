@@ -16,10 +16,10 @@ angular.module('MyApp')
                 updateProfile: function (profileData) {
                        if (window.location.host === 'localhost:8383') {
                       //for local
-                    return $http.get('http://localhost:8080/updateProfile', profileData);  
+                    return $http.put('http://localhost:8080/updateProfile', profileData);  
                     }else{
                            //for cloud
-                    return $http.get('http://tourgoat.cfapps.io/updateProfile', profileData);
+                    return $http.put('http://tourgoat.cfapps.io/updateProfile', profileData);
                     }
                     
                     
