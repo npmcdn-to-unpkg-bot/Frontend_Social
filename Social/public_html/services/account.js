@@ -22,7 +22,20 @@ angular.module('MyApp')
                         return $http.put('http://tourgoat.cfapps.io/updateProfile', profileData);
                     }
 
+                },
+                    updateProfilePic: function (profileData) {
+                    if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.put('http://localhost:8080/uploadProfilPic', profileData);
+                    } else {
+                        //for cloud
+                        return $http.put('http://tourgoat.cfapps.io/uploadProfilPic', profileData);
+                    }
+
                 }
+                
+                
+                
             };
         });
 

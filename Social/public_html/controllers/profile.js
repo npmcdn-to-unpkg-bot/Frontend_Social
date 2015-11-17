@@ -16,32 +16,25 @@ angular.module('MyApp')
         });
     };
     $scope.updateProfile = function() {
-//        ---------
-//    $scope.data = 'none';
-//    
-//    $scope.add = function(){
-//      var f = document.getElementById('file').files[0],
-//          r = new FileReader();
-//      r.onloadend = function(e){
-//        $scope.data = e.target.result;
-//        $scope.user. = e.target.result;
-//      };
-//      r.readAsBinaryString(f);
-//    };
-//----------
-// $scope.onFileSelect = function($files) {
-//    
-//      //$files: an array of files selected, each file has name, size, and type.
-//    for (var i = 1; i < $files.length; i++) {
-//      $scope.user.pictures[i].image = $files[i];
-//     
-//    }
-//  };
-//-----------
       Account.updateProfile($scope.user)
         .then(function() {
             $location.path('/profile');
                 toastr.success('Profile has been updated');
+        })
+        .catch(function(response) {
+          toastr.error(response.data.message, response.status);
+        });
+    };
+    
+     $scope.updateProfilePic = function() {
+//          $scope.processQueue();
+//         ---------
+
+//--------------
+      Account.updateProfilePic($scope.user)
+        .then(function() {
+            $location.path('/profile');
+            toastr.success('Profile has been updated');
         })
         .catch(function(response) {
           toastr.error(response.data.message, response.status);
@@ -98,3 +91,72 @@ angular.module('MyApp')
             tjq(".edit-profile").hide();
         });
   });
+  
+
+                    
+          angular.module('MyApp').controller('FileCtrl', ['scope',
+                function ($scope) {
+
+                    $scope.partialDownloadLink = 'http://localhost:8080/download?filename=';
+                    $scope.filename = '';
+
+                    $scope.uploadFile = function() {
+                        $scope.processQueue();
+                    };
+
+                    $scope.reset = function() {
+                        $scope.resetDropzone();
+                    };
+                }
+
+            ]);
+            
+            
+            var fileAppDirectives = angular.module('fileAppDirectives', []);
+
+            angular.module('MyApp').directive('dropzone', function() {
+                return {
+                    restrict: 'C',
+                    link: function(scope, element, attrs) {
+
+                        var config = {
+                            url: 'http://localhost:8080/upload',
+                            maxFilesize: 100,
+                            paramName: "uploadfile",
+                            maxThumbnailFilesize: 10,
+                            parallelUploads: 1,
+                            autoProcessQueue: false
+                        };
+
+                        var eventHandlers = {
+                            'addedfile': function(file) {
+                                scope.file = file;
+                                if (this.files[1]!=null) {
+                                    this.removeFile(this.files[0]);
+                                }
+                                scope.$apply(function() {
+                                    scope.fileAdded = true;
+                                });
+                            },
+
+                            'success': function (file, response) {
+                            }
+
+                        };
+
+                        dropzone = new Dropzone(element[0], config);
+
+                        angular.forEach(eventHandlers, function(handler, event) {
+                            dropzone.on(event, handler);
+                        });
+
+                        scope.processDropzone = function() {
+                            dropzone.processQueue();
+                        };
+
+                        scope.resetDropzone = function() {
+                            dropzone.removeAllFiles();
+                        }
+                    }
+                }
+            });

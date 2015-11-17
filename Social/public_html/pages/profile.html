@@ -799,12 +799,12 @@
                                     <div class="row form-group">
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Country Code</label>
-                                            <input type="text" class=" form-control input-text full-width" name="countryCode" ng-model="user.address.countryCode" placeholder="United States (+1)">
+                                            <input type="text" maxlength="5" require ng-pattern="/^[0-9]*$/" class="form-control input-text full-width" name="countryCode" ng-model="user.address.countryCode" placeholder="United States (+1)" >
 
                                         </div>
                                         <div class="col-sms-6 col-sm-6">
                                             <label>Phone Number</label>
-                                            <input type="text" class=" form-control input-text full-width" name="phone" ng-model="user.address.phone" placeholder="">
+                                            <input type="text" maxlength="15" ng-pattern="/^\d{10}$/"  class=" form-control input-text full-width" name="phone" ng-model="user.address.phone" placeholder="" ng->
                                         </div>
                                     </div>
                                     <!--                                            <div class="row form-group">
@@ -1285,6 +1285,40 @@
             </div>
         </div>
     </div>
+    <!----------------------------->
+<div ng-controller="FileCtrl" ng-cloak>
+
+                <div class="col-xs-6 col-xs-offset-3">
+                    <div class="well">
+                        <form action="" class="dropzone" dropzone="" id="dropzone">
+                            <div class="dz-default dz-message">
+                            </div>
+                        <form>
+                    </div>
+                </div>
+                <div class="pull-right">
+                    <button class="btn btn-success" ng-click="uploadFile()">Upload File</button>
+                    <button class="btn btn-danger" ng-click="reset()">Reset Dropzone</button>
+                </div>
+                <div>
+                    <form>
+                        <label>File to download</label>
+                        <input ng-model="filename" type="text" placeholder="Filename" />
+                        <a class="btn btn-primary" href="" ng-href="{{ partialDownloadLink + filename }}">Download File</a>
+                    </form>
+                </div>
+
+                ...
+
+                 <script type="text/javascript">
+                    Dropzone.autoDiscover = false;
+                </script>
+  
+            </div>
+    <hr>
+    <br>
+    <br>
+    <!------------------------------------>
 </section>
 
 
