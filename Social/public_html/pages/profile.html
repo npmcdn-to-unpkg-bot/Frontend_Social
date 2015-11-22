@@ -289,23 +289,33 @@
                                 <figure>
                                     <a title="" href="#"><img  class="img-rounded img-responsive" width="270" height="263" alt=""  ng-src="{{user.picture|| 'images/profile/profile_Img.png'}}"></a>
 
+                                    <div class="star-rating"> 
+                                        <span class="fa fa-star-o" data-rating="1"></span>
+                                        <span class="fa fa-star-o" data-rating="2"></span>
+                                        <span class="fa fa-star-o" data-rating="3"></span>
+                                        <span class="fa fa-star-o" data-rating="4"></span>
+                                        <span class="fa fa-star-o" data-rating="5"></span>
+                                        <input type="hidden" name="whatever" class="rating-value" value="3">
+                                    </div>
                                 </figure>
+
+                             
                                 <div class="details">
                                     <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
-                                    <h2 class="box-title fullname">{{user.lastName|| "required field"}} {{user.firstName|| "required field"}}</h2>
+                                    <h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>
                                     <dl class="term-description">
-                                        <dt>user name:</dt><dd>{{user.email|| "required field"}}</dd>
-                                        <dt>first name:</dt><dd>{{user.firstName|| "required field"}}</dd>
-                                        <dt>last name:</dt><dd>{{user.lastName|| "required field"}}</dd>
-                                        <dt>gender:</dt><dd>{{user.gender|| "required field"}}</dd>
-                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth|| "required field"}}</dd>
-                                        <dt>phone number:</dt><dd>{{user.address.phone|| "required field"}}</dd>
-                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "required field"}}</dd>
-                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2 || "required field"}}</dd>
-                                        <dt>Town / City:</dt><dd>{{user.address.city|| "required field"}}</dd>
-                                        <dt>State:</dt><dd>{{user.address.states|| "required field"}}</dd>
-                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "required field"}}</dd>
-                                        <dt>Country:</dt><dd>{{user.address.country|| "required field"}}</dd>
+                                        <dt>user name:</dt><dd>{{user.email|| "requireds field"}}</dd>
+                                        <dt>first name:</dt><dd>{{user.firstName|| "requireds field"}}</dd>
+                                        <dt>last name:</dt><dd>{{user.lastName|| "requireds field"}}</dd>
+                                        <dt>gender:</dt><dd>{{user.gender|| "requireds field"}}</dd>
+                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth|| "requireds field"}}</dd>
+                                        <dt>phone number:</dt><dd>{{user.address.phone|| "requireds field"}}</dd>
+                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "requireds field"}}</dd>
+                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2 || "requireds field"}}</dd>
+                                        <dt>Town / City:</dt><dd>{{user.address.city|| "requireds field"}}</dd>
+                                        <dt>State:</dt><dd>{{user.address.states|| "requireds field"}}</dd>
+                                        <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
+                                        <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
                                     </dl>
                                 </div>
                             </article>
@@ -417,68 +427,65 @@
                             </div>
                         </div>
                         <div class="edit-profile">
-                            <form class="edit-profile-form" method="post" ng-submit="updateProfile()" name="signupForm">
+                          
+                            <form class="edit-profile-form" method="post" ng-submit="updateProfile()" name="signupForm" novalidate="novalidate">
                                 <h2>Personal Details</h2>
                                 <div class="col-sm-9 no-padding no-float">
-                                    <div class="row form-group">
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>First Name</label>
-                                            <input type="text" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" placeholder="">
+                                    <div class="row ">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="firstName" class="control-label">First Name</label>
+                                            <input id="firstName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" required >
                                         </div>
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Last Name</label>
-                                            <input type="text" class="form-control input-text full-width" name="lastName" ng-model="user.lastName" placeholder="">
-                                        </div>
-                                    </div>
-                                    <div class="row form-group">
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Email Address</label>
-                                            <input type="text" class="form-control input-text full-width" name="email" ng-model="user.email" placeholder="">
-                                        </div>
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Verify Email Address</label>
-                                            <input type="text" class=" form-control input-text full-width" name="email" ng-model="user.email" placeholder="">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="lastName" class="control-label">Last Name</label>
+                                            <input id="lastName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="lastName" ng-model="user.lastName"  required>
                                         </div>
                                     </div>
                                    
-                                    <div class="row form-group">
+                                    <div class="row">
 
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Date of Birth</label>
-                                            <input class="form-control input-text full-width " name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" >
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="date" class="control-label">Date of Birth</label>
+                                            <input id="date" class="form-control input-text full-width " name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" required>
                                         </div>
 
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Gender</label>
-                                            <select class="full-width " name="gender" ng-model="user.gender">
-                                                <option value="select">Select gender</option>
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="gender" class="control-label">Gender</label>
+                                            <select id="gender" class="full-width " name="gender" ng-model="user.gender" required>
                                                 <option value="female">female</option>
                                                 <option value="male">male</option>
                                             </select>
                                         </div>
 
                                     </div>
+                                      <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="email" class="control-label">Email Address</label>
+                                            <input id="email" type="text" class="form-control input-text full-width" maxlength="30" name="email" ng-model="user.email" required>
+                                        </div>
+                                    
+                                    </div>
                                    
                                     <hr>
                                     <h2>Contact Details</h2>
-                                    <div class="row form-group">
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Address 1</label>
-                                            <input type="text" class="input-text full-width" name="streetAddress1" ng-model="user.address.streetAddress1">
+                                    <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="address1" class="control-label">Address 1</label>
+                                            <input id="adderss1" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress1" ng-model="user.address.streetAddress1" required >
                                         </div>
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Address 2</label>
-                                            <input type="text" class="input-text full-width" name="streetAddress2" ng-model="user.address.streetAddress2">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="address2" class="control-label">Address 2</label>
+                                            <input id="address2" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress2" ng-model="user.address.streetAddress2" required >
                                         </div>
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>City</label>
-                                            <input type="text" class="input-text full-width" name="city" ng-model="user.address.city">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="city" class="control-label">City</label>
+                                            <input id="city" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" name="city" ng-model="user.address.city" required >
                                         </div>
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>State</label>
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="states" class="control-label">State</label>
                                             <div>
-                                                <select class="full-width " name="states" ng-model="user.address.states">
-                                                    <option value="select">Select State</option>
+                                                <select id="states" class="full-width " name="states" ng-model="user.address.states" required >
+                                                    <option value="">Select State</option>
                                                     <option value="AL">AL</option>
                                                     <option value="AK">AK</option>
                                                     <option value="AZ">AZ</option>
@@ -534,17 +541,17 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row form-group">
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Zip Code / Postal / Region</label>
-                                            <input type="text" class="input-text full-width"  name="zipCode" ng-model="user.address.zipCode" >
+                                    <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="zip" class="control-label">Zip Code / Postal / Region</label>
+                                            <input id="zip" type="text" class="input-text full-width" ng-maxlength="10" ng-pattern-err-type="numberOnly" ng-pattern="/^[0-9]*$/" name="zipCode" ng-model="user.address.zipCode" required>
                                         </div>
-                                        <div class="col-sms-6 col-sm-6">
+                                        <div class="col-sms-6 col-sm-6 form-group">
 
-                                            <label>Country</label>
+                                            <label for="country" class="control-label">Country</label>
                                             <div >
-                                                <select class="full-width" name="country" ng-model="user.address.country">
-                                                    <option value="select">Select Country</option>
+                                                <select id="country" class="full-width" name="country" ng-model="user.address.country" required="">
+                                                    <option value="">Select Country</option>
                                                     <option value="Afganistan">Afghanistan</option>
                                                     <option value="Albania">Albania</option>
                                                     <option value="Algeria">Algeria</option>
@@ -796,15 +803,15 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="row form-group">
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Country Code</label>
-                                            <input type="text" maxlength="5" require ng-pattern="/^[0-9]*$/" class="form-control input-text full-width" name="countryCode" ng-model="user.address.countryCode" placeholder="United States (+1)" >
+                                    <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="code" class="control-label">Country Code</label>
+                                            <input id="code" type="text"  ng-maxlength="4" ng-pattern-err-type="numberOnly" require ng-pattern="/^[0-9]*$/" class="form-control input-text full-width" name="countryCode" ng-model="user.address.countryCode" placeholder="United States (+1)" required >
 
                                         </div>
-                                        <div class="col-sms-6 col-sm-6">
-                                            <label>Phone Number</label>
-                                            <input type="text" maxlength="15" ng-pattern="/^\d{10}$/"  class=" form-control input-text full-width" name="phone" ng-model="user.address.phone" placeholder="" ng->
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="phone" class="control-label">Phone Number</label>
+                                            <input id="phone" type="text" ng-pattern-err-type="numberOnly" ng-maxlength="15" ng-pattern="/^[0-9]*$/" class=" form-control input-text full-width" name="phone" ng-model="user.address.phone" placeholder="" required >
                                         </div>
                                     </div>
                                     <!--                                            <div class="row form-group">
@@ -814,9 +821,9 @@
                                                                                     </div>
                                                                                 </div>-->
                                     <hr>
-                                    <h2>Describe Yourself</h2>
                                     <div class="form-group">
-                                        <textarea rows="7" name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about you"></textarea>
+                                        <label for="aboutYou" class="control-label">Describe Yourself</label>
+                                        <textarea id="aboutYou" rows="7" maxlength="500" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[a-zA-Z]+$/"name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about yourself" required></textarea>
                                     </div>
                                     <hr>
                                     <h2>Upload Profile Photo</h2>
@@ -827,11 +834,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                 
-<!--                                    <input type="file" ng-model="user.profPictures" id="profPictures" name="profPictures" multiple>
+<!--                                <input type="file" ng-model="user.profPictures" id="profPictures" name="profPictures" multiple>
                                   <br>
                                    <button ng-click="add()">Add</button>
-                                    <p>{{data}}</p>-->
+                                    <p>{{data}}</p>-->-->
                                     <br>
                                     <br>
                                     <div class="from-group">
@@ -841,6 +847,7 @@
 
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                     <div id="booking" class="tab-pane fade">
@@ -1284,41 +1291,9 @@
                 </div>
             </div>
         </div>
+
     </div>
-    <!----------------------------->
-<div ng-controller="FileCtrl" ng-cloak>
-
-                <div class="col-xs-6 col-xs-offset-3">
-                    <div class="well">
-                        <form action="" class="dropzone" dropzone="" id="dropzone">
-                            <div class="dz-default dz-message">
-                            </div>
-                        <form>
-                    </div>
-                </div>
-                <div class="pull-right">
-                    <button class="btn btn-success" ng-click="uploadFile()">Upload File</button>
-                    <button class="btn btn-danger" ng-click="reset()">Reset Dropzone</button>
-                </div>
-                <div>
-                    <form>
-                        <label>File to download</label>
-                        <input ng-model="filename" type="text" placeholder="Filename" />
-                        <a class="btn btn-primary" href="" ng-href="{{ partialDownloadLink + filename }}">Download File</a>
-                    </form>
-                </div>
-
-                ...
-
-                 <script type="text/javascript">
-                    Dropzone.autoDiscover = false;
-                </script>
-  
-            </div>
-    <hr>
-    <br>
-    <br>
-    <!------------------------------------>
+          
 </section>
 
 

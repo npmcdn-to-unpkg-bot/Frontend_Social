@@ -1,4 +1,4 @@
-angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer'])
+var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider) {
             $stateProvider
                     .state('index', {
@@ -41,13 +41,10 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                             loginRequired: loginRequired
                         }
                     })
-                       .state('settings', {
-                        url: '/settings',
-                          controller: 'myaccountCtrl',
-                          templateUrl: 'pages/myaccount.html',
-                        resolve: {
-                            loginRequired: loginRequired
-                        }
+                       .state('term', {
+                        url: '/term',
+                       templateUrl: 'pages/term.html'
+                      
                     });
                     
 //                    .state('profiles', {
@@ -153,3 +150,19 @@ angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.
                 return deferred.promise;
             }
         });
+app.run(function (defaultErrorMessageResolver) {
+    defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
+        errorMessages['minPassword'] = 'Please enter at least 6 characters long ';
+        errorMessages['maxPassword'] = 'Please enter at max 15 characters long';
+        errorMessages['passwordMismatch'] = 'Please password must match';
+        errorMessages['onlyText'] = 'Please enter alphabets only';
+        errorMessages['numberOnly'] = 'Please enter only number';
+        errorMessages['compareTo'] = 'Password must match';
+        errorMessages['passwordRequired'] = 'Password is required';
+         errorMessages['badAdderss'] = 'Please enter a valid address';
+          errorMessages['aboutYouErrMsg'] = 'Please enter alphabets only with max of 500 characters';
+         
+        
+    });
+}
+);
