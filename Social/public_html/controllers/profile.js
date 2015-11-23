@@ -27,10 +27,7 @@ angular.module('MyApp')
     };
     
      $scope.updateProfilePic = function() {
-//          $scope.processQueue();
-//         ---------
 
-//--------------
       Account.updateProfilePic($scope.user)
         .then(function() {
             $location.path('/profile');
@@ -90,5 +87,39 @@ angular.module('MyApp')
             tjq(".view-profile").show();
             tjq(".edit-profile").hide();
         });
+        
+        
+    //image upload for profile    
+    $scope.stepsModel = [];
+    var profImg = {
+        imges:[]
+    };
+    
+ $scope.imageUpload = function(element){
+        for(var i = 0; i < element.files.length; i++){
+         var reader = new FileReader();
+        reader.onload = $scope.imageIsLoaded;
+        reader.readAsDataURL(element.files[i]);    
+        
+        
+
+    profImg.imges.push({ 
+        "fileName" : element.files[i].name,
+        "image"  : element.files[i].target.result,
+        "mimeType": element.files[i].type 
+    });
+ 
+    }
+      
+    };
+
+    $scope.imageIsLoaded = function(e){
+        $scope.$apply(function() {
+            $scope.stepsModel.push(e.target.result);
+   
+        });
+        console.log(profImg);
+    };
+
   });
   

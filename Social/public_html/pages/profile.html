@@ -477,6 +477,8 @@
                                             <label for="address2" class="control-label">Address 2</label>
                                             <input id="address2" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress2" ng-model="user.address.streetAddress2" required >
                                         </div>
+                                        </div>
+                                        <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="city" class="control-label">City</label>
                                             <input id="city" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" name="city" ng-model="user.address.city" required >
@@ -826,20 +828,7 @@
                                         <textarea id="aboutYou" rows="7" maxlength="500" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[a-zA-Z]+$/"name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about yourself" required></textarea>
                                     </div>
                                     <hr>
-                                    <h2>Upload Profile Photo</h2>
-                                    <div class="row form-group">
-                                        <div class="col-sms-12 col-sm-6 no-float">
-                                            <div class="fileinput full-width">
-                                                <input type="file" class="input-text" data-placeholder="select image/s">
-                                            </div>
-                                        </div>
-                                    </div>
-<!--                                <input type="file" ng-model="user.profPictures" id="profPictures" name="profPictures" multiple>
-                                  <br>
-                                   <button ng-click="add()">Add</button>
-                                    <p>{{data}}</p>-->-->
-                                    <br>
-                                    <br>
+                                            <br>
                                     <div class="from-group">
                                         <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
                                         <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 
@@ -848,6 +837,40 @@
                                 </div>
                             </form>
                             
+                             <br>     
+                                <hr>
+                                  <br> 
+                                <h2>Upload Profile Photo</h2>
+                                <div ng-repeat="step in stepsModel">
+                                    <img class="thumb" ng-src="{{step}}" />
+                                </div>
+                                <input type='file' ng-model-instant onchange="angular.element(this).scope().imageUpload(this)" multiple/>
+                                <style>
+                                    .thumb{
+    width:100px;
+    height:100px;
+    margin:5px;
+    float:left;
+}
+
+.uploader{
+    clear:both;
+}
+                                </style>
+                                
+<!--                                <div class="col-sms-12 col-sm-6 no-float">
+                                            <div class=btn-medium>
+                                                <input type="file"  id="file" name="file"  >
+                                       
+                                            </div>
+                                            <br>
+                                            <button class="btn-medium col-sms-6 col-sm-4" ng-click="updateProfilePic()">UPLOAD</button>
+                                        </div>
+                                <img >
+                                
+                                <p>{{data}}</p>
+                                           -->
+                   
                         </div>
                     </div>
                     <div id="booking" class="tab-pane fade">
