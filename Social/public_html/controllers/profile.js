@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .controller('ProfileCtrl', function($scope, $auth, toastr, Account,$rootScope, $location) {
+  .controller('ProfileCtrl', function($scope, $auth, toastr, Account,$rootScope, $location ) {
     $scope.getProfile = function() {
       Account.getProfile()
         .then(function(response) {
@@ -16,32 +16,22 @@ angular.module('MyApp')
         });
     };
     $scope.updateProfile = function() {
-//        ---------
-//    $scope.data = 'none';
-//    
-//    $scope.add = function(){
-//      var f = document.getElementById('file').files[0],
-//          r = new FileReader();
-//      r.onloadend = function(e){
-//        $scope.data = e.target.result;
-//        $scope.user. = e.target.result;
-//      };
-//      r.readAsBinaryString(f);
-//    };
-//----------
-// $scope.onFileSelect = function($files) {
-//    
-//      //$files: an array of files selected, each file has name, size, and type.
-//    for (var i = 1; i < $files.length; i++) {
-//      $scope.user.pictures[i].image = $files[i];
-//     
-//    }
-//  };
-//-----------
       Account.updateProfile($scope.user)
         .then(function() {
             $location.path('/profile');
                 toastr.success('Profile has been updated');
+        })
+        .catch(function(response) {
+          toastr.error(response.data.message, response.status);
+        });
+    };
+    
+     $scope.updateProfilePic = function() {
+
+      Account.updateProfilePic($scope.user)
+        .then(function() {
+            $location.path('/profile');
+            toastr.success('Profile has been updated');
         })
         .catch(function(response) {
           toastr.error(response.data.message, response.status);
@@ -97,4 +87,39 @@ angular.module('MyApp')
             tjq(".view-profile").show();
             tjq(".edit-profile").hide();
         });
+        
+        
+    //image upload for profile    
+    $scope.stepsModel = [];
+    var profImg = {
+        imges:[]
+    };
+    
+ $scope.imageUpload = function(element){
+        for(var i = 0; i < element.files.length; i++){
+         var reader = new FileReader();
+        reader.onload = $scope.imageIsLoaded;
+        reader.readAsDataURL(element.files[i]);    
+        
+        
+
+    profImg.imges.push({ 
+        "fileName" : element.files[i].name,
+        "image"  : element.files[i].target.result,
+        "mimeType": element.files[i].type 
+    });
+ 
+    }
+      
+    };
+
+    $scope.imageIsLoaded = function(e){
+        $scope.$apply(function() {
+            $scope.stepsModel.push(e.target.result);
+   
+        });
+        console.log(profImg);
+    };
+
   });
+  

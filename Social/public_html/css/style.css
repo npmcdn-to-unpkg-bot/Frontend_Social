@@ -1742,7 +1742,7 @@ form label {
   display: block;
   margin-bottom: 5px;
   font-weight: normal;
-  font-size: 0.9167em;
+  font-size: 1.2em;
 }
 form .checkbox label, form label.checkbox {
   font-size: 1.0833em;
