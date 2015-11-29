@@ -1,5 +1,5 @@
 angular.module('MyApp')
-  .directive('passwordStrength', function() {
+  .directive('passwordStrengths', function() {
     return {
       restrict: 'A',
       require: 'ngModel',
