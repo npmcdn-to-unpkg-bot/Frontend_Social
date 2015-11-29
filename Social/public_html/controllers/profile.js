@@ -120,6 +120,36 @@ angular.module('MyApp')
         });
         console.log(profImg);
     };
+    //to dynamically add other state filed 
+//    if($rootScope.user !== "undefined" && $rootScope.user !== null ){
+//        $rootScope.choices = true;
+//        $rootScope.usState = "Other";
+////        $rootScope.otherState = $rootScope.user.address.states;
+//    }else{
+//        $rootScope.choices = false;
+////        $rootScope.usState = $rootScope.user.address.states;
+//        $rootScope.otherState = "";
+//    } 
+
+  $scope.addNewChoice = function(value) {
+      
+      if(value === "Other"){
+      
+          $rootScope.user.address.other = true;
+          $rootScope.user.address.states = value;
+        
+      }else{
+          $rootScope.user.address.other = false;
+           $rootScope.user.address.Otherstate = "";
+      }
+  };
+   $scope.changeValue = function(val) {
+      if( $rootScope.user.address.states === true && val!==""){
+        
+          $rootScope.user.address.Otherstate = val;
+      }
+  };
+    
 
   });
   
