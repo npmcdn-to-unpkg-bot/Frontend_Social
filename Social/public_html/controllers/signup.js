@@ -1,5 +1,6 @@
-angular.module('MyApp')
+var app = angular.module('MyApp')
   .controller('SignupCtrl', function($scope, $location, $auth, toastr) {
+    
      $scope.signup = function() {
       $auth.signup($scope.user)
         .then(function() {
@@ -24,4 +25,11 @@ angular.module('MyApp')
 
 
   });
-  
+  app.run(function($rootScope){
+     $rootScope.tempYear = new Date().getFullYear();
+     $rootScope.tempDate = new Date().getDate();
+     $rootScope.tempMonth = new Date().getMonth();
+ 
+     $rootScope.minDate = $rootScope.tempYear-18 + "-" + $rootScope.tempMonth + "-" + $rootScope.tempDate;
+     $rootScope.maxDate = $rootScope.tempYear-120 + "-" + $rootScope.tempMonth + "-" + $rootScope.tempDate;
+});
