@@ -163,6 +163,8 @@ app.run(function (defaultErrorMessageResolver) {
         errorMessages['aboutYouErrMsg'] = 'Please enter alphabets only with max of 500 characters';
         errorMessages['minAge'] = 'You Do Not meet the maximum age requirement of 120 years';
         errorMessages['maxAge'] = 'You Do Not meet the  minimum age requirement of 18 years';
+        errorMessages['onlyTextAndNumber'] = 'Please enter letter ';
+        
          
         
     });
