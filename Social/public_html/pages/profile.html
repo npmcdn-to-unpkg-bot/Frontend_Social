@@ -475,15 +475,16 @@
                                             <button data-role="none" ng-click="add()" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">Add languages</button>
                                             
                                        </div>
-                                       
+                                   </div> 
+                                     <div class="row">
                                        <div class="col-sms-6 col-sm-6 form-group">
-                                            <label for="language" class="control-label">Language</label>
-                                            <input id="language" type="text" class="form-control input-text full-width" maxlength="60" name="language" ng-model="user.languages[0].language" required>
+                                            <label for="language" class="control-label pull-left">Language</label>
+                                            <input id="language" type="text" class="form-control input-text full-width pull-left" maxlength="60" name="language" ng-model="user.languages[0].language" required>
                                             </div>
                                           <div  class="col-sms-6 col-sm-6 form-group">
-                                            <label for="proficiency" class="control-label">Proficiency</label>
+                                            <label for="proficiency" class="control-label pull-right">Proficiency</label>
                                              <div>
-                                                 <select id="proficiency" class="full-width" name="proficiency" ng-model="user.languages[0].proficiency" required="">
+                                                 <select id="proficiency" class="full-width pull-right" name="proficiency" ng-model="user.languages[0].proficiency" required="">
                                                     <option value="">proficiency...</option>
                                                     <option value="Elementary proficiency">Elementary proficiency</option>
                                                     <option value="Limited working proficiency">Limited working proficiency</option>
@@ -493,8 +494,8 @@
                                                  </select>
                                              </div>
                                         </div>
-                                       
-                                       
+                                     </div>   
+                                   <div class="row">   
                                    <div ng-repeat="ll in user.languages" ng-hide="$first">
                                        <div data-role="none" class="col-sms-6 col-sm-6 form-group">
                                             <input id="language" type="text" class="form-control input-text full-width" maxlength="60" name="language" ng-model="ll.language" required>
