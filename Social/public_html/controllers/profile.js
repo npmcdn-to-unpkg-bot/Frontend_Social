@@ -143,9 +143,8 @@ angular.module('MyApp')
              
             
      function Model() {
-    this.selected_location = null;
-    this.selected_stage = null;
-    this.wIn24 = null;
+    this.language = null;
+    this.proficiency = null;
 }
 
 $scope.userLanguage = {
