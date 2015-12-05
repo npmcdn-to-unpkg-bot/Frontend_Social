@@ -472,7 +472,7 @@
                                             <label for="languages" class="control-label">Languages</label>
                                         </div>
                                        <div class="col-sms-6 col-sm-6 form-group">     
-                                            <button data-role="none" ng-click="add()" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">Add languages</button>
+                                           <button data-role="none" ng-click="add()" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add languages</button>
                                             
                                        </div>
                                    </div> 
@@ -501,8 +501,7 @@
                                             <input id="language" type="text" class="form-control input-text full-width" maxlength="60" name="language" ng-model="ll.language" required>
                                             </div>
                                           <div data-role="none" class="col-sms-6 col-sm-6 form-group">
-                                             <div>
-                                                 <select id="proficiency" class="full-width" name="proficiency" ng-model="ll.proficiency" required="">
+                                                 <select id="proficiency" width="300px" name="proficiency" ng-model="ll.proficiency" required="">
                                                     <option value="">proficiency...</option>
                                                     <option value="Elementary proficiency">Elementary proficiency</option>
                                                     <option value="Limited working proficiency">Limited working proficiency</option>
@@ -510,10 +509,8 @@
                                                     <option value="Full professional proficiency">Full professional proficiency</option>
                                                     <option value="Native or bilingual proficiency">Native or bilingual proficiency</option>
                                                  </select>
-                                             </div>
+                                              <button  data-role="none" ng-click="remove(ll)" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-remove-circle"></span> </button>
                                         </div>
-                                        <button  data-role="none" ng-click="remove(ll)" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">remove</button>
-                                  
                                    </div>
                                       
                                    </div>
