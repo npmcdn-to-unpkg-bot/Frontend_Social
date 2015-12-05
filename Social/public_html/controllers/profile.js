@@ -5,7 +5,21 @@ angular.module('MyApp')
                         .then(function (response) {
                             $rootScope.user = response.data;
                             $rootScope.user.dateOfBirth = new Date($rootScope.user.dateOfBirth);
-                            //Here it send notification messge on user profile page 
+                           //Here is to concat the lunguge list before display on profile page
+                            $scope.languge = "";
+                            for (var i = 0; i < $rootScope.user.languages.length; i++) {
+                                if (i === 0) {
+                                    $scope.languge = $scope.languge + $rootScope.user.languages[i].language;
+                                } else if (i === 3) {
+                                    $scope.languge = $scope.languge + "... " ;
+                                    break;
+                                }
+                                else {
+                                    $scope.languge = $scope.languge + ", " + $rootScope.user.languages[i].language;
+                                }
+                            }
+                 
+                          //Here it send notification messge on user profile page 
                             setTimeout(function () {
                                 tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
                             }, 1000);
@@ -141,23 +155,24 @@ angular.module('MyApp')
                 }
             };
              
-            
-     function Model() {
-    this.language = null;
-    this.proficiency = null;
-}
+            //for languge add and removed 
+            function Model() {
+                this.language = null;
+                this.proficiency = null;
+            }
 
-$scope.userLanguage = {
-    userLanguages: [ new Model() ]
-};
-$scope.add = function() {
-    $scope.user.languages.push(new Model());
-};
+            $scope.userLanguage = {
+                userLanguages: [new Model()]
+            };
+            $scope.add = function () {
+                $scope.user.languages.push(new Model());
+            };
 
-$scope.remove = function(userLanguage) {
-    var index = $scope.user.languages.indexOf(userLanguage);
-    if( index >= 0 ) $scope.user.languages.splice(index,1);
-};
+            $scope.remove = function (userLanguage) {
+                var index = $scope.user.languages.indexOf(userLanguage);
+                if (index >= 0)
+                    $scope.user.languages.splice(index, 1);
+            };
 
 
         });
