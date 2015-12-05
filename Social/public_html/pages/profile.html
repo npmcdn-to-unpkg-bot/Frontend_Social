@@ -303,13 +303,12 @@
                                 <div class="details">
                                     <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
                                     <h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>
-
-                                        <dl class="term-description">
+                                    <dl class="term-description">
                                         <dt>user name:</dt><dd>{{user.email|| "requireds field"}}</dd>
                                         <dt>first name:</dt><dd>{{user.firstName|| "requireds field"}}</dd>
                                         <dt>last name:</dt><dd>{{user.lastName|| "requireds field"}}</dd>
                                         <dt>gender:</dt><dd>{{user.gender|| "requireds field"}}</dd>
-                                        <dt>Date of birth:</dt><dd>{{user.dateOfBirth|date:'MM/dd/yyyy'|| "requireds field"}}</dd>
+                                         <dt>Date of birth:</dt><dd>{{user.dateOfBirth|date:'MM/dd/yyyy'|| "requireds field"}}</dd>
                                         <dt>phone number:</dt><dd>{{user.address.phone === '' ? "requireds field" : "+" + user.address.countryCode + "-" + user.address.phone}}</dd>
                                         <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "requireds field"}}</dd>
                                         <dt>Address 2:</dt><dd>{{user.address.streetAddress2 || "requireds field"}}</dd>
@@ -317,6 +316,8 @@
                                         <dt>State:</dt><dd>{{user.address.states === 'Other' ? user.address.otherState : user.address.states || "requireds field"}}</dd>
                                         <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
+                                        <dt>Languages:</dt><dd>{{languge || "requireds field"}}</dd>
+                                       
                                     </dl>
                                 </div>
                             </article>
@@ -466,7 +467,7 @@
                                         </div>
                                     
                                     </div>
-                                   
+
                                     <hr>
                                     <h2>Contact Details</h2>
                                     <div class="row">
@@ -544,7 +545,7 @@
                                                     <option value="WI">WI</option>
                                                     <option value="WY">WY</option>
                                                     <option value="Other">Other</option>
-                                                </select> <br> <br>
+                                                </select> <br> 
                                              <input ng-show="user.address.other"  ng-model="user.address.otherState" id="states2" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="onlyText" ng-pattern="/^[ \w-]+$/" name="OtherState"   placeholder="please enter state or province">
                                             </div>
                                         </div>
@@ -834,6 +835,58 @@
                                         <textarea id="aboutYou" rows="7" maxlength="500" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-]+$/"name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about yourself" required></textarea>
                                     </div>
                                     <hr>
+                                     <div class="row">
+                                       <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="languages" class="control-label">Languages</label>
+                                        </div>
+                                       <div class="col-sms-6 col-sm-6 form-group">     
+                                           <button data-role="none" ng-click="add()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add languages</button>
+                                            
+                                       </div>
+                                   </div> 
+                                     <div class="row">
+                                       <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="language" class="control-label pull-left">Language</label>
+                                            <input id="language" type="text" class="form-control input-text full-width pull-left" maxlength="60" name="language" ng-model="user.languages[0].language" required placeholder="enter default language">
+                                          </div>
+                                          <div  class="col-sms-6 col-sm-6 form-group">
+                                            <label for="proficiency" class="control-label pull-right">Proficiency</label>
+                                             <div>
+                                                 <select id="proficiency" class="full-width pull-right" name="proficiency" ng-model="user.languages[0].proficiency" required="">
+                                                    <option value="">Select proficiency...</option>
+                                                    <option value="Elementary proficiency">Elementary proficiency</option>
+                                                    <option value="Limited working proficiency">Limited working proficiency</option>
+                                                    <option value="Professional working proficiency">Professional working proficiency</option>
+                                                    <option value="Full professional proficiency">Full professional proficiency</option>
+                                                    <option value="Native or bilingual proficiency">Native or bilingual proficiency</option>
+                                                 </select>
+                                             </div>
+                                        </div>
+                                     </div> 
+            
+                                      
+                                    <div ng-repeat="ll in user.languages" ng-hide="$first">
+                                        <div class="row"> 
+                                            <div data-role="none" class="col-sms-6 col-sm-6 form-group">
+                                                <input id="language" type="text" class="form-control input-text full-width" maxlength="60" name="language" ng-model="ll.language" required>
+                                            </div>
+                                            <div data-role="none" class="col-sms-3 col-sm-3 form-group">
+                                                <select id="proficiency" width="300px" name="proficiency" ng-model="ll.proficiency" required="">
+                                                    <option value="">proficiency...</option>
+                                                    <option value="Elementary proficiency">Elementary proficiency</option>
+                                                    <option value="Limited working proficiency">Limited working proficiency</option>
+                                                    <option value="Professional working proficiency">Professional working proficiency</option>
+                                                    <option value="Full professional proficiency">Full professional proficiency</option>
+                                                    <option value="Native or bilingual proficiency">Native or bilingual proficiency</option>
+                                                </select>
+                                            </div>
+                                            <div data-role="none" class="col-sms-3 col-sm-3 form-group">
+                                                <button  data-role="none" ng-click="remove(ll)" class="button btn-medium pull-right " style="color: #00A8FF; font-size: 12px"><span class="glyphicon glyphicon-remove"></span> </button>
+                                            </div>       
+
+                                        </div>
+
+                                    </div>
                                             <br>
                                     <div class="from-group">
                                         <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
