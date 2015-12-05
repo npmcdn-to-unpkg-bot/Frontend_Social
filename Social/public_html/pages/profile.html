@@ -303,12 +303,12 @@
                                 <div class="details">
                                     <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
                                     <h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>
-
                                         <dl class="term-description">
                                         <dt>user name:</dt><dd>{{user.email|| "requireds field"}}</dd>
                                         <dt>first name:</dt><dd>{{user.firstName|| "requireds field"}}</dd>
                                         <dt>last name:</dt><dd>{{user.lastName|| "requireds field"}}</dd>
                                         <dt>gender:</dt><dd>{{user.gender|| "requireds field"}}</dd>
+                                        <dt>Languages:</dt> <dd ng-repeat="language in user.languages">{{language.language|| "requireds field"}}</dd>
                                         <dt>Date of birth:</dt><dd>{{user.dateOfBirth|date:'MM/dd/yyyy'|| "requireds field"}}</dd>
                                         <dt>phone number:</dt><dd>{{user.address.phone === '' ? "requireds field" : "+" + user.address.countryCode + "-" + user.address.phone}}</dd>
                                         <dt>Address 1:</dt><dd>{{user.address.streetAddress1 || "requireds field"}}</dd>
@@ -466,7 +466,38 @@
                                         </div>
                                     
                                     </div>
-                                   
+                               
+                                   <div class="row">
+                                       <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="languages" class="control-label">Languages</label>
+                                        </div>
+                                       <div class="col-sms-6 col-sm-6 form-group">     
+                                            <button data-role="none" ng-click="add()" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">Add languages</button>
+                                            
+                                       </div>
+                                   <div ng-repeat="ll in user.languages">
+                                       <div data-role="none" class="col-sms-6 col-sm-6 form-group">
+                                            <label for="language" class="control-label">Language</label>
+                                            <input id="language" type="text" class="form-control input-text full-width" maxlength="60" name="language" ng-model="ll.language" required>
+                                            </div>
+                                          <div data-role="none" class="col-sms-6 col-sm-6 form-group">
+                                            <label for="proficiency" class="control-label">Proficiency</label>
+                                             <div>
+                                                 <select id="proficiency" class="full-width" name="proficiency" ng-model="ll.proficiency" required="">
+                                                    <option value="">proficiency...</option>
+                                                    <option value="Elementary proficiency">Elementary proficiency</option>
+                                                    <option value="Limited working proficiency">Limited working proficiency</option>
+                                                    <option value="Professional working proficiency">Professional working proficiency</option>
+                                                    <option value="Full professional proficiency">Full professional proficiency</option>
+                                                    <option value="Native or bilingual proficiency">Native or bilingual proficiency</option>
+                                                 </select>
+                                             </div>
+                                        </div>
+                                        <button  data-role="none" ng-click="remove(ll)" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">remove</button>
+                                  
+                                   </div>
+                                      
+                                   </div>
                                     <hr>
                                     <h2>Contact Details</h2>
                                     <div class="row">

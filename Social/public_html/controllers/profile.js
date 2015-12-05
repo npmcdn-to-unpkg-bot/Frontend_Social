@@ -140,6 +140,25 @@ angular.module('MyApp')
                     $rootScope.user.address.Otherstate = val;
                 }
             };
+             
+            
+     function Model() {
+    this.selected_location = null;
+    this.selected_stage = null;
+    this.wIn24 = null;
+}
+
+$scope.userLanguage = {
+    userLanguages: [ new Model() ]
+};
+$scope.add = function() {
+    $scope.user.languages.push(new Model());
+};
+
+$scope.remove = function(userLanguage) {
+    var index = $scope.user.languages.indexOf(userLanguage);
+    if( index >= 0 ) $scope.user.languages.splice(index,1);
+};
 
 
         });
