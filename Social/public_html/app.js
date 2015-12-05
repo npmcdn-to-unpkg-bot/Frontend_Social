@@ -45,18 +45,17 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                         url: '/term',
                        templateUrl: 'pages/term.html'
                       
+                    })
+                      .state('error', {
+                        url: '/error',
+                        templateUrl: 'pages/error.html'
+
                     });
                     
-//                    .state('profiles', {
-//                        url: '/profiles',
-//                        templateUrl: 'pages/profile.html',
-//                        controller: 'ProfileCtrl',
-//                        resolve: {
-//                            loginRequired: loginRequired
-//                        }
-//                    });
 
-            $urlRouterProvider.otherwise('/');
+
+//            $urlRouterProvider.otherwise('/');
+               $urlRouterProvider.otherwise('/error');
 
             $authProvider.withCredentials = false;
 

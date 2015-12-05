@@ -4,7 +4,11 @@ angular.module('MyApp')
                 Account.getProfile()
                         .then(function (response) {
                             $rootScope.user = response.data;
+                            $scope.facebookAndGoogleUser= true;
+//                                    $rootScope.user.isAccountActive;
+                            
                             $rootScope.user.dateOfBirth = new Date($rootScope.user.dateOfBirth);
+
                            //Here is to concat the lunguge list before display on profile page
                             $scope.languge = "";
                             for (var i = 0; i < $rootScope.user.languages.length; i++) {
