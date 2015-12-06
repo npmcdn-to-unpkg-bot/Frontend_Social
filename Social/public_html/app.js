@@ -154,13 +154,13 @@ app.run(function (defaultErrorMessageResolver) {
         errorMessages['minPassword'] = 'Please enter at least 6 characters long ';
         errorMessages['maxPassword'] = 'Please enter at max 15 characters long';
         errorMessages['passwordMismatch'] = 'Please password must match';
-        errorMessages['onlyText'] = 'Please enter alphabets only';
+        errorMessages['onlyText'] = 'Please enter letters only';
         errorMessages['numberOnly'] = 'Please enter only number';
         errorMessages['compareTo'] = 'Password must match';
         errorMessages['passwordRequired'] = 'Password is required';
         errorMessages['badAdderss'] = 'Please enter a valid address';
-        errorMessages['aboutYouErrMsg'] = 'Please enter alphabets only with max of 500 characters';
-        errorMessages['minAge'] = 'You Do Not meet the maximum age requirement of 120 years';
+        errorMessages['aboutYouErrMsg'] = 'Please enter max of 500 characters';
+        errorMessages['minAge'] = 'Please enter a valid birthday';
         errorMessages['maxAge'] = 'You Do Not meet the  minimum age requirement of 18 years';
         errorMessages['onlyTextAndNumber'] = 'Please enter letter ';
         

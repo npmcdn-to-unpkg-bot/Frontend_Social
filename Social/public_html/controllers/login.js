@@ -3,7 +3,7 @@ angular.module('MyApp')
     $scope.login = function() {
       $auth.login($scope.user)
         .then(function() {
-          toastr.success('You have successfully signed in');
+//          toastr.success('You have successfully signed in');
        
           $location.path('/profile');
         })
@@ -16,7 +16,7 @@ angular.module('MyApp')
     $scope.authenticate = function(provider) {
       $auth.authenticate(provider)
         .then(function() {
-          toastr.success('You have successfully signed in with ' + provider);
+//          toastr.success('You have successfully signed in with ' + provider);
           $location.path('/profile');
         })
         .catch(function(response) {

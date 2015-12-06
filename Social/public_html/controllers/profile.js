@@ -3,31 +3,56 @@ angular.module('MyApp')
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
-                            $rootScope.user = response.data;
-                            $scope.facebookAndGoogleUser= true;
-//                                    $rootScope.user.isAccountActive;
-                            
-                            $rootScope.user.dateOfBirth = new Date($rootScope.user.dateOfBirth);
 
-                           //Here is to concat the lunguge list before display on profile page
-                            $scope.languge = "";
-                            for (var i = 0; i < $rootScope.user.languages.length; i++) {
-                                if (i === 0) {
-                                    $scope.languge = $scope.languge + $rootScope.user.languages[i].language;
-                                } else if (i === 3) {
-                                    $scope.languge = $scope.languge + "... " ;
-                                    break;
+                            $rootScope.user = response.data;
+
+                            //call email verification method
+                            if ($rootScope.user.emailVerification === "PENDING") {
+                                $scope.verifyEmail();
+                            } else {
+                                //if email is verified then allow the user to see his profile
+                                $auth.isAuthenticated()
+
+//                                toastr.success('You have successfully signed in with ' + $scope.user.userType);
+
+                                $rootScope.user.dateOfBirth = new Date($rootScope.user.dateOfBirth);
+
+                                //Here is to concat the lunguge list before display on profile page
+                                $scope.languge = "";
+                                for (var i = 0; i < $scope.user.languages.length; i++) {
+                                    if (i === 0) {
+                                        $scope.languge = $scope.languge + $scope.user.languages[i].language;
+                                    } else if (i === 3) {
+                                        $scope.languge = $scope.languge + "... ";
+                                        break;
+                                    }
+                                    else {
+                                        $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
+                                    }
                                 }
-                                else {
-                                    $scope.languge = $scope.languge + ", " + $rootScope.user.languages[i].language;
+                                //Here disable three fields if user is facebook or google user
+                                $scope.facebookOrGoogleDOB = false;
+                                $scope.facebookOrGoogleEmail = false;
+                                $scope.facebookOrGoogleDOBGender = false;
+                                if ($scope.user.userType === "facebook" || $scope.user.userType === "google") {
+                                    if ($scope.user.dateOfBirth !== null) {
+                                        $scope.facebookOrGoogleDOB = true;
+                                    }
+                                    if ($scope.user.gender !== null) {
+                                        $scope.facebookOrGoogleDOBGender = true;
+                                    }
+                                    if ($scope.user.email !== null) {
+                                        $scope.facebookOrGoogleEmail = true;
+                                    }
+
                                 }
+
+                                //Here it send notification messge on user profile page 
+                                setTimeout(function () {
+                                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
+                                }, 1000);
+                                console.log($rootScope.user);
                             }
-                 
-                          //Here it send notification messge on user profile page 
-                            setTimeout(function () {
-                                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
-                            }, 1000);
-                            console.log($rootScope.user);
                         })
                         .catch(function (response) {
                             toastr.error(response.data.message, response.status);
@@ -38,6 +63,11 @@ angular.module('MyApp')
                         .then(function () {
                             $location.path('/profile');
                             toastr.success('Profile has been updated');
+                            //show veri profile and hiden edit profile jqury method
+                            tjq(".view-profile").fadeIn();
+                            tjq(".edit-profile").fadeOut();
+
+
                         })
                         .catch(function (response) {
                             toastr.error(response.data.message, response.status);
@@ -50,6 +80,7 @@ angular.module('MyApp')
                         .then(function () {
                             $location.path('/profile');
                             toastr.success('Profile has been updated');
+
                         })
                         .catch(function (response) {
                             toastr.error(response.data.message, response.status);
@@ -158,7 +189,7 @@ angular.module('MyApp')
                     $rootScope.user.address.Otherstate = val;
                 }
             };
-             
+
             //for languge add and removed 
             function Model() {
                 this.language = null;
@@ -176,6 +207,21 @@ angular.module('MyApp')
                 var index = $scope.user.languages.indexOf(userLanguage);
                 if (index >= 0)
                     $scope.user.languages.splice(index, 1);
+            };
+            //to verify check user email is verifyed or not
+            $scope.verifyEmail = function () {
+                $auth.logout()
+                        .then(function () {
+                            toastr.error('Please verify your email');
+                            $location.path('/login');
+                        });
+
+
+                //Here it send notification messge on user profile page 
+                setTimeout(function () {
+                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red; text-align: center"> Please verify your email. Click <a style="color: blue" href="">Here</a> to resend email verification</p></div>');
+                }, 0);
+
             };
 
 
