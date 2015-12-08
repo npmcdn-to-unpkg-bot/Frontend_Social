@@ -10,6 +10,7 @@ angular.module('MyApp')
                             if ($rootScope.user.emailVerification === "PENDING") {
                                 $scope.verifyEmail();
                             } else {
+                                  $rootScope.emailDiv=false;
                                 //if email is verified then allow the user to see his profile
                                 $auth.isAuthenticated()
 
@@ -175,18 +176,18 @@ angular.module('MyApp')
 
                 if (value === "Other") {
 
-                    $rootScope.user.address.other = true;
-                    $rootScope.user.address.states = value;
+                    $scope.user.address.other = true;
+                    $scope.user.address.states = value;
 
                 } else {
-                    $rootScope.user.address.other = false;
-                    $rootScope.user.address.Otherstate = "";
+                    $scope.user.address.other = false;
+                    $scope.user.address.Otherstate = "";
                 }
             };
             $scope.changeValue = function (val) {
-                if ($rootScope.user.address.states === true && val !== "") {
+                if ($scope.user.address.states === true && val !== "") {
 
-                    $rootScope.user.address.Otherstate = val;
+                    $scope.user.address.Otherstate = val;
                 }
             };
 
@@ -216,14 +217,16 @@ angular.module('MyApp')
                             $location.path('/login');
                         });
 
-
+                $rootScope.emailDiv=true;
                 //Here it send notification messge on user profile page 
-                setTimeout(function () {
-                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red; text-align: center"> Please verify your email. Click <a style="color: blue" href="">Here</a> to resend email verification</p></div>');
-                }, 0);
+//                setTimeout(function () {
+////                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red; text-align: center"> Please verify your email. Click <a style="color: blue" href="">Here</a> to resend email verification</p></div>');
+//                    tjq(".notification-area").append('<div class="info-box block "><span class="close "></span><p style="color:red; text-align: center"> Please verify your email.</p><div class="row "><div class=" form-inline  col-sms-6"><input class="form-control col-sms-4" type="email"  ng-model="email" required placeholder="enter your email"><button class="btn-medium col-sms-2" ng-click="resendEmail()">Resend Email</button></div></div></div>');
+//
+//                }, 0);
 
             };
 
 
         });
-
+    

@@ -30,6 +30,6 @@ var app = angular.module('MyApp')
      $rootScope.tempDate = new Date().getDate();
      $rootScope.tempMonth = new Date().getMonth();
  
-     $rootScope.minDate = $rootScope.tempYear-18 + "-" + $rootScope.tempMonth + "-" + $rootScope.tempDate;
-     $rootScope.maxDate = $rootScope.tempYear-120 + "-" + $rootScope.tempMonth + "-" + $rootScope.tempDate;
+     $rootScope.minDate = $rootScope.tempYear-18 + "-" + 00 + "-" + 00;
+     $rootScope.maxDate = $rootScope.tempYear-120 + "-" + 00 + "-" + 00;
 });
