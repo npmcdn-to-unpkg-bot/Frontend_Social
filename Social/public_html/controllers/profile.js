@@ -12,7 +12,7 @@ angular.module('MyApp')
                             } else {
                                   $rootScope.emailDiv=false;
                                 //if email is verified then allow the user to see his profile
-                                $auth.isAuthenticated()
+//                                $auth.isAuthenticated()
 
 //                                toastr.success('You have successfully signed in with ' + $scope.user.userType);
 
@@ -62,8 +62,11 @@ angular.module('MyApp')
             $scope.updateProfile = function () {
                 Account.updateProfile($scope.user)
                         .then(function () {
+                         
                             $location.path('/profile');
                             toastr.success('Profile has been updated');
+                            //update the data 
+                             $scope.getProfile();
                             //show veri profile and hiden edit profile jqury method
                             tjq(".view-profile").fadeIn();
                             tjq(".edit-profile").fadeOut();
