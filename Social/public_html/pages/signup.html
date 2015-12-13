@@ -33,7 +33,7 @@
                     </div>
 
                     <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
-                        <input password-strength class="form-control input-lg" id="password"  max="30" type="password" name="password" ng-model="user.password" placeholder="Password" required="passwordRequired">
+                        <input password-strength class="form-control input-lg" id="password"  max="30" type="password" name="password" ng-model="user.password" placeholder="Password" required>
 
                         <span class="ion-key form-control-feedback"></span>
                         <div class="help-block text-danger" ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
@@ -51,12 +51,61 @@
                     </div>
 
 
-                    <div class="form-group has-feedback" >
+                    <div class="form-group " >     
+                        <fieldset >
 
-                        <!--<input class="form-control input-lg" name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-max-err-type="maxAge" ng-min-err-type="minAge" ng-model="user.dateOfBirth" min="{{maxDate}}" max="{{minDate}}" required>-->
-                        <input class="form-control input-lg" name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-max-err-type="maxAge" ng-min-err-type="minAge"  ng-model="user.dateOfBirth"  required>
-                        <span class="fa fa-calendar form-control-feedback"></span>
+                            <select class="month form-control input-lg" name="birthMonth" ng-model="birthMonth" >
+                                <option value="">Month</option>
+                                <option  value="00">January</option>
+                                <option value="01">February</option>
+                                <option value="02" >March</option>
+                                <option value="03">April</option>
+                                <option value="04">May</option>
+                                <option value="05">June</option>
+                                <option value="06">July</option>
+                                <option value="07">August</option>
+                                <option value="08">September</option>
+                                <option value="09">October</option>
+                                <option value="10">November</option>
+                                <option value="11" >December</option>
+
+                            </select>  
+                        </fieldset >
+
+                        <fieldset >
+                            <select class="day form-control input-lg" name="BirthDay" ng-model="birthDay" >
+                                <option value="">Day</option>
+                                <option  value="01">1</option>
+                                <option value="02">2</option>
+                                <option value="03" >3</option>
+                                <option value="04">4</option>
+                                <option value="05">5</option>
+                                <option value="06">6</option>
+                                <option value="07">7</option>
+                                <option value="08">8</option>
+                                <option value="09">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12" >12</option>
+
+                            </select> 
+
+                        </fieldset >
+
+                        <fieldset >
+
+
+                            <select class="year form-control input-lg" name="BirthYear" ng-model="birthYear" >
+                                <option value="">Year</option>
+                                <option ng-repeat="option in years" value="{{option}}">{{option}}</option>
+
+
+                            </select> 
+
+                        </fieldset>
+                        <p class="text-center text-danger" ng-show="dateOfBirthrequired">date of birth field is required</p>
                     </div>
+
 
                     <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#/term">terms & conditions</a> and <a href="#/term">privacy policy</a></small></p>
                     <button type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary">Sign up</button>

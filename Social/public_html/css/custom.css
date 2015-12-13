@@ -1,6 +1,14 @@
 .star-rating {
-  line-height: 40px;
-  font-size: 2.50em;
-  cursor: pointer;
-  padding-left: 30px;
+    line-height: 40px;
+    font-size: 2.50em;
+    cursor: pointer;
+    padding-left: 30px;
 }     
+.month {width: 96px;}
+.day {width: 96px;}
+.year {width: 96px;}
+fieldset {display: inline-block;}
+.profmonth {width: 90px;}
+.profday {width: 90px;}
+.profyear {width: 90px;}
+/*fieldset {display: inline !ie7;  IE6/7 need display inline after the inline-block rule }*/

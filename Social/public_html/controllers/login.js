@@ -4,8 +4,14 @@ angular.module('MyApp')
          
             $scope.login = function () {
                 $auth.login($scope.user)
-                        .then(function () {
-                            //toastr.success('You have successfully signed in');
+                        .then(function (response) {
+                            console.log(response.valueOf("emailVerifyStatus"));
+                    console.log(response.config.headers['emailVerification']);
+//                    console.log(response.emailVerifyStatus['emailVerification']);
+//                    console.log(response.emailVerifyStatus.valueOf('emailVerification'));
+                     response.valueOf("emailVerifyStatus");
+             
+                            toastr.success('You have successfully signed in');
 
                             $location.path('/profile');
                         })

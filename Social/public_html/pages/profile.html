@@ -430,9 +430,9 @@
                             </div>
                         </div>
                         <div class="edit-profile">
-                          
+
                             <form class="edit-profile-form " method="post" ng-submit="updateProfile()" name="signupForm" novalidate="novalidate">
-                                
+
                                 <h2>Personal Details</h2>
                                 <!--<fieldset ng-disabled="facebookAndGoogleUser">-->
                                 <div class="col-sm-9 no-padding no-float">
@@ -446,12 +446,68 @@
                                             <input id="lastName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="lastName" ng-model="user.lastName"  required>
                                         </div>
                                     </div>
-                                   
+
                                     <div class="row">
 
-                                        <div class="col-sms-6 col-sm-6 form-group">
-                                            <label for="date" class="control-label">Date of Birth</label>
-                                            <input ng-disabled="facebookOrGoogleDOB" id="date" class="form-control input-text full-width " name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" required>
+                                        <!--                                        <div class="col-sms-6 col-sm-6 form-group">
+                                                                                    <label for="date" class="control-label">Date of Birth</label>
+                                                                                    <input ng-disabled="facebookOrGoogleDOB" id="date" class="form-control input-text full-width " name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" required>
+                                                                                </div>-->
+
+                                        <div class="form-group col-sms-6 col-sm-6 " > 
+                                            <label for="dateOfBirth" class="control-label">Date Of Birth</label>
+                                            <fieldset >
+
+                                                <select ng-change="checkDate()" id="dateOfBirth" class="profmonth " ng-disabled="facebookOrGoogleDOB" name="birthMonth" ng-model="birthMonth" >
+                                                    <option value="">Month</option>
+                                                    <option  value="00">January</option>
+                                                    <option value="01">February</option>
+                                                    <option value="02" >March</option>
+                                                    <option value="03">April</option>
+                                                    <option value="04">May</option>
+                                                    <option value="05">June</option>
+                                                    <option value="06">July</option>
+                                                    <option value="07">August</option>
+                                                    <option value="08">September</option>
+                                                    <option value="09">October</option>
+                                                    <option value="10">November</option>
+                                                    <option value="11" >December</option>
+
+                                                </select>  
+                                            </fieldset >
+
+                                            <fieldset >
+                                                <select ng-change="checkDate()"  id="dateOfBirth" class="profday" ng-disabled="facebookOrGoogleDOB" name="BirthDay" ng-model="birthDay" >
+                                                    <option value="">Day</option>
+                                                    <option  value="01">1</option>
+                                                    <option value="02">2</option>
+                                                    <option value="03" >3</option>
+                                                    <option value="04">4</option>
+                                                    <option value="05">5</option>
+                                                    <option value="06">6</option>
+                                                    <option value="07">7</option>
+                                                    <option value="08">8</option>
+                                                    <option value="09">9</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12" >12</option>
+
+                                                </select> 
+
+                                            </fieldset >
+
+                                            <fieldset >
+
+
+                                                <select ng-change="checkDate()"  id="dateOfBirth" class="profyear" ng-disabled="facebookOrGoogleDOB" name="BirthYear" ng-model="birthYear" >
+                                                    <option value="">Year</option>
+                                                    <option ng-repeat="option in years" value="{{option}}">{{option}}</option>
+
+
+                                                </select> 
+
+                                            </fieldset>
+                                            <p class="text-left text-danger" ng-show="dateOfBirthrequired">date of birth field is required</p>
                                         </div>
 
                                         <div class="col-sms-6 col-sm-6 form-group">
@@ -463,12 +519,12 @@
                                         </div>
 
                                     </div>
-                                      <div class="row">
+                                    <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="email" class="control-label">Email Address</label>
                                             <input ng-disabled="facebookOrGoogleEmail" id="email" type="text" class="form-control input-text full-width" maxlength="60" name="email" ng-model="user.email" required>
                                         </div>
-                                    
+
                                     </div>
 
                                     <hr>
@@ -482,19 +538,19 @@
                                             <label for="address2" class="control-label">Address 2</label>
                                             <input id="address2" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress2" ng-model="user.address.streetAddress2" >
                                         </div>
-                                        </div>
-                                        <div class="row">
+                                    </div>
+                                    <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="city" class="control-label">City</label>
                                             <input id="city" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="onlyTextAndNumber" ng-pattern="/^[A-Za-z ]+$/" name="city" ng-model="user.address.city" required >
                                         </div>
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="states" class="control-label">State / Province </label>
-                                 
-                                            
+
+
                                             <div>
-                       
-                                                 <select ng-change="addNewChoice(user.address.states)" id="states1" class="full-width " name="states" ng-model="user.address.states" required >
+
+                                                <select ng-change="addNewChoice(user.address.states)" id="states1" class="full-width " name="states" ng-model="user.address.states" required >
                                                     <option value="">Select State</option>
                                                     <option value="Other">Other</option>
                                                     <option value="AL">AL</option>
@@ -548,9 +604,9 @@
                                                     <option value="WV">WV</option>
                                                     <option value="WI">WI</option>
                                                     <option value="WY">WY</option>
-                                                    
-                                                 </select> <br><br> 
-                                             <input ng-show="user.address.other"  ng-model="user.address.otherState" id="states2" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="onlyText" ng-pattern="/^[ \w-]+$/" name="OtherState"   placeholder="please enter state or province">
+
+                                                </select> <br><br> 
+                                                <input ng-show="user.address.other"  ng-model="user.address.otherState" id="states2" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="onlyText" ng-pattern="/^[ \w-]+$/" name="OtherState"   placeholder="please enter state or province">
                                             </div>
                                         </div>
                                     </div>
@@ -798,7 +854,7 @@
                                                     <option value="Ukraine">Ukraine</option>
                                                     <option value="United Arab Erimates">United Arab Emirates</option>
                                                     <option value="United Kingdom">United Kingdom</option>
-                                                  <option value="Uraguay">Uruguay</option>
+                                                    <option value="Uraguay">Uruguay</option>
                                                     <option value="Uzbekistan">Uzbekistan</option>
                                                     <option value="Vanuatu">Vanuatu</option>
                                                     <option value="Vatican City State">Vatican City State</option>
@@ -834,43 +890,43 @@
                                                                                     </div>
                                                                                 </div>-->
                                     <hr>
-                                 
+
                                     <h2>Other Details</h2>
                                     <div class="form-group">
                                         <label for="aboutYou" class="control-label">About me</label>
                                         <textarea id="aboutYou" rows="7" maxlength="500" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-]+$/"name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about yourself" required></textarea>
                                     </div>
                                     <hr>
-                                     <div class="row">
-                                       <div class="col-sms-6 col-sm-6 form-group">
+                                    <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="languages" class="control-label">Languages</label>
                                         </div>
-                                       <div class="col-sms-6 col-sm-6 form-group">     
-                                           <button data-role="none" ng-click="add()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add languages</button>
-                                            
-                                       </div>
-                                   </div> 
-                                     <div class="row">
-                                       <div class="col-sms-6 col-sm-6 form-group">
-                                          
+                                        <div class="col-sms-6 col-sm-6 form-group">     
+                                            <button data-role="none" ng-click="add()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add languages</button>
+
+                                        </div>
+                                    </div> 
+                                    <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+
                                             <input id="language" type="text" class="form-control input-text full-width pull-left" maxlength="60" name="language" ng-model="user.languages[0].language" required placeholder="enter default language">
-                                          </div>
-                                          <div  class="col-sms-6 col-sm-6 form-group">
-                                            
-                                             <div>
-                                                 <select id="proficiency" class="full-width pull-right" name="proficiency" ng-model="user.languages[0].proficiency" required="">
+                                        </div>
+                                        <div  class="col-sms-6 col-sm-6 form-group">
+
+                                            <div>
+                                                <select id="proficiency" class="full-width pull-right" name="proficiency" ng-model="user.languages[0].proficiency" required="">
                                                     <option value="">Select proficiency...</option>
                                                     <option value="Elementary proficiency">Elementary proficiency</option>
                                                     <option value="Limited working proficiency">Limited working proficiency</option>
                                                     <option value="Professional working proficiency">Professional working proficiency</option>
                                                     <option value="Full professional proficiency">Full professional proficiency</option>
                                                     <option value="Native or bilingual proficiency">Native or bilingual proficiency</option>
-                                                 </select>
-                                             </div>
+                                                </select>
+                                            </div>
                                         </div>
-                                     </div> 
-            
-                                      
+                                    </div> 
+
+
                                     <div ng-repeat="ll in user.languages" ng-hide="$first">
                                         <div class="row"> 
                                             <div data-role="none" class="col-sms-6 col-sm-6 form-group">
@@ -893,7 +949,7 @@
                                         </div>
 
                                     </div>
-                                            <br>
+                                    <br>
                                     <div class="from-group">
                                         <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
                                         <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 

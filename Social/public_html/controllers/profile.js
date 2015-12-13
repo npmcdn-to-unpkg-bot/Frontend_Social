@@ -10,13 +10,14 @@ angular.module('MyApp')
                             if ($rootScope.user.emailVerification === "PENDING") {
                                 $scope.verifyEmail();
                             } else {
-                                  $rootScope.emailDiv=false;
+                                $rootScope.emailDiv = false;
+                                //set date for profile edit page 
+                                $scope.fillDate($rootScope.user.dateOfBirth);
                                 //if email is verified then allow the user to see his profile
 //                                $auth.isAuthenticated()
 
 //                                toastr.success('You have successfully signed in with ' + $scope.user.userType);
 
-                                $rootScope.user.dateOfBirth = new Date($rootScope.user.dateOfBirth);
 
                                 //Here is to concat the lunguge list before display on profile page
                                 $scope.languge = "";
@@ -60,13 +61,15 @@ angular.module('MyApp')
                         });
             };
             $scope.updateProfile = function () {
+                $scope.checkDate();
+                $scope.user.dateOfBirth = $scope.birthDate;
                 Account.updateProfile($scope.user)
                         .then(function () {
-                         
+
                             $location.path('/profile');
                             toastr.success('Profile has been updated');
                             //update the data 
-                             $scope.getProfile();
+                            $scope.getProfile();
                             //show veri profile and hiden edit profile jqury method
                             tjq(".view-profile").fadeIn();
                             tjq(".edit-profile").fadeOut();
@@ -153,9 +156,6 @@ angular.module('MyApp')
                     var reader = new FileReader();
                     reader.onload = $scope.imageIsLoaded;
                     reader.readAsDataURL(element.files[i]);
-
-
-
                     profImg.imges.push({
                         "fileName": element.files[i].name,
                         "image": element.files[i].target.result,
@@ -220,7 +220,7 @@ angular.module('MyApp')
                             $location.path('/login');
                         });
 
-                $rootScope.emailDiv=true;
+                $rootScope.emailDiv = true;
                 //Here it send notification messge on user profile page 
 //                setTimeout(function () {
 ////                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red; text-align: center"> Please verify your email. Click <a style="color: blue" href="">Here</a> to resend email verification</p></div>');
@@ -231,5 +231,56 @@ angular.module('MyApp')
             };
 
 
+            $scope.birthMonth = "";
+            $scope.birthDay = "";
+            $scope.birthYear = "";
+            $scope.birthDate = new Date();
+            $scope.dateOfBirthrequired = false;
+            $scope.checkDate = function () {
+                if ($scope.birthYear !== "" && $scope.birthDay !== "" && $scope.birthMonth !== "") {
+                    $scope.dateOfBirthrequired = false;
+                    $scope.birthDate.setFullYear($scope.birthYear);
+                    $scope.birthDate.setDate($scope.birthDay);
+                    $scope.birthDate.setMonth($scope.birthMonth);
+
+                } else {
+                    $scope.dateOfBirthrequired = true;
+                }
+            };
+            $scope.fillDate = function (dateValue) {
+                $scope.date = dateValue.split('-');
+
+                $scope.tempMonth = parseInt($scope.date[1], 10) - 1;
+                if ($scope.tempMonth < 10) {
+                    $scope.birthMonth = "0" + $scope.tempMonth.toString();
+                } else {
+                    $scope.birthMonth = $scope.tempMonth.toString();
+                }
+
+                $scope.birthDay = $scope.date[2];
+                $scope.birthYear = $scope.date[0];
+            };
+            $scope.returnDateUpdate = function (dateValue) {
+                $scope.fillDate(dateValue);
+                $scope.checkDate();
+
+                return $scope.birthDate;
+
+            };
+            //to populate the year values on singup form
+            $scope.tempYear = new Date().getFullYear();
+            $scope.minYear = $scope.tempYear - 18;
+            $scope.maxYear = $scope.minYear - 120;
+
+            $scope.years = [];
+            $scope.generateYears = function () {
+                $scope.yearOptions = [];
+                for (var i = $scope.minYear; i >= $scope.maxYear; i--) {
+                    $scope.yearOptions.push(i);
+                }
+                $scope.years = $scope.yearOptions;
+            };
+            $scope.generateYears();
+
         });
-    
+
