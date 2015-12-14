@@ -8,7 +8,14 @@ var app = angular.module('MyApp')
           toastr.info('You have successfully created a new account');
         })
         .catch(function(response) {
-          toastr.error(response.data.message);
+            if(response.data.fieldErrors.length>0){
+              for (var i = 0; i < response.data.fieldErrors.length; i++) {
+                 toastr.error(response.data.fieldErrors[i].message);
+             }  
+            }else{
+             
+            toastr.error(response.data.message);
+        }
         });
     };
        $scope.authenticate = function(provider) {
