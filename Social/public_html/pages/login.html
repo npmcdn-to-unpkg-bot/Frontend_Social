@@ -2,15 +2,20 @@
     <!--ng-init="emailDiv = false"-->
     <div class="notification-area" style="padding-top: 10px" ng-if="true" ></div>
 
-    <div class="info-box block" ng-show="emailDiv">
+    
+         <div class="info-box block" ng-show="emailDiv">
+         <fieldset>
         <span class="close "></span><p style="color:red; text-align: center"> Please verify your email.</p>
-        <div class="row" >
+        </fieldset>
+         <fieldset>
+     
             <div class=" form-inline  col-sms-6" >
                 <input  class="form-control col-sms-4" type="email"  ng-model="email" required placeholder="enter your email">
                 <button class="btn-medium col-sms-2" ng-click="resendEmail()">Resend Email</button>
 
             </div>
-        </div>
+        </fieldset>
+      
     </div>
 
    <div class="row">
