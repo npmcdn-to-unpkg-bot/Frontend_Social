@@ -3,58 +3,46 @@ angular.module('MyApp')
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
-
                             $rootScope.user = response.data;
-
-                            //call email verification method
-                            if ($rootScope.user.emailVerification === "PENDING") {
-                                $scope.verifyEmail();
-                            } else {
-                                $rootScope.emailDiv = false;
-                                //set date for profile edit page 
-                                $scope.fillDate($rootScope.user.dateOfBirth);
-                                //if email is verified then allow the user to see his profile
-//                                $auth.isAuthenticated()
-
-//                                toastr.success('You have successfully signed in with ' + $scope.user.userType);
-
-
-                                //Here is to concat the lunguge list before display on profile page
-                                $scope.languge = "";
-                                for (var i = 0; i < $scope.user.languages.length; i++) {
-                                    if (i === 0) {
-                                        $scope.languge = $scope.languge + $scope.user.languages[i].language;
-                                    } else if (i === 3) {
-                                        $scope.languge = $scope.languge + "... ";
-                                        break;
-                                    }
-                                    else {
-                                        $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
-                                    }
+                            $rootScope.emailDiv = false;
+                            //set date for profile edit page 
+                            $scope.fillDate($rootScope.user.dateOfBirth);
+                            //Here is to concat the lunguge list before display on profile page
+                            $scope.languge = "";
+                            for (var i = 0; i < $scope.user.languages.length; i++) {
+                                if (i === 0) {
+                                    $scope.languge = $scope.languge + $scope.user.languages[i].language;
+                                } else if (i === 3) {
+                                    $scope.languge = $scope.languge + "... ";
+                                    break;
                                 }
-                                //Here disable three fields if user is facebook or google user
-                                $scope.facebookOrGoogleDOB = false;
-                                $scope.facebookOrGoogleEmail = false;
-                                $scope.facebookOrGoogleDOBGender = false;
-                                if ($scope.user.userType === "facebook" || $scope.user.userType === "google") {
-                                    if ($scope.user.dateOfBirth !== null) {
-                                        $scope.facebookOrGoogleDOB = true;
-                                    }
-                                    if ($scope.user.gender !== null) {
-                                        $scope.facebookOrGoogleDOBGender = true;
-                                    }
-                                    if ($scope.user.email !== null) {
-                                        $scope.facebookOrGoogleEmail = true;
-                                    }
-
+                                else {
+                                    $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
                                 }
-
-                                //Here it send notification messge on user profile page 
-                                setTimeout(function () {
-                                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
-                                }, 1000);
-                                console.log($rootScope.user);
                             }
+                            //Here disable three fields if user is facebook or google user
+                            $scope.facebookOrGoogleDOB = false;
+                            $scope.facebookOrGoogleEmail = false;
+                            $scope.facebookOrGoogleDOBGender = false;
+                            if ($scope.user.userType === "facebook" || $scope.user.userType === "google") {
+                                if ($scope.user.dateOfBirth !== null) {
+                                    $scope.facebookOrGoogleDOB = true;
+                                }
+                                if ($scope.user.gender !== null) {
+                                    $scope.facebookOrGoogleDOBGender = true;
+                                }
+                                if ($scope.user.email !== null) {
+                                    $scope.facebookOrGoogleEmail = true;
+                                }
+
+                            }
+
+                            //Here it send notification messge on user profile page 
+                            setTimeout(function () {
+                                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
+                            }, 1000);
+                            console.log($rootScope.user);
+                            //}
                         })
                         .catch(function (response) {
                             toastr.error(response.data.message, response.status);
@@ -229,8 +217,6 @@ angular.module('MyApp')
 //                }, 0);
 
             };
-
-
             $scope.birthMonth = "";
             $scope.birthDay = "";
             $scope.birthYear = "";

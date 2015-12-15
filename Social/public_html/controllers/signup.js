@@ -6,14 +6,14 @@ var app = angular.module('MyApp')
             $scope.birthDate = new Date();
             $scope.dateOfBirthrequired = false;
             $scope.checkDate = function () {
-                 if($scope.birthYear!=="" && $scope.birthDay !=="" && $scope.birthMonth !==""){
+                if ($scope.birthYear !== "" && $scope.birthDay !== "" && $scope.birthMonth !== "") {
                     $scope.dateOfBirthrequired = false;
                     $scope.birthDate.setFullYear($scope.birthYear);
                     $scope.birthDate.setDate($scope.birthDay);
                     $scope.birthDate.setMonth($scope.birthMonth);
-                    
-                }else{
-                     $scope.dateOfBirthrequired = true;
+
+                } else {
+                    $scope.dateOfBirthrequired = true;
                 }
             };
             $scope.signup = function () {
@@ -26,9 +26,17 @@ var app = angular.module('MyApp')
                                 toastr.info('You have successfully created a new account');
                             })
                             .catch(function (response) {
-                                toastr.error(response.data.message);
+                                if (response.data.fieldErrors.length > 0) {
+                                    for (var i = 0; i < response.data.fieldErrors.length; i++) {
+                                        toastr.error(response.data.fieldErrors[i].message);
+                                    }
+                                } else {
+
+                                    toastr.error(response.data.message);
+                                }
                             });
                 }
+
 
             };
             $scope.authenticate = function (provider) {
@@ -41,7 +49,7 @@ var app = angular.module('MyApp')
                             toastr.error(response.data.message);
                         });
             };
-         
+
             //to populate the year values on singup form
             $scope.tempYear = new Date().getFullYear();
             $scope.minYear = $scope.tempYear - 18;
