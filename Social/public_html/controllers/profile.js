@@ -7,9 +7,9 @@ angular.module('MyApp')
                             $rootScope.user = response.data;
 
                             //call email verification method
-                            if ($rootScope.user.emailVerification === "PENDING") {
-                                $scope.verifyEmail();
-                            } else {
+//                            if ($rootScope.user.emailVerification === "PENDING") {
+//                                $scope.verifyEmail();
+//                            } else {
                                   $rootScope.emailDiv=false;
                                 //if email is verified then allow the user to see his profile
 //                                $auth.isAuthenticated()
@@ -53,7 +53,7 @@ angular.module('MyApp')
                                     tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
                                 }, 1000);
                                 console.log($rootScope.user);
-                            }
+                            //}
                         })
                         .catch(function (response) {
                             toastr.error(response.data.message, response.status);
