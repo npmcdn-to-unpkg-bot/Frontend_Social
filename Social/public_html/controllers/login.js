@@ -1,16 +1,13 @@
 angular.module('MyApp')
         .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account) {
             $scope.email = "";
-
             $scope.login = function () {
                 $auth.login($scope.user)
                         .then(function (response) {
-
-                            //toastr.success('You have successfully signed in');
+                      //toastr.success('You have successfully signed in');
                             if (!response.data.emailVerified) {
                                 $scope.verifyEmail();
                             } else {
-
                                 $location.path('/profile');
                                 toastr.success('You have successfully signed in');
                             }

@@ -36,12 +36,16 @@ angular.module('MyApp')
                 resendEmail: function (email) {
                     if (window.location.host === 'localhost:8383') {
                         //for local
-                        return $http.get('http://localhost:8080/resend/verificationId?email='+ email);
-              
+                        return $http.get('http://localhost:8080/resend/verificationId?email=' + email);
+
                     } else {
                         //for cloud
-                        return $http.get('http://tourgoat.cfapps.io/resend/verificationId?email='+ email);
+                        return $http.get('http://tourgoat.cfapps.io/resend/verificationId?email=' + email);
                     }
+
+                },
+                loadJson: function (filepath) {
+                    return $http.get(filepath);
 
                 }
 
