@@ -319,7 +319,7 @@
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
                                         <dt>Languages:</dt><dd>{{languge|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
-                                        <dt>Tour guiding experience:</dt><dd>{{user.tourYearOfExp +" Years"|| "requireds field"}}</dd>
+                                        <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>
                                     </dl>
                                 </div>
                             </article>
@@ -594,7 +594,7 @@
                                                     <option value="WI">WI</option>
                                                     <option value="WY">WY</option>
 
-                                                </select> <br><br> 
+                                                </select> 
                                                 <input ng-show="user.address.other"  ng-model="user.address.otherState" id="states2" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="onlyText" ng-pattern="/^[ \w-]+$/" name="OtherState"   placeholder="please enter state or province">
                                             </div>
                                         </div>
@@ -1037,9 +1037,9 @@
                                 </div>
                             </form>
 
-                            <br>     
+                              
                             <hr>
-                            <br> 
+                        
                             <h2>Upload Profile Photo</h2>
                             <div ng-repeat="step in stepsModel">
                                 <img class="thumb" ng-src="{{step}}" />
@@ -1432,7 +1432,7 @@
                                         <li class="pinterest"><a title="Pinterest" href="#" data-toggle="tooltip"><i class="soap-icon-pinterest"></i></a></li>
                                     </ul>
                                 </div>
-                                <br>
+                               
                                 <div class="form-group col-sm-5 col-md-4 no-float no-padding no-margin">
                                     <button type="submit" class="btn-medium full-width">SUBMIT REVIEW</button>
                                 </div>
