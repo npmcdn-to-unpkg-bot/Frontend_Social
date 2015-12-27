@@ -1,55 +1,6 @@
 var app = angular.module('MyApp')
-        .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location,$http) {
-            $scope.toppings = [
-                {name: 'Pepperoni', wanted: true},
-                {name: 'Sausage', wanted: false},
-                {name: 'Black Olives', wanted: true},
-                {name: 'Green Peppers', wanted: false}
-            ];
+        .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location, $http) {
 
-            $scope.avatarData = [{
-                    id: "avatars:svg-1",
-                    title: 'avatar 1',
-                    value: 'avatar-1'
-                }, {
-                    id: "avatars:svg-2",
-                    title: 'avatar 2',
-                    value: 'avatar-2'
-                }, {
-                    id: "avatars:svg-3",
-                    title: 'avatar 3',
-                    value: 'avatar-3'
-                }];
-            
-            //////////////////////
-$scope.tags = [];
-//  $rootScope.tags = [
-//              { text: "Architecture" },
-//              { text: "Culture" },
-//              { text: "People" }
-//            ];
-  
-  $scope.loadCountries = function($query) {
-    return $http.get('/Social/data/modeOfTransportation.json', { cache: true}).then(function(response) {
-       var countries = response.data;
-       return countries;
-      return countries.filter(function(country) {
-        return country.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
-      });
-    });
-  };
-  
-  
-//$scope.tags = [
-//    { text: 'Tag1' },
-//    { text: 'Tag2' },
-//    { text: 'Tag3' }
-//  ];
-//   
-//  $scope.loadTags = function(query) {
-//    return $http.get('tags.json');
-//  };
-            ////////////////////////
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
@@ -70,6 +21,20 @@ $scope.tags = [];
                                     $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
                                 }
                             }
+
+                            //Mode of transportation display 
+                            $scope.modeoftransportation = "";
+                            for (var i = 0; i < $scope.user.modeOfTransportation.length; i++) {
+                                if (i === 0) {
+                                    $scope.modeoftransportation = $scope.modeoftransportation + $scope.user.modeOfTransportation[i].mode;
+                                } else if (i === 3) {
+                                    $scope.modeoftransportation = $scope.modeoftransportation + "... ";
+                                    break;
+                                }
+                                else {
+                                    $scope.modeoftransportation = $scope.modeoftransportation + ", " + $scope.user.modeOfTransportation[i].mode;
+                                }
+                            }
                             //Here disable three fields if the user is facebook or google 
                             $scope.facebookOrGoogleDOB = false;
                             $scope.facebookOrGoogleEmail = false;
@@ -86,9 +51,6 @@ $scope.tags = [];
                                 }
 
                             }
- //load mode of transportation 
-     
-            
                             //Here it send notification messge on user profile page 
                             setTimeout(function () {
                                 tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
@@ -303,24 +265,29 @@ $scope.tags = [];
                 }
                 $scope.listOfMonth = $scope.monthOptions;
             };
-            
-            //load json from file
-            $scope.availableModeOfTransportation = null;
-            $scope.loadJsonModeOfTransportation = function (pathToFile) {
-                Account.loadJson(pathToFile).then(function (response) {
-                $scope.availableModeOfTransportation = response.data.mode;
-                }).catch(function (response) {
-                    toastr.error(response.data.message, response.status);
+
+            // mode of transportation
+            $scope.loadModeOfTransportation = function ($query) {
+                return Account.loadJsonFile('/Social/data/modeOfTransportation.json', {cache: true}).then(function (response) {
+
+                    var modeofTrans = response.data;
+                    return modeofTrans;
+                    return modeofTrans.filter(function (data) {
+                        return data.mode.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+                    });
                 });
             };
-            //call to load ModeOfTransportation json
-            $scope.loadJsonModeOfTransportation('/Social/data/modeOfTransportation.json');
-//            //load mode of transportation 
-//           $scope.loadJsonModeOfTransportation('/Social/data/modeOfTransportation.json');
-////            $scope.availableColors = ['Walking', 'bicycle', 'Car', 'Boat'];
-//            $scope.multipleDemo = {};
-//            $scope.multipleDemo.colors = ['Walking'];
-            
+            // reas do you have strong knowledges on this place
+            $scope.loadKnowledgesOfArea = function ($query) {
+                return Account.loadJsonFile('/Social/data/knowledgesOfArea.json', {cache: true}).then(function (response) {
+                    var knowledgesOfArea = response.data;
+                    return knowledgesOfArea;
+                    return knowledgesOfArea.filter(function (data) {
+                        return data.name.toLowerCase().indexOf($query.toLowerCase()) !== -1;
+                    });
+                });
+            };
+
             $scope.generateListOfMonth();
 
             //call get profile api

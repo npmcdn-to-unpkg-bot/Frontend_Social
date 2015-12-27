@@ -1,11 +1,6 @@
 [
-  { "name": "Architecture" },
-  { "name": "Culture" },
-  { "name": "People" },
-  { "name": "Fashion" },
-  { "name": "Sport" },
-  { "name": "Entertainment" },
-  { "name": "Politics" },
-  { "name": "History" }
-
+  { "mode": "Walking" },
+  { "mode": "Bicycle " },
+  { "mode": "Car" },
+  { "mode": "Boat" }
 ]

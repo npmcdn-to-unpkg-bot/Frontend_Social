@@ -44,8 +44,8 @@ angular.module('MyApp')
                     }
 
                 },
-                loadJson: function (filepath) {
-                    return $http.get(filepath);
+                loadJsonFile: function (filepath, cache) {
+                    return $http.get(filepath, cache);
 
                 }
 

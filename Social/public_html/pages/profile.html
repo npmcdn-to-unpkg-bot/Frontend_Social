@@ -318,7 +318,8 @@
                                         <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
                                         <dt>Languages:</dt><dd>{{languge|| "requireds field"}}</dd>
-
+                                        <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
+                                        <dt>Tour guiding experience:</dt><dd>{{user.tourYearOfExp +" Years"|| "requireds field"}}</dd>
                                     </dl>
                                 </div>
                             </article>
@@ -505,6 +506,7 @@
                                         </div>
 
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="email" class="control-label">Email Address</label>
@@ -525,6 +527,7 @@
                                             <input id="address2" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress2" ng-model="user.address.streetAddress2" >
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="city" class="control-label">City</label>
@@ -596,6 +599,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <hr>
                                     <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="zip" class="control-label">Zip Code / Postal </label>
@@ -604,7 +608,7 @@
                                         <div class="col-sms-6 col-sm-6 form-group">
 
                                             <label for="country" class="control-label">Country</label>
-                                            <div >
+                                            <div>
                                                 <select id="country" class="full-width" name="country" ng-model="user.address.country" required="">
                                                     <option value="">Select Country</option>
                                                     <option value="United States of America">United States of America</option>
@@ -857,8 +861,9 @@
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row">
+                                    </div> 
+                                    <hr>
+                                    <div class="row ">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="code" class="control-label">Country Code</label>
                                             <input id="code" type="text"  ng-maxlength="4" ng-pattern-err-type="numberOnly" require ng-pattern="/^[0-9]*$/" class="form-control input-text full-width" name="countryCode" ng-model="user.address.countryCode" placeholder="United States (+1)" required >
@@ -892,6 +897,7 @@
 
                                         </div>
                                     </div> 
+                                   
                                     <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
 
@@ -934,57 +940,98 @@
 
                                         </div>
 
-                                    </div>
-                              
- <div class="row">     
-     
-<md-list  ng-cloak>
-  <md-subheader class="md-no-sticky">Single Action Checkboxes</md-subheader>
-  <md-list-item ng-repeat="topping in toppings">
-      
-    <p> {{ topping.name }} </p>
-    <md-checkbox class="md-secondary" ng-model="topping.wanted"></md-checkbox>
-  </md-list-item>
-  
-</md-list>
-   </div>             
+                                    </div> 
                                     
-                                    <br> 
-   
-                                    <div class="row">
-                                      
-                                        <div class="col-sms-6 col-sm-6 form-group"> 
-                                             <label for="Modeoftransportation" class="control-label">Mode of transportation</label>
-                                 <tags-input ng-model="tags" display-property="name" placeholder="Add a country" replace-spaces-with-dashes="false">
-      <auto-complete source="loadCountries($query)"
-                     min-length="0"
-                     load-on-focus="true"
-                     load-on-empty="true"
-                     max-results-to-show="10"
-                     template="my-custom-template">
-                         
-      </auto-complete>
-                                       {{tags}}
-      <script type="text/ng-template" id="my-custom-template">
-      
-      <div class="right-panel">
-        <span ng-bind-html="$highlight($getDisplayText())"></span>
+                                  <hr>
+                                      <div class="row">
+                                          <div class="col-sms-6 col-sm-6 form-group"> 
+                                               <label for="selectCityNoOfYear" class="control-label">Where do you want to do the tour guiding?</label>
+                                              </div>
+                                        <div  class="col-sms-6 col-sm-6 form-group">
+                                            <label for="selectCityNoOfYear" class="control-label">How long do you know this place?</label>
 
-   
-      </div>
-    </script>
-    </tags-input>
-     
+                                            <select id="selectCityNoOfYear" class="full-width"  name="selectCityNoOfYear" ng-model="user.knowSelectedCityNoOfYears">
+                                                <option value="">select years</option>
+                                                <option value="0">0 years</option>
+                                                <option value="1">less than 1 year</option>
+                                                <option value="2">2 years</option>
+                                                <option value="3">3 years</option>
+                                                <option value="4">4 years</option>
+                                                <option value="5">5+ years</option>
+                                            </select>
+
+                                        </div>
+                                          </div>
+                                    <hr>
+                                    <div class="row">
+
+                                        <div class="col-sms-6 col-sm-6 form-group"> 
+                                            <label for="KnowledgesOfPlace" class="control-label">Which areas do you have strong knowledges on this place?</label>
+                                            <tags-input class="full-width" id="KnowledgesOfPlace" ng-model="user.areasOfStrongKnowledges"  display-property="name" placeholder="Add strong knowledges on this place" replace-spaces-with-dashes="false">
+                                                <auto-complete source="loadKnowledgesOfArea($query)"
+                                                               min-length="0"
+                                                               load-on-focus="true"
+                                                               load-on-empty="true"
+                                                               max-results-to-show="10"
+                                                               template="my-custom-template">
+                                                </auto-complete>
+
+                                                <script type="text/ng-template" id="my-custom-template">
+                                                    <div class="right-panel">
+                                                    <span ng-bind-html="$highlight($getDisplayText())"></span>
+                                                    </div>
+                                                </script>
+                                            </tags-input>
+
+
+                                        </div>
+                                          <div class="col-sms-6 col-sm-6 form-group"> 
+                                            <label for="modeoftransportation" class="control-label">Which mode of transportation you are interesting to do?</label>
+                                            <tags-input class="full-width" id="modeoftransportation" ng-model="user.modeOfTransportation" display-property="mode" placeholder="Add mode of transportation" replace-spaces-with-dashes="false">
+                                                <auto-complete source="loadModeOfTransportation($query)"
+                                                               min-length="0"
+                                                               load-on-focus="true"
+                                                               load-on-empty="true"
+                                                               max-results-to-show="10"
+                                                               template="my-custom-template">
+                                                </auto-complete>
+
+                                                <script type="text/ng-template" id="my-custom-template">
+                                                <div class="right-panel">
+                                                  <span ng-bind-html="$highlight($getDisplayText())"></span>
+                                                  </div>
+                                                </script>
+                                            </tags-input>
+
+
+                                        </div>
+                                    </div>
+                                   <hr>
+                                    <div class="row">
+
+                                        <div  class="col-sms-6 col-sm-6 form-group">
+                                            <label for="selectYear" class="control-label">Have you done tour guiding in the past?</label>
+
+                                            <select id="selectYear" class="full-width"  name="selectYear" ng-model="user.tourExperienceOfyears">
+                                                <option value="">select years</option>
+                                                <option value="0">0 years</option>
+                                                <option value="1">less than 1 year</option>
+                                                <option value="2">2 years</option>
+                                                <option value="3">3 years</option>
+                                                <option value="4">4 years</option>
+                                                <option value="5">5+ years</option>
+                                            </select>
+
                                         </div>
                                     </div> 
 
-                
 
-  <hr>
-                                    <br>
-                                    <div class="from-group">
-                                        <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
-                                        <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 
+
+                               
+                               <hr>
+                                <div class="from-group">
+                                    <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
+                                    <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 
                                     </div>
 
                                 </div>
@@ -1357,7 +1404,7 @@
                                 <div class="row form-group">
                                     <div class="col-sms-6 col-sm-6">
                                         <label>Select Category</label>
-                                        <div class="selector full-width">
+                                        <div class="full-width">
                                             <select>
                                                 <option value="">Adventure, Romance, Beach</option>
                                             </select>
