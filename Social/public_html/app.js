@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate','ngMaterial','ngTagsInput'])
+var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate','ngMaterial','ngTagsInput','ngAutocomplete'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider) {
             $stateProvider
                     .state('index', {
