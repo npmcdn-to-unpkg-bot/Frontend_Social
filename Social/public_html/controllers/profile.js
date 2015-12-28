@@ -181,6 +181,25 @@ var app = angular.module('MyApp')
                 if (index >= 0)
                     $scope.user.languages.splice(index, 1);
             };
+            //for known city add and removed 
+            function ModelCity() {
+                this.knownCity = null;
+                this.knownCityNoOfYears = null;
+            }
+             $scope.userKnownCity = {
+                userKnownCities: [new ModelCity()]
+            };
+
+            $scope.addKnownCity = function () {
+                $scope.user.knownCities.push(new ModelCity());
+            };
+
+            $scope.removeKnownCity = function (userKnownCity) {
+                var index = $scope.user.knownCities.indexOf(userKnownCity);
+                if (index >= 0)
+                    $scope.user.knownCities.splice(index, 1);
+            };
+
             //to redirect  user with unverifyed email 
             $scope.verifyEmail = function () {
                 $auth.logout()
