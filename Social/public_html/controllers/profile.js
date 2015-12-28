@@ -21,6 +21,17 @@ var app = angular.module('MyApp')
                                     $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
                                 }
                             }
+                            
+                                  //Cities having experiance
+                            $scope.knownCities = "";
+                            for (var i = 0; i < $scope.user.knownCities.length; i++) {
+                                if (i === 0) {
+                                    $scope.knownCities = $scope.knownCities + $scope.user.knownCities[i].knownCity;
+                                } else if (i === 1) {
+                                    $scope.knownCities = $scope.knownCities + "... ";
+                                    break;
+                                }
+                            }
 
                             //Mode of transportation display 
                             $scope.modeoftransportation = "";
@@ -35,6 +46,7 @@ var app = angular.module('MyApp')
                                     $scope.modeoftransportation = $scope.modeoftransportation + ", " + $scope.user.modeOfTransportation[i].mode;
                                 }
                             }
+                            
                             //Here disable three fields if the user is facebook or google 
                             $scope.facebookOrGoogleDOB = false;
                             $scope.facebookOrGoogleEmail = false;
