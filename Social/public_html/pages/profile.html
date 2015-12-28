@@ -950,15 +950,22 @@
                                     </div>
                                   <hr>
                                       <div class="row">
-                                          <div class="col-sms-6 col-sm-6 form-group"> 
+                                         <div class="col-sms-6 col-sm-6 form-group"> 
                                                <label for="guidingCity" class="control-label">Where do you want to do the tour guiding?</label>
-                                                <!--<input type="text" class="full-width form-control input-text " id="guidingCity" ng-model="user.knownCities[0].knownCity" ng-autocomplete="user.knownCities[0].knownCity" details="details" options="options"/>-->
-                                                <input type="text" class="full-width form-control input-text" id="guidingCity" ng-autocomplete ng-model="user.knownCities[0].knownCity" options="options" details="details"/>
-                                          </div>    
-                                         
-                                        <div  class="col-sms-6 col-sm-6 form-group">
+                                         </div>
+                                        <div  class="col-sms-4 col-sm-4 form-group">
                                             <label for="knownCityNoOfYears" class="control-label">How long do you know this place?</label>
+                                        </div>
+                                       <div class="col-sms-2 col-sm-2 form-group">     
+                                            <button data-role="none" ng-click="addKnownCity()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add city</button>
 
+                                        </div>
+                                      </div>
+                                        <div class="row">   
+                                          <div class="col-sms-6 col-sm-6 form-group">
+                                               <input type="text" class="full-width form-control input-text" id="guidingCity" ng-autocomplete ng-model="user.knownCities[0].knownCity" options="options" details="details"/>
+                                          </div> 
+                                        <div data-role="test" class="col-sms-6 col-sm-6 form-group">
                                             <select id="knownCityNoOfYears" class="full-width"  name="knownCityNoOfYears" ng-model="user.knownCities[0].knownCityNoOfYears">
                                                 <option value="">select years</option>
                                                 <option value="0">0 years</option>
@@ -968,17 +975,18 @@
                                                 <option value="4">4 years</option>
                                                 <option value="5">5+ years</option>
                                             </select>
-
-                                        </div>
-                                          </div>
+                                         </div>
+                       
+                                        
+                                       </div>
                                   
                                   <div ng-repeat="kc in user.knownCities" ng-hide="$first">
                                         <div class="row"> 
-                                            <div data-role="test" class="col-sms-6 col-sm-6 form-group">
+                                            <div data-role="none" class="col-sms-6 col-sm-6 form-group">
                                                 <!--<input type="text" class="full-width form-control input-text " id="knownCity" ng-model="kc.knownCity" ng-autocomplete="kc.knownCity" details="details" options="options"/>-->
                                             <input type="text" class="full-width form-control input-text " id="guidingCity" ng-autocomplete ng-model="kc.knownCity" options="options" details="details"/>
                                             </div>
-                                            <div data-role="test" class="col-sms-3 col-sm-3 form-group">
+                                            <div data-role="none" class="col-sms-3 col-sm-3 form-group">
                                             <select id="knownCityNoOfYears" class="full-width"  name="knownCityNoOfYears" ng-model="kc.knownCityNoOfYears">
                                                 <option value="">select years</option>
                                                 <option value="0">0 years</option>
@@ -990,7 +998,7 @@
                                             </select>
                                             </div>
                                              
-                                            <div data-role="test" class="col-sms-3 col-sm-3 form-group">
+                                            <div data-role="none" class="col-sms-3 col-sm-3 form-group">
                                                 <button  data-role="test" ng-click="removeKnownCity(kc)" class="button btn-medium pull-right " style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-remove"></span> </button>
                                             </div>       
 
@@ -1000,7 +1008,7 @@
                                   
                                     <div class="row">
                                          <div class="col-sms-6 col-sm-6 form-group">     
-                                             <a  data-role="test" ng-click="addKnownCity()"  style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add another city</a>
+                                             <a  data-role="none" ng-click="addKnownCity()"  style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-plus"></span> Add another city</a>
                                        </div>
                                     </div>
                                   
