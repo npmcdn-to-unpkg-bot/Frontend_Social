@@ -21,6 +21,17 @@ var app = angular.module('MyApp')
                                     $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
                                 }
                             }
+                            
+                                  //Cities having experiance
+                            $scope.knownCities = "";
+                            for (var i = 0; i < $scope.user.knownCities.length; i++) {
+                                if (i === 0) {
+                                    $scope.knownCities = $scope.knownCities + $scope.user.knownCities[i].knownCity;
+                                } else if (i === 1) {
+                                    $scope.knownCities = $scope.knownCities + "... ";
+                                    break;
+                                }
+                            }
 
                             //Mode of transportation display 
                             $scope.modeoftransportation = "";
@@ -35,6 +46,7 @@ var app = angular.module('MyApp')
                                     $scope.modeoftransportation = $scope.modeoftransportation + ", " + $scope.user.modeOfTransportation[i].mode;
                                 }
                             }
+                            
                             //Here disable three fields if the user is facebook or google 
                             $scope.facebookOrGoogleDOB = false;
                             $scope.facebookOrGoogleEmail = false;
@@ -53,7 +65,10 @@ var app = angular.module('MyApp')
                             }
                             //Here it send notification messge on user profile page 
                             setTimeout(function () {
+                                if(!$scope.user.isProfileComplete){
                                 tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
+                             
+                                } 
                             }, 1000);
                             console.log($rootScope.user);
 
@@ -181,6 +196,25 @@ var app = angular.module('MyApp')
                 if (index >= 0)
                     $scope.user.languages.splice(index, 1);
             };
+            //for known city add and removed 
+            function ModelCity() {
+                this.knownCity = null;
+                this.knownCityNoOfYears = null;
+            }
+             $scope.userKnownCity = {
+                userKnownCities: [new ModelCity()]
+            };
+
+            $scope.addKnownCity = function () {
+                $scope.user.knownCities.push(new ModelCity());
+            };
+
+            $scope.removeKnownCity = function (userKnownCity) {
+                var index = $scope.user.knownCities.indexOf(userKnownCity);
+                if (index >= 0)
+                    $scope.user.knownCities.splice(index, 1);
+            };
+
             //to redirect  user with unverifyed email 
             $scope.verifyEmail = function () {
                 $auth.logout()

@@ -318,6 +318,7 @@
                                         <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
                                         <dt>Languages:</dt><dd>{{languge|| "requireds field"}}</dd>
+                                        <dt>Place with experience</dt><dd>{{knownCities|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>
                                     </dl>
@@ -326,7 +327,7 @@
                             <hr>
 
                             <!--this is to notify the user-->
-                            <div class="notification-area" ng-if="user.isProfileComplete == false">
+                            <div class="notification-area" ng-if="user.isProfileComplete === false">
                                 <!--                                <div class="info-box block">
                                                                     <span class="close"></span>
                                                                     <p>This is your Dashboard, the place to check your Profile, respond to Reservation Requests, view upcoming Trip Information, and much more.</p>
@@ -949,15 +950,25 @@
                                     </div>
                                   <hr>
                                       <div class="row">
-                                          <div class="col-sms-6 col-sm-6 form-group"> 
+                                         <div class="col-sms-6 col-sm-6 form-group"> 
                                                <label for="guidingCity" class="control-label">Where do you want to do the tour guiding?</label>
-                                                <input type="text" class="full-width form-control input-text " id="guidingCity" ng-autocomplete="result" details="details" options="options"/>
-                                          </div>    
-                                         
-                                        <div  class="col-sms-6 col-sm-6 form-group">
-                                            <label for="selectCityNoOfYear" class="control-label">How long do you know this place?</label>
+                                         </div>
+                                        <div  class="col-sms-4 col-sm-4 form-group">
+                                            <label for="knownCityNoOfYears" class="control-label">How long do you know this place?</label>
+                                        </div>
+                                       <div class="col-sms-2 col-sm-2 form-group">     
+                                           <button data-role="none" ng-click="addKnownCity()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"
+                                                   ng-disabled="user.knownCities !== undefined && user.knownCities.length > 3" 
+                                                   ng-show="user.knownCities !== undefined && user.knownCities.length < 3"><span class="glyphicon glyphicon-plus"></span> Add city</button>
 
-                                            <select id="selectCityNoOfYear" class="full-width"  name="selectCityNoOfYear" ng-model="user.knowSelectedCityNoOfYears">
+                                        </div>
+                                      </div>
+                                        <div class="row">   
+                                          <div class="col-sms-6 col-sm-6 form-group">
+                                               <input type="text" class="full-width form-control input-text" id="guidingCity" ng-autocomplete ng-model="user.knownCities[0].knownCity" options="options" details="details"/>
+                                          </div> 
+                                        <div data-role="test" class="col-sms-6 col-sm-6 form-group">
+                                            <select id="knownCityNoOfYears" class="full-width"  name="knownCityNoOfYears" ng-model="user.knownCities[0].knownCityNoOfYears">
                                                 <option value="">select years</option>
                                                 <option value="0">0 years</option>
                                                 <option value="1">less than 1 year</option>
@@ -966,9 +977,46 @@
                                                 <option value="4">4 years</option>
                                                 <option value="5">5+ years</option>
                                             </select>
+                                         </div>
+                       
+                                        
+                                       </div>
+                                  
+                                  <div ng-repeat="kc in user.knownCities" ng-hide="$first">
+                                        <div class="row"> 
+                                            <div data-role="none" class="col-sms-6 col-sm-6 form-group">
+                                                <!--<input type="text" class="full-width form-control input-text " id="knownCity" ng-model="kc.knownCity" ng-autocomplete="kc.knownCity" details="details" options="options"/>-->
+                                            <input type="text" class="full-width form-control input-text " id="guidingCity" ng-autocomplete ng-model="kc.knownCity" options="options" details="details"/>
+                                            </div>
+                                            <div data-role="none" class="col-sms-3 col-sm-3 form-group">
+                                            <select id="knownCityNoOfYears" class="full-width"  name="knownCityNoOfYears" ng-model="kc.knownCityNoOfYears">
+                                                <option value="">select years</option>
+                                                <option value="0">0 years</option>
+                                                <option value="1">less than 1 year</option>
+                                                <option value="2">2 years</option>
+                                                <option value="3">3 years</option>
+                                                <option value="4">4 years</option>
+                                                <option value="5">5+ years</option>
+                                            </select>
+                                            </div>
+                                             
+                                            <div data-role="none" class="col-sms-3 col-sm-3 form-group">
+                                                <button  data-role="test" ng-click="removeKnownCity(kc)" class="button btn-medium pull-right " style="color: #00A8FF; font-size: 11px"><span class="glyphicon glyphicon-remove"></span> </button>
+                                            </div>       
 
                                         </div>
-                                          </div>
+                                  </div>
+                                   
+                                  
+                                    <div class="row">
+                                         <div class="col-sms-6 col-sm-6 form-group">     
+                                             <a  data-role="none" ng-click="addKnownCity()"  style="color: #00A8FF; font-size: 11px" 
+                                                 ng-disabled="user.knownCities !== undefined && user.knownCities.length > 3"  
+                                                 ng-show="user.knownCities !== undefined&& user.knownCities.length < 3"><span class="glyphicon glyphicon-plus" ></span> Add another city</a>
+                                       </div>
+                                    </div>
+                                  
+                                 
                                     <hr>
                                     <div class="row">
 
@@ -1031,10 +1079,7 @@
 
                                         </div>
                                     </div> 
-
-
-
-                               
+                                  
                                <hr>
                                 <div class="from-group">
                                     <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
