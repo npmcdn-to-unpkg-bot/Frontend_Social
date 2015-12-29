@@ -65,7 +65,10 @@ var app = angular.module('MyApp')
                             }
                             //Here it send notification messge on user profile page 
                             setTimeout(function () {
+                                if(!$scope.user.isProfileComplete){
                                 tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
+                             
+                                } 
                             }, 1000);
                             console.log($rootScope.user);
 

@@ -327,7 +327,7 @@
                             <hr>
 
                             <!--this is to notify the user-->
-                            <div class="notification-area" ng-if="user.isProfileComplete == false">
+                            <div class="notification-area" ng-if="user.isProfileComplete === false">
                                 <!--                                <div class="info-box block">
                                                                     <span class="close"></span>
                                                                     <p>This is your Dashboard, the place to check your Profile, respond to Reservation Requests, view upcoming Trip Information, and much more.</p>
@@ -1011,7 +1011,7 @@
                                     <div class="row">
                                          <div class="col-sms-6 col-sm-6 form-group">     
                                              <a  data-role="none" ng-click="addKnownCity()"  style="color: #00A8FF; font-size: 11px" 
-                                                 ng-disabled="user.knownCities !== undefined && user.knownCities.length > =3"  
+                                                 ng-disabled="user.knownCities !== undefined && user.knownCities.length > 3"  
                                                  ng-show="user.knownCities !== undefined&& user.knownCities.length < 3"><span class="glyphicon glyphicon-plus" ></span> Add another city</a>
                                        </div>
                                     </div>
