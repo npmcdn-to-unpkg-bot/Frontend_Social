@@ -949,6 +949,18 @@
                                        </div>
                                     </div>
                                   <hr>
+                                  <div class="row">
+                                        <div class="col-sms-6 col-sm-6 form-group">
+                                            <label for="addcity" class="control-label">Tour guiding city</label>
+                                        </div>
+                                        <div class="col-sms-6 col-sm-6 form-group">  
+                                            
+                                            <button data-role="none" ng-click="addKnownCity()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"
+                                                   ng-disabled="user.knownCities !== undefined && user.knownCities.length > 3" 
+                                                   ng-show="user.knownCities !== undefined && user.knownCities.length < 3"><span class="glyphicon glyphicon-plus"></span> Add city</button>
+
+                                        </div>
+                                    </div>
                                       <div class="row">
                                          <div class="col-sms-6 col-sm-6 form-group"> 
                                                <label for="guidingCity" class="control-label">Where do you want to do the tour guiding?</label>
@@ -956,12 +968,12 @@
                                         <div  class="col-sms-4 col-sm-4 form-group">
                                             <label for="knownCityNoOfYears" class="control-label">How long do you know this place?</label>
                                         </div>
-                                       <div class="col-sms-2 col-sm-2 form-group">     
+<!--                                       <div class="col-sms-2 col-sm-2 form-group">     
                                            <button data-role="none" ng-click="addKnownCity()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"
                                                    ng-disabled="user.knownCities !== undefined && user.knownCities.length > 3" 
                                                    ng-show="user.knownCities !== undefined && user.knownCities.length < 3"><span class="glyphicon glyphicon-plus"></span> Add city</button>
 
-                                        </div>
+                                        </div>-->
                                       </div>
                                         <div class="row">   
                                           <div class="col-sms-6 col-sm-6 form-group">

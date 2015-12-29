@@ -302,7 +302,7 @@ var app = angular.module('MyApp')
 
             // mode of transportation
             $scope.loadModeOfTransportation = function ($query) {
-                return Account.loadJsonFile('/Social/data/modeOfTransportation.json', {cache: true}).then(function (response) {
+                return Account.loadJsonFile('http://app-tourgoat.rhcloud.com/Social/public_html/data/modeOfTransportation.json', {cache: true}).then(function (response) {
 
                     var modeofTrans = response.data;
                     return modeofTrans;
@@ -313,7 +313,7 @@ var app = angular.module('MyApp')
             };
             // reas do you have strong knowledges on this place
             $scope.loadKnowledgesOfArea = function ($query) {
-                return Account.loadJsonFile('/Social/data/knowledgesOfArea.json', {cache: true}).then(function (response) {
+                return Account.loadJsonFile('http://app-tourgoat.rhcloud.com/Social/public_html/data/knowledgesOfArea.json', {cache: true}).then(function (response) {
                     var knowledgesOfArea = response.data;
                     return knowledgesOfArea;
                     return knowledgesOfArea.filter(function (data) {
