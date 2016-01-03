@@ -46,6 +46,11 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                        templateUrl: 'pages/term.html'
                       
                     })
+                      .state('becometourguide', {
+                        url: '/becometourguide',
+                        templateUrl: 'pages/becometourguide.html'
+
+                    })
                       .state('error', {
                         url: '/error',
                         templateUrl: 'pages/error.html'
