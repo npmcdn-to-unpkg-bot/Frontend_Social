@@ -21,8 +21,8 @@ var app = angular.module('MyApp')
                                     $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
                                 }
                             }
-                            
-                                  //Cities having experiance
+
+                            //Cities having experiance
                             $scope.knownCities = "";
                             for (var i = 0; i < $scope.user.knownCities.length; i++) {
                                 if (i === 0) {
@@ -46,12 +46,14 @@ var app = angular.module('MyApp')
                                     $scope.modeoftransportation = $scope.modeoftransportation + ", " + $scope.user.modeOfTransportation[i].mode;
                                 }
                             }
-                            
+
                             //Here disable three fields if the user is facebook or google 
                             $scope.facebookOrGoogleDOB = false;
                             $scope.facebookOrGoogleEmail = false;
                             $scope.facebookOrGoogleGender = false;
+                            $scope.googleOrfacebookUser = false;
                             if ($scope.user.userType === "facebook" || $scope.user.userType === "google") {
+                                $scope.googleOrfacebookUser = true;
                                 if ($scope.user.dateOfBirth !== null) {
                                     $scope.facebookOrGoogleDOB = true;
                                 }
@@ -63,53 +65,55 @@ var app = angular.module('MyApp')
                                 }
 
                             }
+
                             //Here it send notification messge on user profile page 
                             $scope.notification = [];
-                           if($scope.user.email===null){
-                               $scope.notification.push(" <li> Email </li>")  
+                            if ($scope.user.email === null) {
+                                $scope.notification.push(" <li> Email </li>")
                             }
-                             if($scope.user.firstName===null){
-                               $scope.notification.push(" <li> First Name </li>")  
+                            if ($scope.user.firstName === null) {
+                                $scope.notification.push(" <li> First Name </li>")
                             }
-                             if($scope.user.lastName===null){
-                               $scope.notification.push(" <li> Last Name </li>")  
+                            if ($scope.user.lastName === null) {
+                                $scope.notification.push(" <li> Last Name </li>")
                             }
-                            if($scope.user.gender===null){
-                               $scope.notification.push(" <li> Gender </li>")  
+                            if ($scope.user.gender === null) {
+                                $scope.notification.push(" <li> Gender </li>")
                             }
-                            if($scope.user.dateOfBirth===null){
-                               $scope.notification.push(" <li> DateOfBirth </li>")  
+                            if ($scope.user.dateOfBirth === null) {
+                                $scope.notification.push(" <li> DateOfBirth </li>")
                             }
-                            if($scope.user.address===null){
-                               $scope.notification.push(" <li> Address </li>")  
+                            if ($scope.user.address === null) {
+                                $scope.notification.push(" <li> Address </li>")
                             }
-                            
-                              if($scope.user.languages.length===0){
-                               $scope.notification.push(" <li> Languages </li>")  
+
+                            if ($scope.user.languages.length === 0) {
+                                $scope.notification.push(" <li> Languages </li>")
                             }
-                            if($scope.user.knownCities.length===0){
-                               $scope.notification.push(" <li>Place with Experiance</li>")  
+                            if ($scope.user.knownCities.length === 0) {
+                                $scope.notification.push(" <li>Place with Experiance</li>")
                             }
-                            if($scope.user.areasOfStrongKnowledges.length===0){
-                               $scope.notification.push(" <li> Areas of Strong Knowledges </li>")  
+                            if ($scope.user.areasOfStrongKnowledges.length === 0) {
+                                $scope.notification.push(" <li> Areas of Strong Knowledges </li>")
                             }
-                               if($scope.user.modeOfTransportation.length===0){
-                               $scope.notification.push(" <li> Mode Of Transportation </li>")  
+                            if ($scope.user.modeOfTransportation.length === 0) {
+                                $scope.notification.push(" <li> Mode Of Transportation </li>")
                             }
-                          var localFeild="";
-                                    for (var i = 0; i < $scope.notification.length; i++) {
-                                          localFeild= localFeild+ $scope.notification[i];
-                                        }
-                                    
+                            var localFeild = "";
+                            for (var i = 0; i < $scope.notification.length; i++) {
+                                localFeild = localFeild + $scope.notification[i];
+                            }
+
                             setTimeout(function () {
-                                if(!$scope.user.isProfileComplete){
-                                    
-                                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p>\n\<ul style="color:red">' 
-                                        
+                                if (!$scope.user.isProfileComplete) {
+
+                                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p>\n\<ul style="color:red">'
+
                                             + localFeild + '</ul></div>');
-                                 
-                                } 
+
+                                }
                             }, 1000);
+
                             console.log($rootScope.user);
 
                         })
@@ -241,7 +245,7 @@ var app = angular.module('MyApp')
                 this.knownCity = null;
                 this.knownCityNoOfYears = null;
             }
-             $scope.userKnownCity = {
+            $scope.userKnownCity = {
                 userKnownCities: [new ModelCity()]
             };
 
@@ -342,7 +346,13 @@ var app = angular.module('MyApp')
 
             // mode of transportation
             $scope.loadModeOfTransportation = function ($query) {
-                return Account.loadJsonFile('http://app-tourgoat.rhcloud.com/Social/public_html/data/modeOfTransportation.json', {cache: true}).then(function (response) {
+                $scope.jsonUrl = "";
+                if (window.location.host === 'localhost:8383') {
+                    $scope.jsonUrl = "http://localhost:8383/data/modeOfTransportation.json";
+                } else {
+                    $scope.jsonUrl = "http://app-tourgoat.rhcloud.comdata/modeOfTransportation.json";
+                }
+                return Account.loadJsonFile($scope.jsonUrl, {cache: true}).then(function (response) {
 
                     var modeofTrans = response.data;
                     return modeofTrans;
@@ -353,7 +363,13 @@ var app = angular.module('MyApp')
             };
             // reas do you have strong knowledges on this place
             $scope.loadKnowledgesOfArea = function ($query) {
-                return Account.loadJsonFile('http://app-tourgoat.rhcloud.com/Social/public_html/data/knowledgesOfArea.json', {cache: true}).then(function (response) {
+                $scope.jsonUrl = "";
+                if (window.location.host === 'localhost:8383') {
+                    $scope.jsonUrl = "http://localhost:8383/data/knowledgesOfArea.json";
+                } else {
+                    $scope.jsonUrl = "http://app-tourgoat.rhcloud.com/data/knowledgesOfArea.json";
+                }
+                return Account.loadJsonFile($scope.jsonUrl, {cache: true}).then(function (response) {
                     var knowledgesOfArea = response.data;
                     return knowledgesOfArea;
                     return knowledgesOfArea.filter(function (data) {
@@ -372,6 +388,7 @@ var app = angular.module('MyApp')
                     e.preventDefault();
                     tjq(".view-profile").fadeOut();
                     tjq(".edit-profile").fadeIn();
+//                    tjq("#setting_tab").
                 });
 
 //            setTimeout(function() {
@@ -394,6 +411,25 @@ var app = angular.module('MyApp')
                 tjq(".view-profile").show();
                 tjq(".edit-profile").hide();
             });
+            //togel between profile and setteing tab
+            tjq(document).ready(function () {
+                tjq("#settings_profile").click(function (e) {
+                    e.preventDefault();
+
+                    tjq("#profile_tab").removeClass("active");
+                    tjq("#setting_tab").addClass("active");
+                    tjq("#settings").addClass("in active");
+
+                    tjq("#settings").show();
+                    tjq(".view-profile").hide();
+                    tjq(".edit-profile").hide();
+                });
+
+//            setTimeout(function() {
+//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
+//            }, 10000);
+            });
+
 
 
         });

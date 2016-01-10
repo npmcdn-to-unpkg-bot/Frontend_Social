@@ -1,10 +1,35 @@
 angular.module('MyApp')
-        .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account) {
+        .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $interval) {
+
             $scope.email = "";
+
+            $scope.facebookBtnLoading = false; // stop facebook loading
+            $scope.googeBtnLoading = false; // stop google loading
+            $scope.loginBtnLoading = false; // stop login loading
+            $scope.disabledFacebookBtn = false;
+            $scope.disabledGoogleBtn = false;
+
+            $scope.swapSocialLoginLoading = function (provider, loading) {
+                if (provider === "facebook") {
+                    $scope.facebookBtnLoading = loading;// start/stop loading
+
+                    $scope.disabledGoogleBtn = true;
+                } else if (provider === "google") {
+                    $scope.googeBtnLoading = loading;// start/stop loading
+                    $scope.disabledFacebookBtn = true;
+
+                }
+            };
             $scope.login = function () {
+                $scope.loginBtnLoading = true; // start loading
+                $scope.disabledFacebookBtn = true;
+                $scope.disabledGoogleBtn = true;
                 $auth.login($scope.user)
                         .then(function (response) {
-                      //toastr.success('You have successfully signed in');
+                            $scope.loginBtnLoading = false; // stop loading
+                            $scope.disabledFacebookBtn = false;
+                            $scope.disabledGoogleBtn = false;
+                            //toastr.success('You have successfully signed in');
                             if (!response.data.emailVerified) {
                                 $scope.verifyEmail();
                             } else {
@@ -13,18 +38,25 @@ angular.module('MyApp')
                             }
                         })
                         .catch(function (response) {
+                            $scope.loginBtnLoading = false;
+                            $scope.disabledFacebookBtn = false;
+                            $scope.disabledGoogleBtn = false;
                             //toastr.error(response.data.message, response.status);
                             toastr.error('The user name or password is incorrect');
 
                         });
             };
             $scope.authenticate = function (provider) {
+                $scope.swapSocialLoginLoading(provider, true);
                 $auth.authenticate(provider)
                         .then(function () {
+
                             //toastr.success('You have successfully signed in with ' + provider);
                             $location.path('/profile');
+                            $scope.swapSocialLoginLoading(provider, false);
                         })
                         .catch(function (response) {
+                            $scope.swapSocialLoginLoading(provider, false);
                             toastr.error(response.data.message);
                         });
             };
@@ -60,4 +92,5 @@ angular.module('MyApp')
 //                }, 0);
 
             };
+
         });
