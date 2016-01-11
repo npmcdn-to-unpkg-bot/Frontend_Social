@@ -26,10 +26,10 @@ var app = angular.module('MyApp')
                 if (provider === "facebook") {
                     $scope.facebookBtnLoading = loading;// start/stop loading
 
-                    $scope.disabledGoogleBtn = true;
+                    $scope.disabledGoogleBtn = loading;
                 } else if (provider === "google") {
                     $scope.googeBtnLoading = loading;// start/stop loading
-                    $scope.disabledFacebookBtn = true;
+                    $scope.disabledFacebookBtn = loading;
 
                 }
             };
