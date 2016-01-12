@@ -64,10 +64,50 @@ var app = angular.module('MyApp')
 
                             }
                             //Here it send notification messge on user profile page 
+                            $scope.notification = [];
+                           if($scope.user.email===null){
+                               $scope.notification.push(" <li> Email </li>")  
+                            }
+                             if($scope.user.firstName===null){
+                               $scope.notification.push(" <li> First Name </li>")  
+                            }
+                             if($scope.user.lastName===null){
+                               $scope.notification.push(" <li> Last Name </li>")  
+                            }
+                            if($scope.user.gender===null){
+                               $scope.notification.push(" <li> Gender </li>")  
+                            }
+                            if($scope.user.dateOfBirth===null){
+                               $scope.notification.push(" <li> DateOfBirth </li>")  
+                            }
+                            if($scope.user.address===null){
+                               $scope.notification.push(" <li> Address </li>")  
+                            }
+                            
+                              if($scope.user.languages.length===0){
+                               $scope.notification.push(" <li> Languages </li>")  
+                            }
+                            if($scope.user.knownCities.length===0){
+                               $scope.notification.push(" <li>Place with Experiance</li>")  
+                            }
+                            if($scope.user.areasOfStrongKnowledges.length===0){
+                               $scope.notification.push(" <li> Areas of Strong Knowledges </li>")  
+                            }
+                               if($scope.user.modeOfTransportation.length===0){
+                               $scope.notification.push(" <li> Mode Of Transportation </li>")  
+                            }
+                          var localFeild="";
+                                    for (var i = 0; i < $scope.notification.length; i++) {
+                                          localFeild= localFeild+ $scope.notification[i];
+                                        }
+                                    
                             setTimeout(function () {
                                 if(!$scope.user.isProfileComplete){
-                                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p></div>');
-                             
+                                    
+                                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p>\n\<ul style="color:red">' 
+                                        
+                                            + localFeild + '</ul></div>');
+                                 
                                 } 
                             }, 1000);
                             console.log($rootScope.user);
