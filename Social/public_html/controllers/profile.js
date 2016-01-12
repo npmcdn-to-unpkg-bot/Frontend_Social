@@ -103,17 +103,23 @@ var app = angular.module('MyApp')
                             for (var i = 0; i < $scope.notification.length; i++) {
                                 localFeild = localFeild + $scope.notification[i];
                             }
+                            $scope.incompleteProfile = false;
+                           if($scope.user.isProfileComplete){
+                               $scope.incompleteProfile = true;
+                            }
 
-                            setTimeout(function () {
-//                                if (!$scope.user.isProfileComplete) {
-                                      if (true) {
-
-                                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p>\n\<ul style="color:red">'
-
-                                            + localFeild + '</ul></div>');
-
-                                }
-                            }, 10);
+//                            setTimeout(function () {
+////                                if (!$scope.user.isProfileComplete) {
+//                                      if (true) {
+//
+//                                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red">Welcome to your profile page. It looks like one or more of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.</p>\n\<ul style="color:red">'
+//
+//                                            + localFeild + '</ul></div>');
+//
+//                                }
+//                            }, 10);
+//                            
+                           
 
                             console.log($rootScope.user);
 
