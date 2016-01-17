@@ -16,15 +16,15 @@
         <div id="main">
             <div class="tab-container full-width-style arrow-left dashboard">
                 <ul class="tabs">
-                    <!--<li class="active"><a data-toggle="tab" href="#dashboard"><i class="soap-icon-anchor circle"></i>Dashboard</a></li>-->
-                    <li class="active"><a data-toggle="tab" href="#profile"><i class="soap-icon-user circle"></i>Profile</a></li>
+                    <!--<li  class=""><a data-toggle="tab" href="#dashboard"><i class="soap-icon-anchor circle"></i>Dashboard</a></li>-->
+                    <li id= "profile_tab" class="active"><a data-toggle="tab" id="profile_profile" href="#profile"><i class="soap-icon-user circle"></i>Profile</a></li>
                     <!--<li class=""><a data-toggle="tab" href="#booking"><i class="soap-icon-businessbag circle"></i>Booking</a></li>-->
                     <!--<li class=""><a data-toggle="tab" href="#wishlist"><i class="soap-icon-wishlist circle"></i>Wishlist</a></li>-->
                     <!--<li class=""><a data-toggle="tab" href="#travel-stories"><i class="soap-icon-conference circle"></i>Travel Stories</a></li>-->
-                    <li class=""><a data-toggle="tab" href="#settings"><i class="soap-icon-settings circle"></i>Settings</a></li>
+                    <li id= "setting_tab" class=""><a data-toggle="tab" id="settings_profile"  href=""><i class="soap-icon-settings circle"></i>Settings</a></li>
                 </ul>
                 <div class="tab-content">
-                    <!--                            <div id="dashboard" class="tab-pane fade ">
+                                               <div id="dashboard" class="tab-pane fade ">
                                                     <h1 class="no-margin skin-color">Hi Jessica, Welcome to Travelo!</h1>
                                                     <p>All your trips booked with us will appear here and you’ll be able to manage everything!</p>
                                                     <br />
@@ -282,7 +282,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>-->
+                                                </div>
 
                     <div id="profile" class="tab-pane fade in active">
                         <div class="view-profile">
@@ -302,7 +302,11 @@
 
 
                                 <div class="details">
-                                    <a href="#" class="button btn-mini pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
+                                    <div ng-show="incompleteProfile" class="alert alert-error">
+                                        Welcome to your profile page. <b>{{notification | uppercase}} </b> of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.
+                                        <span class="close"></span>
+                                    </div>
+                                    <a href="#" class="button btn-small pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
                                     <h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>
                                     <dl class="term-description">
                                         <dt>user name:</dt><dd>{{user.email|| "requireds field"}}</dd>
@@ -327,7 +331,7 @@
                             <hr>
 
                             <!--this is to notify the user-->
-                            <div class="notification-area" ng-if="user.isProfileComplete === false">
+                            <!--<div class="notification-area" ng-if="user.isProfileComplete === false">-->
                                 <!--                                <div class="info-box block">
                                                                     <span class="close"></span>
                                                                     <p>This is your Dashboard, the place to check your Profile, respond to Reservation Requests, view upcoming Trip Information, and much more.</p>
@@ -337,9 +341,10 @@
                                                                         <li><span class="skin-color">Get Help</span> — View our help section and FAQs to get started on Travelo. </li>
                                                                     </ul>
                                                                 </div>-->
+
                                 
-                                
-                            </div>
+                            <!--</div>-->
+
                             <h2>About You</h2>
                             <div class="intro">
                                 <p> {{user.aboutYou|| "please tell us about you"}} </p>
@@ -1505,29 +1510,37 @@
                         </div>
                     </div>
                     <div id="settings" class="tab-pane fade">
+                         
+                         
                         <h2>Account Settings</h2>
+                        <div ng-show="googleOrfacebookUser" class="alert alert-error">
+                            Since you are login using <b>{{user.userType}}</b>, you are not allowed to change password
+                                <span class="close"></span>
+                        </div>
+                        
                         <h5 class="skin-color">Change Your Password</h5>
+                       
                         <form>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Old Password</label>
-                                    <input type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Enter New Password</label>
-                                    <input type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Confirm New password</label>
-                                    <input type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn-medium">UPDATE PASSWORD</button>
+                                <button ng-disabled="googleOrfacebookUser" class="btn-medium">UPDATE PASSWORD</button>
                             </div>
                         </form>
                         <hr>
@@ -1536,23 +1549,23 @@
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Old email</label>
-                                    <input type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Enter New Email</label>
-                                    <input type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Confirm New Email</label>
-                                    <input type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button class="btn-medium">UPDATE EMAIL ADDRESS</button>
+                                <button ng-disabled="googleOrfacebookUser" class="btn-medium">UPDATE EMAIL ADDRESS</button>
                             </div>
                         </form>
                         <hr>

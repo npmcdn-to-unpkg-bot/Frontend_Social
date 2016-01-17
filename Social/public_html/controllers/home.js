@@ -1,6 +1,6 @@
 
 angular.module('MyApp')
-        .controller('homeCtrl', function ($scope, $rootScope, $window) {
+        .controller('homeCtrl', function ($scope, $rootScope, $window, $http) {
             //This script run home page slider
             tjq(document).ready(function () {
                 tjq('.revolution-slider').revolution(

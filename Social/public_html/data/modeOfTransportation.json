@@ -1,6 +1,14 @@
 [
-  { "mode": "Walking" },
-  { "mode": "Bicycle " },
-  { "mode": "Car" },
-  { "mode": "Boat" }
+    {
+        "mode": "Walking"
+    },
+    {
+        "mode": "Bicycle "
+    },
+    {
+        "mode": "Car"
+    },
+    {
+        "mode": "Boat"
+    }
 ]

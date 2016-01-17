@@ -2087,7 +2087,7 @@ button.btn-extra.yellow > span em, .button.btn-extra.yellow > span em {
   content: "\e8bb";
 }
 .alert.alert-error {
-  background: #f6bcc3;
+  background: #F17685;
 }
 .alert.alert-error:before {
   content: "\e8bc";
@@ -3351,7 +3351,7 @@ ul.check-circle li:before {
 }
 .tab-container .tab-content .tab-pane .row {
   margin-bottom: 15px;
-                     /*border-top: 1px solid #f5f5f5; padding: 20px 0;
+  /*border-top: 1px solid #f5f5f5; padding: 20px 0;
 &:first-child { border: none; padding-top: 0; }
 &:last-child { padding-bottom: 0; }*/
 }
@@ -3538,7 +3538,7 @@ ul.check-circle li:before {
   border-bottom: 5px solid transparent;
 }
 .tab-container.full-width-style.arrow-left .tab-content .tab-pane {
-  padding: 30px;
+  padding: 5px;
 }
 .tab-container.full-width-style .tab-content {
   float: left;
