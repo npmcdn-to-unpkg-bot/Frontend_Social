@@ -1,35 +1,43 @@
-var app =angular.module('MyApp')
-        .controller('PasswordResetCtrl', function ($rootScope,$scope,$location, toastr,$scope,Account) {
-            $rootScope.resetPassword = true;
-    
-        
-         $scope.passwordReset= function () {
-                $rootScope.resetPassword = false;
-                Account.passwordReset($scope.emailAddress)
+var app = angular.module('MyApp')
+        .controller('PasswordResetCtrl', function ($rootScope, $scope, $location, toastr, $scope, Account) {
+            $scope.resetPassword = true;
+            $scope.emailSentMessage = false;
+            $rootScope.emailNotSentMessage = false;
+            $rootScope.emailAddress = "";
+            $scope.confirmPassword = "";
+            $scope.resetBtnLoading = false;
+
+            $scope.passwordReset = function (email) {
+                $scope.resetBtnLoading = true;
+                Account.passwordReset(email)
                         .then(function () {
-                            $rootScope.emailDiv = false;
-                            $location.path('/login');
-                            $rootScope.emailSentMessage=true;
-                            $rootScope.emailAddress= $scope.emailAddress;
-                            toastr.success('Password reset link sent to ' + $scope.emailAddress);
+
+                            $location.path('/passwordReset');
+                            $scope.emailSentMessage = true;
+                            $scope.emailAddress = email;
+                            $scope.resetBtnLoading = false;
+                            toastr.success('Success! password reset link sent to ' + $scope.emailAddress);
                         })
                         .catch(function (response) {
-                            $location.path('/login');
-                            $rootScope.emailNotSentMessage=true;
-                            $rootScope.emailAddress= $scope.emailAddress;
+                            $scope.resetBtnLoading = false;
+                            $location.path('/signup');
+                            $rootScope.emailNotSentMessage = true;
+                            $rootScope.emailAddress = email;
                             //toastr.error(response.data.message, response.status);
                         });
             };
-       
-        $scope.changePassword =function(){
-              Account.newPassword($scope.emailAddress,$scope.password)
+
+            $scope.changePassword = function () {
+                $scope.resetBtnLoading = true;
+                Account.newPassword($scope.emailAddress, $scope.confirmPassword)
                         .then(function () {
-                            $rootScope.emailDiv = false;
+                            $scope.resetBtnLoading = false;
                             $location.path('/login');
-                            toastr.success('Password reset successful to' + $scope.emailAddress);
+                            toastr.success('Password reset successful to ' + $scope.emailAddress);
                         })
                         .catch(function (response) {
+                            $scope.resetBtnLoading = false;
                             toastr.error(response.data.message, response.status);
                         });
-        };
-       });
+            };
+        });
