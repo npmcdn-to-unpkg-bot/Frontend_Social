@@ -91,6 +91,10 @@ ul {
   width: 331px;
   margin: 12% auto;
 }
+.center-form-reset-password {
+  width: 500px;
+  margin: 12% auto;
+}
 
 .signup-or-separator {
   position: relative;

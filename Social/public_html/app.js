@@ -46,6 +46,25 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                        templateUrl: 'pages/term.html'
                       
                     })
+                       .state('passwordReset', {
+                        url: '/passwordReset',
+                       controller: 'PasswordResetCtrl',
+                       templateUrl: 'pages/passwordReset.html'
+                      
+                    })
+                    .state('newPassword', {
+                        url: '/newPassword?emailAddress=${email}',
+                       controller: function($scope, $stateParams) {
+                      // get the id
+                        $scope.emailAddress = $stateParams.email;
+
+            // get the location
+                       $scope.newPassword = true;  
+                       $scope.resetPassword=false;
+                     },
+                       templateUrl: 'pages/passwordReset.html'
+                      
+                    })
                       .state('error', {
                         url: '/error',
                         templateUrl: 'pages/error.html'
