@@ -67,45 +67,28 @@ var app = angular.module('MyApp')
                             }
 
                             //Here it send notification messge on user profile page 
-                            $scope.notification = [];
-                            if ($scope.user.email === null) {
-                                $scope.notification.push(" <li> Email </li>")
-                            }
-                            if ($scope.user.firstName === null) {
-                                $scope.notification.push(" <li> First Name </li>")
-                            }
-                            if ($scope.user.lastName === null) {
-                                $scope.notification.push(" <li> Last Name </li>")
-                            }
-                            if ($scope.user.gender === null) {
-                                $scope.notification.push(" <li> Gender </li>")
-                            }
-                            if ($scope.user.dateOfBirth === null) {
-                                $scope.notification.push(" <li> DateOfBirth </li>")
-                            }
-                            if ($scope.user.address === null) {
-                                $scope.notification.push(" <li> Address </li>")
+
+                            $scope.notification = "";
+
+                            $scope.required = [{"key": "firstName", "value": "First name"}, {"key": "lastName", "value": "Last name"}, {"key": "dateOfBirth", "value": "Date of birth"}, {"key": "email", "value": "Email"}, {"key": "gender", "value": "Gender"}, {"key": "languages", "value": "Languges"}, {"key": "aboutYou", "value": "About you"}, {"key": "address", "value": "Address"}, {"key": "areasOfStrongKnowledges", "value": "Areas of strong knowledges"}, {"key": "knownCities", "value": "known cities"}, {"key": "modeOfTransportation", "value": "Mode of transportation"}];
+                            $scope.requiredArr = ["knownCities" ,"areasOfStrongKnowledges","languages","modeOfTransportation"];
+                            for (var i = 0; i < $scope.required.length; i++) {
+                                var tempVal = $scope.required[i].key;
+                                var testVal = $scope.user[tempVal];
+                            
+                                if (testVal === null || testVal.length === 0 ) {
+                                    if ($scope.notification === "") {
+                                        $scope.notification = $scope.required[i].value;
+                                    } else {
+                                        $scope.notification = $scope.notification + ", " + $scope.required[i].value;
+                                    }
+
+                                }
                             }
 
-                            if ($scope.user.languages.length === 0) {
-                                $scope.notification.push(" <li> Languages </li>")
-                            }
-                            if ($scope.user.knownCities.length === 0) {
-                                $scope.notification.push(" <li>Place with Experiance</li>")
-                            }
-                            if ($scope.user.areasOfStrongKnowledges.length === 0) {
-                                $scope.notification.push(" <li> Areas of Strong Knowledges </li>")
-                            }
-                            if ($scope.user.modeOfTransportation.length === 0) {
-                                $scope.notification.push(" <li> Mode Of Transportation </li>")
-                            }
-                            var localFeild = "";
-                            for (var i = 0; i < $scope.notification.length; i++) {
-                                localFeild = localFeild + $scope.notification[i];
-                            }
                             $scope.incompleteProfile = false;
-                           if($scope.user.isProfileComplete){
-                               $scope.incompleteProfile = true;
+                            if ($scope.notification !== "") {
+                                $scope.incompleteProfile = true;
                             }
 
 //                            setTimeout(function () {
@@ -119,7 +102,7 @@ var app = angular.module('MyApp')
 //                                }
 //                            }, 10);
 //                            
-                           
+
 
                             console.log($rootScope.user);
 
