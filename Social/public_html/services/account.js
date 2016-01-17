@@ -44,6 +44,28 @@ angular.module('MyApp')
                     }
 
                 },
+               passwordReset: function (emailAddress) {
+                    if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.get('http://localhost:8080/passwordReset?emailAddress='+emailAddress);
+
+                    } else {
+                        //for cloud
+                        return $http.get('http://tourgoat.cfapps.io/passwordReset?emailAddress=' + emailAddress);
+                    }
+
+                },
+                newPassword: function (emailAddress,password) {
+                    if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.get('http://localhost:8080/newPassword?emailAddress='+emailAddress+'&password='+password);
+
+                    } else {
+                        //for cloud
+                        return $http.get('http://tourgoat.cfapps.io/newPassword?emailAddress=' + emailAddress+'&password='+password);
+                    }
+
+                },
                 loadJsonFile: function (filepath, cache) {
                     return $http.get(filepath, cache);
 
