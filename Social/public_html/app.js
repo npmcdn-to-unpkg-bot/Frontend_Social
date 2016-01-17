@@ -66,7 +66,7 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                 },
                 templateUrl: 'pages/passwordReset.html'
 
-            })
+            });
 
 
 
