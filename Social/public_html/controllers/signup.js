@@ -44,6 +44,7 @@ var app = angular.module('MyApp')
                             .then(function () {
                                 $location.path('/login');
 
+
                                 toastr.info('You have successfully created a new account');
                                 $scope.loginBtnLoading = false; // stop loading
                                 $scope.disabledFacebookBtn = false;
@@ -51,6 +52,8 @@ var app = angular.module('MyApp')
 
                                  $rootScope.emailNotSentMessage=false;
                                  $rootScope.emailSentMessage=false;
+
+//                                toastr.success('You have successfully created a new account');
 
                             })
                             .catch(function (response) {
