@@ -45,7 +45,7 @@ var app = angular.module('MyApp')
                                 $location.path('/login');
 
 
-                                toastr.info('You have successfully created a new account');
+                                toastr.info('You have successfully created a new account and please verify your email');
                                 $scope.loginBtnLoading = false; // stop loading
                                 $scope.disabledFacebookBtn = false;
                                 $scope.disabledGoogleBtn = false;
