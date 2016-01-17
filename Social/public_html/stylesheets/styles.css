@@ -91,6 +91,10 @@ ul {
   width: 331px;
   margin: 12% auto;
 }
+.center-form-reset-password {
+  width: 500px;
+  margin: 12% auto;
+}
 
 .signup-or-separator {
   position: relative;
@@ -243,7 +247,7 @@ ul {
 }
 
 .btn-facebook {
-  color: #fff;
+  /* color: #fff; */
   background-color: #3b5998;
   border: 1px solid #335190;
 }
