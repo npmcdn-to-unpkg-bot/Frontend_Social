@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete','angular-ladda'])
+var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete', 'angular-ladda'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) {
             $stateProvider
                     .state('index', {
@@ -56,10 +56,10 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                         templateUrl: 'pages/error.html'
 
                     }).state('dashboard', {
-                        url: '/dashboard',
-                        templateUrl: 'pages/dashboard1.html'
+                url: '/dashboard',
+                templateUrl: 'pages/dashboard1.html'
 
-                    });
+            });
 
 
             $urlRouterProvider.otherwise('/');
