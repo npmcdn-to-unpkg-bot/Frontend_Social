@@ -1,5 +1,5 @@
 var app = angular.module('MyApp')
-        .controller('SignupCtrl', function ($scope, $location, $auth, toastr,$rootScope) {
+        .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope) {
             $scope.birthMonth = "";
             $scope.birthDay = "";
             $scope.birthYear = "";
@@ -50,8 +50,8 @@ var app = angular.module('MyApp')
                                 $scope.disabledFacebookBtn = false;
                                 $scope.disabledGoogleBtn = false;
 
-                                 $rootScope.emailNotSentMessage=false;
-                                 $rootScope.emailSentMessage=false;
+                                $rootScope.emailNotSentMessage = false;
+                                $rootScope.emailSentMessage = false;
 
 //                                toastr.success('You have successfully created a new account');
 
@@ -61,12 +61,23 @@ var app = angular.module('MyApp')
                                 $scope.disabledFacebookBtn = false;
                                 $scope.disabledGoogleBtn = false;
                                 if (response.data.fieldErrors.length > 0) {
+                                    //TODO make different message for different errors and fix duplicated code  
                                     for (var i = 0; i < response.data.fieldErrors.length; i++) {
-                                        toastr.error(response.data.fieldErrors[i].message);
+                                        if ("UniqueEmail.user.email" === response.data.fieldErrors[i].message) {
+                                            toastr.error("Email address already in use");
+                                        } else {
+                                            toastr.error(response.data.fieldErrors[i].message);
+                                        }
+//                                        
                                     }
                                 } else {
+                                    //TODO make different message for different errors 
+                                    if ("UniqueEmail.user.email" === response.data.message) {
+                                        toastr.error("Email address already in use");
+                                    } else {
+                                        toastr.error(response.data.message);
+                                    }
 
-                                    toastr.error(response.data.message);
                                 }
                             });
                 }
