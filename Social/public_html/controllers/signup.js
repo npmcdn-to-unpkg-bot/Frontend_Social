@@ -1,5 +1,5 @@
 var app = angular.module('MyApp')
-        .controller('SignupCtrl', function ($scope, $location, $auth, toastr) {
+        .controller('SignupCtrl', function ($scope, $location, $auth, toastr,$rootScope) {
             $scope.birthMonth = "";
             $scope.birthDay = "";
             $scope.birthYear = "";
@@ -43,10 +43,15 @@ var app = angular.module('MyApp')
                     $auth.signup($scope.user)
                             .then(function () {
                                 $location.path('/login');
+
                                 toastr.info('You have successfully created a new account');
                                 $scope.loginBtnLoading = false; // stop loading
                                 $scope.disabledFacebookBtn = false;
                                 $scope.disabledGoogleBtn = false;
+
+                                 $rootScope.emailNotSentMessage=false;
+                                 $rootScope.emailSentMessage=false;
+
                             })
                             .catch(function (response) {
                                 $scope.loginBtnLoading = false; // stop loading

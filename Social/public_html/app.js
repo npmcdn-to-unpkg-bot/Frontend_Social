@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete','angular-ladda'])
+var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete', 'angular-ladda'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) {
             $stateProvider
                     .state('index', {
@@ -45,17 +45,29 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                         url: '/term',
                         templateUrl: 'pages/term.html'
 
-                    })
-                    .state('becometourguide', {
+                    }).state('becometourguide', {
                         url: '/becometourguide',
                         templateUrl: 'pages/becometourguide.html'
 
-                    })
-                    .state('error', {
-                        url: '/error',
-                        templateUrl: 'pages/error.html'
+                    }).state('passwordReset', {
+                        url: '/passwordReset',
+                        controller: 'PasswordResetCtrl',
+                        templateUrl: 'pages/passwordReset.html'
 
-                    }).state('dashboard', {
+                    }).state('newPassword', {
+                        url: '/newPassword?emailAddress=${email}',
+                        controller: function ($scope, $stateParams) {
+                            // get the id
+                            $scope.emailAddress = $stateParams.email;
+
+                            // get the location
+                            $scope.newPassword = true;
+                            $scope.resetPassword = false;
+                        },
+                        templateUrl: 'pages/passwordReset.html'
+
+                    })
+                    .state('dashboard', {
                         url: '/dashboard',
                         templateUrl: 'pages/dashboard1.html'
 
