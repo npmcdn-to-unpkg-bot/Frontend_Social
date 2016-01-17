@@ -33,7 +33,7 @@ var app = angular.module('MyApp')
                         .then(function () {
                             $scope.resetBtnLoading = false;
                             $location.path('/login');
-                            toastr.success('Password reset successful to ' + $scope.emailAddress);
+                            toastr.success('Your password has been changed successfully : ' + $scope.emailAddress);
                         })
                         .catch(function (response) {
                             $scope.resetBtnLoading = false;
