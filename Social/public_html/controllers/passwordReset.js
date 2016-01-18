@@ -1,5 +1,7 @@
 var app = angular.module('MyApp')
         .controller('PasswordResetCtrl', function ($rootScope, $scope, $location, toastr, $scope, Account) {
+            //Home page content is display only for home page 
+             $rootScope.homePageContent = false;
             $scope.resetPassword = true;
             $scope.emailSentMessage = false;
             $rootScope.emailNotSentMessage = false;

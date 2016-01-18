@@ -1,6 +1,7 @@
 var app = angular.module('MyApp')
         .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location, $http) {
-
+              //Home page content is display only for home page 
+             $rootScope.homePageContent = false;
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
