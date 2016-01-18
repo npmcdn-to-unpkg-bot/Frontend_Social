@@ -71,7 +71,11 @@ angular.module('MyApp')
 
                         })
                         .catch(function (response) {
-                            toastr.error(response.data.message, response.status);
+                            $scope.resetBtnLoading = false;
+                            $location.path('/signup');
+                            $rootScope.emailNotSentMessage = true;
+                            $rootScope.emailAddress = $scope.email;
+                            //toastr.error(response.data.message, response.status);
                         });
             };
 
