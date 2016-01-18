@@ -1,6 +1,7 @@
 angular.module('MyApp')
         .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $interval) {
-
+            //Home page content is display only for home page 
+             $rootScope.homePageContent = false;
             $scope.email = "";
 
             $scope.facebookBtnLoading = false; // stop facebook loading

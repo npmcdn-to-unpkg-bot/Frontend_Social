@@ -14,8 +14,8 @@
      <!-- Meta Tags -->
     <meta charset="utf-8">
     <meta name="keywords" content="TourGoat Tour Goat tourist tourguide visit location travle tourist guide new place" />
-    <meta name="description" content="Travelo | Responsive HTML5 Travel Template">
-    <meta name="author" content="SoapTheme">
+    <meta name="description" content="Tourgoat | Responsive HTML5 Travel Template">
+    <!--<meta name="author" content="SoapTheme">-->
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
@@ -183,7 +183,7 @@
                 <nav ng-controller="NavbarCtrl" id="mobile-menu-01" class="mobile-menu collapse">
                     <ul class="mobile-topnav container">
                         <li><a href="#index">HOME</a></li>
-                         <li ng-if="!isAuthenticated()"><a href="#login" >BECOME TOUR GUIDE</a></li>
+                         <li ng-if="!isAuthenticated()"><a href="#becometourguide" >BECOME TOUR GUIDE</a></li>
                         <li ng-if="!isAuthenticated()"><a href="#login" >LOGIN</a></li>
                         <li ng-if="isAuthenticated()"><a href="#profile">MY ACCOUNT</a></li>
                         <li ng-if="!isAuthenticated()"><a href="#signup" >SIGNUP</a></li>
@@ -199,8 +199,10 @@
     
       <!--This is a place to swap pages-->   
         <div ui-view></div>
-        
-<!--        <section id="content">
+         <div ng-show="homePageContent" >
+       <section id="content" >
+          
+<!-- 
             <div class="search-box-wrapper">
                 <div class="search-box container">
                     <ul class="search-tabs clearfix">
@@ -779,14 +781,14 @@
             </div>-->
             
             <!-- Popuplar Destinations -->
-            <div class="destinations section">
+            <div  class="destinations section">
                 <div class="container">
                     <h2>Popular Destinations</h2>
                     <div class="row image-box style1 add-clearfix">
                         <div class="col-sms-6 col-sm-6 col-md-3">
                             <article class="box">
                                 <figure class="animated" data-animation-type="fadeInDown" data-animation-duration="1">
-                                    <a href="ajax/slideshow-popup.html" title="" class="hover-effect popup-gallery"><img src="http://placehold.it/270x160" alt="" width="270" height="160" /></a>
+                                    <a href="http://placehold.it/270x160" title="" class="hover-effect popup-gallery"><img src="http://placehold.it/270x160" alt="" width="270" height="160" /></a>
                                 </figure>
                                 <div class="details">
                                     <span class="price"><small>FROM</small>$490</span>
@@ -832,7 +834,7 @@
             </div>
             
             <!-- Honeymoon -->
-            <div class="honeymoon section global-map-area promo-box parallax" data-stellar-background-ratio="0.5">
+            <div  class="honeymoon section global-map-area promo-box parallax" data-stellar-background-ratio="0.5">
                 <div class="container">
                     <div class="col-sm-6 content-section description pull-right">
                         <h1 class="title">Popular Destinations for Honeymoon</h1>
@@ -939,7 +941,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
                 </div>
             </div>
             <!-- Features section -->
-            <div class="features section global-map-area parallax" data-stellar-background-ratio="0.5">
+            <div  class="features section global-map-area parallax" data-stellar-background-ratio="0.5">
                 <div class="container">
                     <div class="row image-box style7">
                         <div class="col-sms-6 col-sm-6 col-md-3">
@@ -1001,7 +1003,9 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
                     </div>
                 </div>
             </div>
+            
         </section>
+             </div>
         
         <footer id="footer">
             <div class="footer-wrapper">
@@ -1064,13 +1068,13 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
                             <span>We respect your privacy</span>
                         </div>
                         <div class="col-sm-6 col-md-3">
-                            <h2>About Travelo</h2>
+                            <h2>About Tourgoat</h2>
                             <p>Nunc cursus libero purus ac congue arcu cursus ut sed vitae pulvinar massaidp nequetiam lore elerisque.</p>
                             <br />
                             <address class="contact-details">
                                 <span class="contact-phone"><i class="soap-icon-phone"></i> 1-800-123-HELLO</span>
                                 <br />
-                                <a href="#" class="contact-email">help@travelo.com</a>
+                                <a href="#" class="contact-email">help@tourgoat LLC</a>
                             </address>
                             <ul class="social-icons clearfix">
                                 <li class="twitter"><a title="twitter" href="#" data-toggle="tooltip"><i class="soap-icon-twitter"></i></a></li>
@@ -1096,7 +1100,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
                         <a id="back-to-top" href="#" class="animated" data-animation-type="bounce"><i class="soap-icon-longarrow-up circle"></i></a>
                     </div>
                     <div class="copyright pull-right">
-                        <p>&copy; 2014 Travelo</p>
+                        <p>&copy; 2016 Tourgoat.com</p>
                     </div>
                 </div>
             </div>
@@ -1159,19 +1163,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
         });
     </script>-->
  <!--Application Code--> 
-<<<<<<< ffb003bc2db3a63aa5fb8cb3568ae1fee8bc370c
-<script src="/app.js"></script>
-<script src="/directives/passwordStrength.js"></script>
-<script src="/directives/passwordStrengthModule.js"></script>
-<script src="/directives/passwordMatch.js"></script>
-<script src="/controllers/home.js"></script>
-<script src="/controllers/login.js"></script>
-<script src="/controllers/signup.js"></script>
-<script src="/controllers/logout.js"></script>
-<script src="/controllers/profile.js"></script>
-<script src="/controllers/navbar.js"></script>
-<script src="/services/account.js"></script>
-=======
+
 <script src="./app.js"></script>
 <script src="./directives/passwordStrength.js"></script>
 <script src="./directives/passwordStrengthModule.js"></script>
@@ -1184,7 +1176,7 @@ Nullam placerat lacinia dolor quis pretium. Phasellus vitae lacinia quam, at pel
 <script src="./controllers/navbar.js"></script>
 <script src="./controllers/passwordReset.js"></script>
 <script src="./services/account.js"></script>
->>>>>>> Reset password
+
   <!-- Angular Material -->
  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.3.6/angular-aria.min.js"></script>
 

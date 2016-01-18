@@ -66,6 +66,11 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                     },
                     templateUrl: 'pages/passwordReset.html'
 
+                    }).state('dashboard', {
+                        url: '/dashboard',
+//                        controller: 'PasswordResetCtrl',
+                        templateUrl: 'pages/dashboard1.html'
+
                     });
 
             $urlRouterProvider.otherwise('/');
