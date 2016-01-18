@@ -25,6 +25,11 @@
     </div>
 
       
+       <div ng-show="verifiedEmailNotResetPassword" class="alert alert-error">
+          <span><b>Please verify your email first to reset a password. The link to verify your email is sent to email address {{emailAddress}}.</b></span>
+          <span class="close"></span>
+      </div>
+      
    <div class="row">
     <div class="center-form panel">
       <div class="panel-body">

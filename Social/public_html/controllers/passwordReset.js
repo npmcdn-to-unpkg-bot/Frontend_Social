@@ -11,18 +11,26 @@ var app = angular.module('MyApp')
                 $scope.resetBtnLoading = true;
                 Account.passwordReset(email)
                         .then(function () {
-
                             $location.path('/passwordReset');
-                            $scope.emailSentMessage = true;
                             $scope.emailAddress = email;
                             $scope.resetBtnLoading = false;
+                            $scope.emailSentMessage = true;
                             toastr.success('Success! password reset link sent to ' + $scope.emailAddress);
                         })
                         .catch(function (response) {
+                            $rootScope.errorType = response.data;
                             $scope.resetBtnLoading = false;
-                            $location.path('/signup');
-                            $rootScope.emailNotSentMessage = true;
-                            $rootScope.emailAddress = email;
+                            $rootScope.emailAddress = email; 
+                            if(!$rootScope.errorType.emailVerified&&$rootScope.errorType.userFound){
+                                $rootScope.verifiedEmailNotResetPassword = true; 
+                                $location.path('/login');
+                            }else{
+                                $rootScope.emailNotSentMessage = true;
+                                $location.path('/signup');
+                            }
+                            
+                            
+                            
                             //toastr.error(response.data.message, response.status);
                         });
             };
