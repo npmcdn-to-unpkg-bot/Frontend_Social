@@ -3,7 +3,8 @@ angular.module('MyApp')
             //Home page content is display only for home page 
              $rootScope.homePageContent = false;
             $scope.email = "";
-
+            $rootScope.emailDiv = false;
+//            $rootScope.verifiedEmailNotResetPassword = false;
             $scope.facebookBtnLoading = false; // stop facebook loading
             $scope.googeBtnLoading = false; // stop google loading
             $scope.loginBtnLoading = false; // stop login loading
