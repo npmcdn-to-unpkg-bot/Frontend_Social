@@ -5,10 +5,10 @@ var app = angular.module('MyApp')
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
-                            $rootScope.user = response.data;
+                            $scope.user = response.data;
                             $rootScope.emailDiv = false;
                             //set date for profile edit page 
-                            $scope.fillDate($rootScope.user.dateOfBirth);
+                            $scope.fillDate($scope.user.dateOfBirth);
                             //Here is to concat the lunguge list before display on profile page
                             $scope.languge = "";
                             for (var i = 0; i < $scope.user.languages.length; i++) {
@@ -105,7 +105,7 @@ var app = angular.module('MyApp')
 //                            
 
 
-                            console.log($rootScope.user);
+                            console.log($scope.user);
 
                         })
                         .catch(function (response) {
