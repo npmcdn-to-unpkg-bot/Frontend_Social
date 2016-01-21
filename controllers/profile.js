@@ -341,7 +341,7 @@ var app = angular.module('MyApp')
                 if (window.location.host === 'localhost:8383') {
                     $scope.jsonUrl = "http://localhost:8383/data/modeOfTransportation.json";
                 } else {
-                    $scope.jsonUrl = "http://app-tourgoat.rhcloud.comdata/modeOfTransportation.json";
+                    $scope.jsonUrl = "http://app-tourgoat.rhcloud.com/data/modeOfTransportation.json";
                 }
                 return Account.loadJsonFile($scope.jsonUrl, {cache: true}).then(function (response) {
 
