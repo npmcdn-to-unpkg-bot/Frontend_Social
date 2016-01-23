@@ -174,8 +174,9 @@
                         <ul ng-if="isAuthenticated()" class="quick-menu pull-right" >
                             <li><a href="#profile"> 
 
-                                    <img width="30" height="30" class="img-rounded" ng-src="{{user.picture|| 'images/profile/profile_Img.png'}}" alt="User Image"/>
-                                    &nbsp<span>Welcome,&nbsp {{::user.firstName }}</span>
+                                    <img width="30" height="30" class="img-rounded" ng-src="{{userPictuer|| 'images/profile/profile_Img.png'}}" alt="User Image"/>
+<!--                                    &nbsp<span>Welcome,&nbsp {{::user.firstName }}</span>-->
+                                      &nbsp<span>Welcome,&nbsp {{userName}}</span>
                                 </a>
                             </li> 
                             <!--<li><a href="#profile">My Account</a></li>-->

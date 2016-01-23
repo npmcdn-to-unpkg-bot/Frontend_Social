@@ -2,11 +2,17 @@ var app = angular.module('MyApp')
         .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location, $http) {
               //Home page content is display only for home page 
              $rootScope.homePageContent = false;
+             //user profile pictuer and user name global var
+             $rootScope.userPictuer = "";
+             $rootScope.userName = "";
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
                             $scope.user = response.data;
                             $rootScope.emailDiv = false;
+                            //set global user profile pic and name 
+                            $rootScope.userPictuer =  $scope.user.picture;
+                            $rootScope.userName =  $scope.user.firstName;
                             //set date for profile edit page 
                             $scope.fillDate($scope.user.dateOfBirth);
                             //Here is to concat the lunguge list before display on profile page
