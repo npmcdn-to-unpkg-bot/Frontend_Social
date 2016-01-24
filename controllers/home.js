@@ -10,7 +10,7 @@ angular.module('MyApp')
                             dottedOverlay: "none",
                             delay: 8000,
                             startwidth: 1170,
-                            startheight: 646,
+                            startheight: 550,
                             onHoverStop: "on",
                             hideThumbs: 10,
                             fullWidth: "on",
@@ -19,6 +19,7 @@ angular.module('MyApp')
                             shadow: 0,
                             spinner: "spinner4",
                             hideTimerBar: "off"
+//                             fullScreen:"on"
                         });
             });
 
