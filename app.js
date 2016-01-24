@@ -71,6 +71,21 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
 //                        controller: 'PasswordResetCtrl',
                         templateUrl: 'pages/dashboard1.html'
 
+                    }).state('list', {
+                        url: '/list',
+                        controller: 'listViewCtrl',
+                        templateUrl: 'pages/tourguide-list-view.html'
+
+                    }).state('listDetail', {
+                        url: '/listDetail',
+                        controller: 'listDetailCtrl',
+                        templateUrl: 'pages/list-detail-view.html'
+
+                    }).state('booking', {
+                        url: '/booking',
+                        controller: 'bookingCtrl',
+                        templateUrl: 'pages/booking.html'
+
                     });
 
             $urlRouterProvider.otherwise('/');
