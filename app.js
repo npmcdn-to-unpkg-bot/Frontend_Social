@@ -46,47 +46,47 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                         templateUrl: 'pages/term.html'
 
                     }).state('becometourguide', {
-                        url: '/becometourguide',
-                        templateUrl: 'pages/becometourguide.html'
+                url: '/becometourguide',
+                templateUrl: 'pages/becometourguide.html'
 
-                    }).state('passwordReset', {
-                        url: '/passwordReset',
-                        controller: 'PasswordResetCtrl',
-                        templateUrl: 'pages/passwordReset.html'
+            }).state('passwordReset', {
+                url: '/passwordReset',
+                controller: 'PasswordResetCtrl',
+                templateUrl: 'pages/passwordReset.html'
 
-                    }).state('newPassword', {
-                        url: '/newPassword?emailAddress=${email}',
-                    controller: function ($scope, $stateParams) {
+            }).state('newPassword', {
+                url: '/newPassword?emailAddress=${email}',
+                controller: function ($scope, $stateParams) {
                     // get the id
                     $scope.emailAddress = $stateParams.email;
 
                     // get the location
                     $scope.newPassword = true;
                     $scope.resetPassword = false;
-                    },
-                    templateUrl: 'pages/passwordReset.html'
+                },
+                templateUrl: 'pages/passwordReset.html'
 
-                    }).state('dashboard', {
-                        url: '/dashboard',
+            }).state('dashboard', {
+                url: '/dashboard',
 //                        controller: 'PasswordResetCtrl',
-                        templateUrl: 'pages/dashboard1.html'
+                templateUrl: 'pages/dashboard1.html'
 
-                    }).state('list', {
-                        url: '/list',
-                        controller: 'listViewCtrl',
-                        templateUrl: 'pages/tourguide-list-view.html'
+            }).state('list', {
+                url: '/list',
+                controller: 'listViewCtrl',
+                templateUrl: 'pages/tourguide-list-view.html'
 
-                    }).state('listDetail', {
-                        url: '/listDetail',
-                        controller: 'listDetailCtrl',
-                        templateUrl: 'pages/list-detail-view.html'
+            }).state('listDetail', {
+                url: '/listDetail',
+                controller: 'listDetailCtrl',
+                templateUrl: 'pages/list-detail-view.html'
 
-                    }).state('booking', {
-                        url: '/booking',
-                        controller: 'bookingCtrl',
-                        templateUrl: 'pages/booking.html'
+            }).state('booking', {
+                url: '/booking',
+                controller: 'bookingCtrl',
+                templateUrl: 'pages/booking.html'
 
-                    });
+            });
 
             $urlRouterProvider.otherwise('/');
 
@@ -167,3 +167,12 @@ app.run(function (defaultErrorMessageResolver) {
     });
 }
 );
+
+app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+        $rootScope.$on('$stateChangeSuccess',
+                        function (event) {
+                            if (!$window.ga)
+                                return;
+                            $window.ga('send', 'pageview', {page: $location.path()});
+                        });
+    }]);
