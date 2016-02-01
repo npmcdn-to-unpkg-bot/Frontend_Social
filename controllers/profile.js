@@ -445,6 +445,12 @@ var app = angular.module('MyApp')
             };
 
             $scope.emailUpdate = function () {
+                 $scope.noChange = false;
+                    $scope.oldEmailModified = false;
+                if ($scope.newEmail === $scope.oldEmail) {
+                    $scope.noChange = true;
+                    return;
+                }
                 if ($scope.user.email !== $scope.oldEmail) {
                     $scope.oldEmailModified = true;
                     return;
