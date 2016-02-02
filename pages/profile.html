@@ -1509,7 +1509,7 @@
                             </form>
                         </div>
                     </div>
-                    <div id="settings" class="tab-pane fade">
+                    <div  id="settings" class="tab-pane fade">
                          
                          
                         <h2>Account Settings</h2>
@@ -1517,55 +1517,90 @@
                             Since you are login using <b>{{user.userType}}</b>, you are not allowed to change password
                                 <span class="close"></span>
                         </div>
-                        
+                        <div ng-show="errorType.lastPassword" class="alert alert-error">
+                        <span><b>Please type a different password. You cannot repeat your previous password;</b></span>
+                        <span class="close"></span>
+                        </div>
+                         <div ng-show="errorType.passwordMatching" class="alert alert-error">
+                        <span><b>Incorrect old password. Please enter your current account password.</b></span>
+                        <span class="close"></span>
+                        </div>
                         <h5 class="skin-color">Change Your Password</h5>
                        
-                        <form>
+                        <form id="passwordUpdate" method="post" ng-submit="passwordUpdate()" name="updatePasswordForm"  novalidate="novalidate">
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Old Password</label>
-                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
-                                </div>
+                                    <input ng-disabled="googleOrfacebookUser"
+                                           id="oldPassword" 
+                                           name="oldPassword" 
+                                           ng-model="oldPassword" class="form-control input-lg"
+                                           type="password" placeholder="Old Password" required>
+                     <span ng-show="updatePasswordForm.oldPassword.$error.required && updatePasswordForm.oldPassword.$dirty">
+                     Old password Required
+                     </span>
+                           </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.newPassword.$invalid && updatePasswordForm.newPassword.$dirty }">
                                     <label>Enter New Password</label>
-                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
+                                    <input password-strength id="newPassword" ng-disabled="googleOrfacebookUser" max="30" name="newPassword" ng-model="newPassword" type="password" class="form-control input-lg" placeholder="Password" required>
+                                     <span class="ion-key form-control-feedback"></span>
+                                   <div class="help-block text-danger" ng-if="updatePasswordForm.newPassword.$dirty" ng-messages="updatePasswordForm.newPassword.$error">
+                                  <div ng-message="passwordRequired"></div>
+                                  </div>
+                                 <label>Password Strength</label>
+                                <password-strength ng-model="newPassword"></password-strength>
                                 </div>
                             </div>
                             <div class="row form-group">
-                                <div class="col-xs-12 col-sm-6 col-md-4">
+                                <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.confirmNewPassword.$invalid && updatePasswordForm.confirmNewPassword.$dirty }">
                                     <label>Confirm New password</label>
-                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
+                                    <input field-match="newPassword" ng-disabled="googleOrfacebookUser" id="confirmNewPassword" name="confirmNewPassword" ng-model="confirmNewPassword" type="password" class="form-control input-lg" placeholder="Confirm Password" required>
+                                    <span class="ion-key form-control-feedback"></span>
+                                    <div class="help-block text-danger" ng-if="updatePasswordForm.confirmNewPassword.$dirty" ng-messages="updatePasswordForm.confirmNewPassword.$error">
+                                    <div ng-message="passwordMismatch"></div>
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button ng-disabled="googleOrfacebookUser" class="btn-medium">UPDATE PASSWORD</button>
+                                <button ng-disabled="googleOrfacebookUser" type="submit" ng-disabled="updatePasswordForm.$invalid" class="btn-medium">UPDATE PASSWORD</button>
                             </div>
                         </form>
                         <hr>
+                        <div ng-show="oldEmailModified||errorType.emailMatching" class="alert alert-error">
+                        <span><b>Incorrect old Email. Please enter your current account Email.</b></span>
+                        <span class="close"></span>
+                        </div>
+                         <div ng-show="errorType.noChange||noChange" class="alert alert-error">
+                        <span><b>Current password matches with the new one. Please use different Email.</b></span>
+                        <span class="close"></span>
+                        </div>
                         <h5 class="skin-color">Change Your Email</h5>
-                        <form>
+                        <form ng-submit="emailUpdate()" id="emailUpdate" method="post"  name="updateEmailForm"  novalidate="novalidate">
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Old email</label>
-                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" ng-model="oldEmail" type="text" class="input-text full-width">
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Enter New Email</label>
-                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" type="email" maxlength="60" id="newEmail" name ="newEmail" ng-model="newEmail" class="input-text full-width" required>
                                 </div>
                             </div>
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4">
                                     <label>Confirm New Email</label>
-                                    <input ng-disabled="googleOrfacebookUser" type="text" class="input-text full-width">
+                                    <input ng-disabled="googleOrfacebookUser" field-match="newEmail"  ng-model="confirmNewEmail" type="email" class="input-text full-width" required>
                                 </div>
+                                <div class="help-block text-danger" ng-if="updateEmailForm.confirmNewEmail.$dirty" ng-messages="updateEmailForm.confirmNewEmail.$error">
+                                    <div ng-message="emailMismatch"></div>
+                                 </div>
                             </div>
                             <div class="form-group">
-                                <button ng-disabled="googleOrfacebookUser" class="btn-medium">UPDATE EMAIL ADDRESS</button>
+                                <button ng-disabled="googleOrfacebookUser" type="submit" ng-disabled="updateEmailForm.$invalid" class="btn-medium">UPDATE EMAIL ADDRESS</button>
                             </div>
                         </form>
                         <hr>

@@ -26,9 +26,11 @@ var app = angular.module('MyApp')
                             if(!$rootScope.errorType.emailVerified&&$rootScope.errorType.userFound){
                                 $rootScope.verifiedEmailNotResetPassword = true; 
                                 $location.path('/login');
-                            }else{
+                            }else if(!$rootScope.errorType.userFound){
                                 $rootScope.emailNotSentMessage = true;
                                 $location.path('/signup');
+                            }else{
+                                $location.path('/login');
                             }
                             
                             
@@ -46,8 +48,11 @@ var app = angular.module('MyApp')
                             toastr.success('Your password has been changed successfully : ' + $scope.emailAddress);
                         })
                         .catch(function (response) {
+                            $rootScope.errorType = response.data;
                             $scope.resetBtnLoading = false;
-                            toastr.error(response.data.message, response.status);
+//                            toastr.error(response.data.message, response.status);
                         });
             };
+            
+            
         });

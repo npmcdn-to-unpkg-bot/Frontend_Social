@@ -152,9 +152,10 @@ app.run(function (defaultErrorMessageResolver) {
         errorMessages['minPassword'] = 'Please enter at least 6 characters long ';
         errorMessages['maxPassword'] = 'Please enter at max 15 characters long';
         errorMessages['passwordMismatch'] = 'Please password must match';
+        errorMessages['emailMismatch'] = 'Please Email must match';
         errorMessages['onlyText'] = 'Please enter letters only';
         errorMessages['numberOnly'] = 'Please enter only number';
-        errorMessages['compareTo'] = 'Password must match';
+        errorMessages['compareTo'] = 'Confirm field must match';
         errorMessages['passwordRequired'] = 'Password is required';
         errorMessages['badAdderss'] = 'Please enter a valid address';
         errorMessages['aboutYouErrMsg'] = 'Please enter max of 500 characters';
