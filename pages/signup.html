@@ -52,7 +52,7 @@
                         <password-strength ng-model="user.password"></password-strength>
                     </div>
                     <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
-                        <input password-match="user.password" class="form-control input-lg"  max="30" type="password" name="confirmPassword" ng-model="user.confirmPassword" placeholder="Confirm Password">
+                        <input field-match="user.password" class="form-control input-lg"  max="30" type="password" name="confirmPassword" ng-model="user.confirmPassword" placeholder="Confirm Password">
                         <span class="ion-key form-control-feedback"></span>
                         <div class="help-block text-danger" ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
                             <div ng-message="passwordMismatch"></div>

@@ -1,18 +1,18 @@
 var app = angular.module('MyApp')
         .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location, $http) {
-              //Home page content is display only for home page 
-             $rootScope.homePageContent = false;
-             //user profile pictuer and user name global var
-             $rootScope.userPictuer = "";
-             $rootScope.userName = "";
+            //Home page content is display only for home page 
+            $rootScope.homePageContent = false;
+            //user profile pictuer and user name global var
+            $rootScope.userPictuer = "";
+            $rootScope.userName = "";
             $scope.getProfile = function () {
                 Account.getProfile()
                         .then(function (response) {
                             $scope.user = response.data;
                             $rootScope.emailDiv = false;
                             //set global user profile pic and name 
-                            $rootScope.userPictuer =  $scope.user.picture;
-                            $rootScope.userName =  $scope.user.firstName;
+                            $rootScope.userPictuer = $scope.user.picture;
+                            $rootScope.userName = $scope.user.firstName;
                             //set date for profile edit page 
                             $scope.fillDate($scope.user.dateOfBirth);
                             //Here is to concat the lunguge list before display on profile page
@@ -78,12 +78,12 @@ var app = angular.module('MyApp')
                             $scope.notification = "";
 
                             $scope.required = [{"key": "firstName", "value": "First name"}, {"key": "lastName", "value": "Last name"}, {"key": "dateOfBirth", "value": "Date of birth"}, {"key": "email", "value": "Email"}, {"key": "gender", "value": "Gender"}, {"key": "languages", "value": "Languges"}, {"key": "aboutYou", "value": "About you"}, {"key": "address", "value": "Address"}, {"key": "areasOfStrongKnowledges", "value": "Areas of strong knowledges"}, {"key": "knownCities", "value": "known cities"}, {"key": "modeOfTransportation", "value": "Mode of transportation"}];
-                            $scope.requiredArr = ["knownCities" ,"areasOfStrongKnowledges","languages","modeOfTransportation"];
+                            $scope.requiredArr = ["knownCities", "areasOfStrongKnowledges", "languages", "modeOfTransportation"];
                             for (var i = 0; i < $scope.required.length; i++) {
                                 var tempVal = $scope.required[i].key;
                                 var testVal = $scope.user[tempVal];
-                            
-                                if (testVal === null || testVal.length === 0 ) {
+
+                                if (testVal === null || testVal.length === 0) {
                                     if ($scope.notification === "") {
                                         $scope.notification = $scope.required[i].value;
                                     } else {
@@ -427,6 +427,50 @@ var app = angular.module('MyApp')
 //            }, 10000);
             });
 
+            $scope.passwordUpdate = function () {
+                Account.passwordUpdate($scope.user.email, $scope.oldPassword, $scope.confirmNewPassword)
+                        .then(function () {
+                            $location.path('/profile');
+                            $scope.getProfile();
+                            //show veri profile and hiden edit profile jqury method
+                            tjq(".view-profile").fadeIn();
+                            tjq(".edit-profile").fadeOut();
+                            toastr.success('Your password has been changed successfully : ' + $scope.user.email);
+                        })
+                        .catch(function (response) {
+                            $scope.errorType = response.data;
+//                            toastr.error('Updating the password failed. Incorrect old password to' + $scope.emailAddress);
+//                            toastr.error(response.data.message, response.status);
+                        });
+            };
 
+            $scope.emailUpdate = function () {
+                 $scope.noChange = false;
+                    $scope.oldEmailModified = false;
+                if ($scope.newEmail === $scope.oldEmail) {
+                    $scope.noChange = true;
+                    return;
+                }
+                if ($scope.user.email !== $scope.oldEmail) {
+                    $scope.oldEmailModified = true;
+                    return;
+                } else {
+                    Account.emailUpdate($scope.oldEmail, $scope.newEmail)
+                            .then(function () {
+                                $location.path('/profile');
+                                $scope.getProfile();
+                            //show veri profile and hiden edit profile jqury method
+                               tjq(".view-profile").fadeIn();
+                               tjq(".edit-profile").fadeOut();
+                            toastr.success('Your Email has been changed successfully from: ' + $scope.user.email +' to: '+$scope.newEmail );
+                            })
+                            .catch(function (response) {
+                                $rootScope.errorType = response.data;
+                                $scope.resetBtnLoading = false;
+//                            toastr.error(response.data.message, response.status);
+                            });
+                }
+
+            };
 
         });

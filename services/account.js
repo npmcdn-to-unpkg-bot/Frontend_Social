@@ -69,7 +69,40 @@ angular.module('MyApp')
                 loadJsonFile: function (filepath, cache) {
                     return $http.get(filepath, cache);
 
+                },
+                oldPasswordCheck: function (emailAddress,oldPassword) {
+                    if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.get('http://localhost:8080/user/validpassword?email='+ emailAddress+'&value='+oldPassword);
+
+                    } else {
+                        //for cloud
+                        return $http.get('http://tourgoat.cfapps.io/user/validpassword?email='+ emailAddress+'&value='+oldPassword);
+                    }
+
+                },passwordUpdate: function (emailAddress,oldPassword,password) {
+                    if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.get('http://localhost:8080/passwordUpdate?emailAddress='+emailAddress+'&oldPassword='+oldPassword+'&password='+password);
+
+                    } else {
+                        //for cloud
+                        return $http.get('http://tourgoat.cfapps.io/passwordUpdate?emailAddress='+emailAddress+'&oldPassword='+oldPassword+'&password='+password);
+                    }
+
+                },emailUpdate: function (oldEmail,newEmail) {
+                    if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.get('http://localhost:8080/emailUpdate?oldEmail='+oldEmail+'&newEmail='+newEmail);
+
+                    } else {
+                        //for cloud
+                        return $http.get('http://tourgoat.cfapps.io/emailUpdate?oldEmail='+oldEmail+'&newEmail='+newEmail);
+                    }
+
                 }
+                
+                
 
 
             };

@@ -1,9 +1,9 @@
 angular.module('MyApp')
-  .directive('passwordMatch', function() {
+  .directive('fieldMatch', function() {
     return {
       require: 'ngModel',
       scope: {
-        otherModelValue: '=passwordMatch'
+        otherModelValue: '=fieldMatch'
       },
       link: function(scope, element, attributes, ngModel) {
         ngModel.$validators.compareTo = function(modelValue) {
