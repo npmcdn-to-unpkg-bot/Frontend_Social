@@ -47,7 +47,9 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
 
                     }).state('becometourguide', {
                 url: '/becometourguide',
-                templateUrl: 'pages/becometourguide.html'
+                templateUrl: 'pages/becometourguide.html',
+                controller: 'becomeTourguideCtrl'
+
 
             }).state('passwordReset', {
                 url: '/passwordReset',
@@ -99,8 +101,8 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
                     url: 'http://localhost:8080/auth/facebook',
-//                    scope: ['email','user_birthday' , 'user_photos' , 'user_location' , 'user_hometown' , 'user_about_me']
-                    scope: ['email']
+                    scope: ['email','user_birthday']
+//                    scope: ['email']
                 });
 
                 $authProvider.google({
@@ -109,15 +111,30 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
 
                 });
-            } else {
+            } else if(window.location.host === 'http://tourgoat.cfapps.io'){
                 // cloud QA
                 $authProvider.baseUrl = 'http://tourgoat.cfapps.io/';
                 $authProvider.facebook({
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
                     url: 'http://tourgoat.cfapps.io/auth/facebook',
-//                    scope: ['email','user_birthday' , 'user_photos' , 'user_location' , 'user_hometown' , 'user_about_me']
-                    scope: ['email']
+                    scope: ['email','user_birthday']
+//                    scope: ['email']
+                });
+                $authProvider.google({
+                    clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
+                    url: 'http://tourgoat.cfapps.io/auth/google',
+                    redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
+                });
+            }else {
+                // cloud prod
+                $authProvider.baseUrl = 'http://tourgoat.cfapps.io/';
+                $authProvider.facebook({
+                    clientId: '959764637427221',
+                    redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
+                    url: 'http://tourgoat.cfapps.io/auth/facebook',
+                    scope: ['email','user_birthday' ]
+//                    scope: ['email']
                 });
                 $authProvider.google({
                     clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
@@ -125,6 +142,7 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
                 });
             }
+
 
 
             function skipIfLoggedIn($q, $auth) {
@@ -171,9 +189,9 @@ app.run(function (defaultErrorMessageResolver) {
 
 app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
         $rootScope.$on('$stateChangeSuccess',
-                        function (event) {
-                            if (!$window.ga)
-                                return;
-                            $window.ga('send', 'pageview', {page: $location.path()});
-                        });
+                function (event) {
+                    if (!$window.ga)
+                        return;
+                    $window.ga('send', 'pageview', {page: $location.path()});
+                });
     }]);

@@ -237,7 +237,7 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-                                                    <div class="row">
+<!--                                                    <div class="row">
                                                         <div class="col-md-4">
                                                             <h4>Benefits of Tavelo Account</h4>
                                                             <ul class="benefits triangle hover">
@@ -281,7 +281,7 @@
                                                                 </address>
                                                             </div>
                                                         </div>
-                                                    </div>
+                                                    </div>-->
                                                 </div>
 
                     <div id="profile" class="tab-pane fade in active">
@@ -298,7 +298,13 @@
                                         <span class="fa fa-star-o" data-rating="5"></span>
                                         <input type="hidden" name="whatever" class="rating-value" value="3">
                                     </div>
+                                    <hr>
+                                     <h2>About You</h2>
+                            <div class="intro">
+                                <p> {{user.aboutYou || "please tell us about you"}} </p>
+                            </div>
                                 </figure>
+                                
 
 
                                 <div class="details">
@@ -307,7 +313,8 @@
                                         <span class="close"></span>
                                     </div>
                                     <a href="#" class="button btn-small pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
-                                    <h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>
+                                    <!--<h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>-->
+                                    <h2 class="box-title fullname">{{user.fullname|| "requireds field"}} </h2>
                                     <dl class="term-description">
                                         <dt>user name:</dt><dd>{{user.email|| "requireds field"}}</dd>
                                         <dt>first name:</dt><dd>{{user.firstName|| "requireds field"}}</dd>
@@ -345,55 +352,57 @@
                                 
                             <!--</div>-->
 
-                            <h2>About You</h2>
+<!--                            <h2>About You</h2>
                             <div class="intro">
-                                <p> {{user.aboutYou|| "please tell us about you"}} </p>
+                                <p> {{user.aboutYou || "please tell us about you"}} </p>
                             </div>
 
-                            <hr>
-                            <h2>Today’s Suggestions</h2>
-                            <div class="suggestions image-carousel style2" data-animation="slide" data-item-width="170" data-item-margin="22">
+                            <hr>-->
+                            <!--<h2>Your profile pictures coming soon</h2>-->
+<!--                            <div class="image-carousel style2" data-animation="slide" data-item-width="170" data-item-margin="22">
                                 <ul class="slides">
                                     <li>
                                         <a href="#" class="hover-effect">
                                             <img src="http://placehold.it/170x170" alt="" />
+                                                <img src="images/homeSlide/sample8.jpg" alt="" />                                            
+
                                         </a>
                                         <h5 class="caption">Adventure</h5>
                                     </li>
                                     <li>
                                         <a href="#" class="hover-effect">
-                                            <img src="http://placehold.it/170x170" alt="" />
+                                            <img src="images/homeSlide/sample8.jpg" alt="" />
                                         </a>
                                         <h5 class="caption">Beaches &amp; Sun</h5>
                                     </li>
                                     <li>
                                         <a href="#" class="hover-effect">
-                                            <img src="http://placehold.it/170x170" alt="" />
+                                            <img src="images/homeSlide/sample9.jpg" alt="" />
                                         </a>
                                         <h5 class="caption">Casinos</h5>
                                     </li>
                                     <li>
                                         <a href="#" class="hover-effect">
-                                            <img src="http://placehold.it/170x170" alt="" />
+                                            <img src="images/homeSlide/sample10.jpg" alt="" />
                                         </a>
                                         <h5 class="caption">Family Fun</h5>
                                     </li>
                                     <li>
                                         <a href="#" class="hover-effect">
-                                            <img src="http://placehold.it/170x170" alt="" />
+                                            <img src="images/homeSlide/sample7.jpg" alt="" />
                                         </a>
                                         <h5 class="caption">History</h5>
                                     </li>
                                     <li>
                                         <a href="#" class="hover-effect">
-                                            <img src="http://placehold.it/170x170" alt="" />
+                                            <img src="images/homeSlide/sample11.jpg" alt="" />
                                         </a>
                                         <h5 class="caption">Adventure</h5>
                                     </li>
                                 </ul>
-                            </div>
-                            <hr>
-                            <div class="row">
+                            </div>-->
+                            <!--<hr>-->
+<!--                            <div class="row">
                                 <div class="col-md-4">
                                     <h4>Benefits of Tavelo Account</h4>
                                     <ul class="benefits triangle hover">
@@ -437,7 +446,7 @@
                                         </address>
                                     </div>
                                 </div>
-                            </div>
+                            </div>-->
                         </div>
                         <div class="edit-profile">
 
@@ -449,11 +458,11 @@
                                     <div class="row ">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="firstName" class="control-label">First Name</label>
-                                            <input id="firstName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" required >
+                                            <input ng-disabled="facebookOrGoogleDOB" id="firstName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="firstName" ng-model="user.firstName" required >
                                         </div>
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="lastName" class="control-label">Last Name</label>
-                                            <input id="lastName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="lastName" ng-model="user.lastName"  required>
+                                            <input ng-disabled="facebookOrGoogleDOB" id="lastName" type="text" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" class="form-control input-text full-width" name="lastName" ng-model="user.lastName"  required>
                                         </div>
                                     </div>
 
@@ -528,11 +537,11 @@
                                     <div class="row">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="address1" class="control-label">Address 1</label>
-                                            <input id="adderss1" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress1" ng-model="user.address.streetAddress1" required >
+                                            <input id="adderss1" type="text" class="input-text full-width" maxlength="50" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-.]+$/" name="streetAddress1" ng-model="user.address.streetAddress1" required >
                                         </div>
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="address2" class="control-label">Address 2</label>
-                                            <input id="address2" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-]+$/" name="streetAddress2" ng-model="user.address.streetAddress2" >
+                                            <input id="address2" type="text" class="input-text full-width" maxlength="20" ng-pattern-err-type="badAdderss" ng-pattern="/^[ \w#-.]+$/" name="streetAddress2" ng-model="user.address.streetAddress2" >
                                         </div>
                                     </div>
                                     <hr>
@@ -893,7 +902,7 @@
                                     <h2>Other Details</h2>
                                     <div class="form-group">
                                         <label for="aboutYou" class="control-label">About me</label>
-                                        <textarea id="aboutYou" rows="7" maxlength="500" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-]+$/"name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about yourself" required></textarea>
+                                        <textarea id="aboutYou" rows="7" maxlength="500" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-.,]+$/" name="aboutYou" ng-model="user.aboutYou" class="input-text full-width" placeholder="please tell us about yourself" required></textarea>
                                     </div>
                                     <hr>
                                     <div class="row">
