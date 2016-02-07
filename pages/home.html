@@ -49,7 +49,7 @@
                                 <div class="form-group col-sm-6 col-md-3 ">
 
                                     <label>Your Destination</label>
-                                    <input style="border:1px solid #838383; opacity: 1;color: #000000" type="text" class="input-text full-width" placeholder="Where do you need a tourguide?" />
+                                    <input ng-disabled="true" style="border:1px solid #838383; opacity: 1;color: #000000" type="text" class="input-text full-width" placeholder="Where do you need a tourguide?" />
                                 </div>
 
                                 <div class="form-group col-sm-6 col-md-4">
@@ -58,13 +58,13 @@
                                         <div class="col-xs-6">
                                             <label>Check In</label>
                                             <div class="datepicker-wrap">
-                                                <input style="border:1px solid #838383;color: #000000" type="text" name="date_from" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                <input ng-disabled="true" style="border:1px solid #838383;color: #000000" type="text" name="date_from" class="input-text full-width" placeholder="mm/dd/yy" />
                                             </div>
                                         </div>
                                         <div class="col-xs-6">
                                             <label>Check Out</label>
                                             <div class="datepicker-wrap">
-                                                <input style="border:1px solid #838383;color: #000000" type="text" name="date_to" class="input-text full-width" placeholder="mm/dd/yy" />
+                                                <input ng-disabled="true" style="border:1px solid #838383;color: #000000" type="text" name="date_to" class="input-text full-width" placeholder="mm/dd/yy" />
                                             </div>
                                         </div>
                                     </div>
@@ -76,18 +76,20 @@
                                         
                                         <div class="col-xs-4">
                                             <label>Adults</label>
-                                            <div style="border:1px solid #838383;color: #000000" class="selector">
-                                                <select  class="full-width">
+                                            <div  style="border:1px solid #838383;color: #000000" class="selector">
+                                                <select ng-disabled="true" class="full-width">
                                                     <option value="1">01</option>
                                                     <option value="2">02</option>
                                                     <option value="3">03</option>
                                                     <option value="4">04</option>
+                                                    <option value="3">05</option>
+                                                    <option value="4">06</option>
                                                 </select>
                                             </div>
                                         </div>
                                         <div class="col-xs-8">
                                             <label>&nbsp;</label>
-                                            <a href="#list"><button style="border:1px solid #838383; opacity: 1" type="submit" class="full-width icon-check" >SEARCH</button></a>
+                                            <a ng-disabled="true" href="#list"><button ng-disabled="true" style="border:1px solid #838383; opacity: 1" type="submit" class="full-width icon-check" >SEARCH</button></a>
                                         </div>
 
                                     </div>

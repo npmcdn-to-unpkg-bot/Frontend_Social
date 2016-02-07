@@ -346,7 +346,10 @@ var app = angular.module('MyApp')
                 $scope.jsonUrl = "";
                 if (window.location.host === 'localhost:8383') {
                     $scope.jsonUrl = "http://localhost:8383/data/modeOfTransportation.json";
-                } else {
+                } else if (window.location.host === 'http://www.tourgoat.com') {
+                    $scope.jsonUrl = "http://www.tourgoat.com/data/modeOfTransportation.json";
+                }
+                {
                     $scope.jsonUrl = "http://app2-tourgoat.rhcloud.com/data/modeOfTransportation.json";
                 }
                 return Account.loadJsonFile($scope.jsonUrl, {cache: true}).then(function (response) {
@@ -363,6 +366,8 @@ var app = angular.module('MyApp')
                 $scope.jsonUrl = "";
                 if (window.location.host === 'localhost:8383') {
                     $scope.jsonUrl = "http://localhost:8383/data/knowledgesOfArea.json";
+                } else if (window.location.host === 'http://www.tourgoat.com') {
+                    $scope.jsonUrl = "http://www.tourgoat.com/data/knowledgesOfArea.json";
                 } else {
                     $scope.jsonUrl = "http://app-tourgoat.rhcloud.com/data/knowledgesOfArea.json";
                 }
@@ -445,8 +450,8 @@ var app = angular.module('MyApp')
             };
 
             $scope.emailUpdate = function () {
-                 $scope.noChange = false;
-                    $scope.oldEmailModified = false;
+                $scope.noChange = false;
+                $scope.oldEmailModified = false;
                 if ($scope.newEmail === $scope.oldEmail) {
                     $scope.noChange = true;
                     return;
@@ -459,10 +464,10 @@ var app = angular.module('MyApp')
                             .then(function () {
                                 $location.path('/profile');
                                 $scope.getProfile();
-                            //show veri profile and hiden edit profile jqury method
-                               tjq(".view-profile").fadeIn();
-                               tjq(".edit-profile").fadeOut();
-                            toastr.success('Your Email has been changed successfully from: ' + $scope.user.email +' to: '+$scope.newEmail );
+                                //show veri profile and hiden edit profile jqury method
+                                tjq(".view-profile").fadeIn();
+                                tjq(".edit-profile").fadeOut();
+                                toastr.success('Your Email has been changed successfully from: ' + $scope.user.email + ' to: ' + $scope.newEmail);
                             })
                             .catch(function (response) {
                                 $rootScope.errorType = response.data;
