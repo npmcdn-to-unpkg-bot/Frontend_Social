@@ -111,9 +111,10 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
 
                 });
-            } else if(window.location.host === 'http://tourgoat.cfapps.io'){
+            } 
+            if(window.location.host === 'app-tourgoat.rhcloud.com'){
                 // cloud QA
-                $authProvider.baseUrl = 'http://tourgoat.cfapps.io/';
+                $authProvider.baseUrl = 'http://app-tourgoat.rhcloud.com/';
                 $authProvider.facebook({
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
@@ -126,19 +127,20 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                     url: 'http://tourgoat.cfapps.io/auth/google',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
                 });
-            }else {
+            }
+            if(window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com'){
                 // cloud prod
-                $authProvider.baseUrl = 'http://tourgoat.cfapps.io/';
+                $authProvider.baseUrl = 'http://tourgoat.com.s3-website-us-west-2.amazonaws.com/';
                 $authProvider.facebook({
                     clientId: '959764637427221',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
-                    url: 'http://tourgoat.cfapps.io/auth/facebook',
+                    url: 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/auth/facebook',
                     scope: ['email','user_birthday' ]
 //                    scope: ['email']
                 });
                 $authProvider.google({
                     clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
-                    url: 'http://tourgoat.cfapps.io/auth/google',
+                    url: 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/auth/google',
                     redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
                 });
             }

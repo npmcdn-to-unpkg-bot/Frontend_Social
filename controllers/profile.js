@@ -346,12 +346,12 @@ var app = angular.module('MyApp')
                 $scope.jsonUrl = "";
                 if (window.location.host === 'localhost:8383') {
                     $scope.jsonUrl = "http://localhost:8383/data/modeOfTransportation.json";
-                } else if (window.location.host === 'http://www.tourgoat.com') {
-                    $scope.jsonUrl = "http://www.tourgoat.com/data/modeOfTransportation.json";
+                } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
+                    $scope.jsonUrl = "http://app-tourgoat.rhcloud.com/data/modeOfTransportation.json";
+                }else if(window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com') {
+                    $scope.jsonUrl = "http://tourgoat.com.s3-website-us-west-2.amazonaws.com/data/modeOfTransportation.json";
                 }
-                {
-                    $scope.jsonUrl = "http://app2-tourgoat.rhcloud.com/data/modeOfTransportation.json";
-                }
+                
                 return Account.loadJsonFile($scope.jsonUrl, {cache: true}).then(function (response) {
 
                     var modeofTrans = response.data;
@@ -366,10 +366,10 @@ var app = angular.module('MyApp')
                 $scope.jsonUrl = "";
                 if (window.location.host === 'localhost:8383') {
                     $scope.jsonUrl = "http://localhost:8383/data/knowledgesOfArea.json";
-                } else if (window.location.host === 'http://www.tourgoat.com') {
-                    $scope.jsonUrl = "http://www.tourgoat.com/data/knowledgesOfArea.json";
-                } else {
+                } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
                     $scope.jsonUrl = "http://app-tourgoat.rhcloud.com/data/knowledgesOfArea.json";
+                } else if(window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com'){
+                    $scope.jsonUrl = "http://tourgoat.com.s3-website-us-west-2.amazonaws.com/data/knowledgesOfArea.json";
                 }
                 return Account.loadJsonFile($scope.jsonUrl, {cache: true}).then(function (response) {
                     var knowledgesOfArea = response.data;

@@ -25,7 +25,7 @@
         facebook: {
           name: 'facebook',
           url: '/auth/facebook',
-          authorizationEndpoint: 'https://www.facebook.com/v2.3/dialog/oauth',
+          authorizationEndpoint: 'https://www.facebook.com/v2.5/dialog/oauth',
           redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
           requiredUrlParams: ['display', 'scope'],
           scope: ['email'],
