@@ -1554,7 +1554,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.newPassword.$invalid && updatePasswordForm.newPassword.$dirty }">
                                     <label>Enter New Password</label>
                                     <input password-strength id="newPassword" ng-disabled="googleOrfacebookUser" max="30" name="newPassword" ng-model="newPassword" type="password" class="form-control input-lg" placeholder="Password" required>
-                                     <span class="ion-key form-control-feedback"></span>
+                                     <!--<span class="ion-key form-control-feedback"></span>-->
                                    <div class="help-block text-danger" ng-if="updatePasswordForm.newPassword.$dirty" ng-messages="updatePasswordForm.newPassword.$error">
                                   <div ng-message="passwordRequired"></div>
                                   </div>
@@ -1566,7 +1566,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.confirmNewPassword.$invalid && updatePasswordForm.confirmNewPassword.$dirty }">
                                     <label>Confirm New password</label>
                                     <input field-match="newPassword" ng-disabled="googleOrfacebookUser" id="confirmNewPassword" name="confirmNewPassword" ng-model="confirmNewPassword" type="password" class="form-control input-lg" placeholder="Confirm Password" required>
-                                    <span class="ion-key form-control-feedback"></span>
+                                    <!--<span class="ion-key form-control-feedback"></span>-->
                                     <div class="help-block text-danger" ng-if="updatePasswordForm.confirmNewPassword.$dirty" ng-messages="updatePasswordForm.confirmNewPassword.$error">
                                     <div ng-message="passwordMismatch"></div>
                                     </div>
