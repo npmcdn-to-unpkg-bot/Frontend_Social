@@ -13,10 +13,10 @@
             <div class="panel-body">
                 <h2 class="text-center">Sign up</h2>
                 <button ng-disabled="disabledFacebookBtn"  ladda="facebookBtnLoading" data-style="slide-left" data-size="xs" class="btn btn-block btn-facebook" style="background-color: #3b5998 ; border: 1px solid #335190"  ng-click="authenticate('facebook')">
-                    <i class="ion-social-facebook"></i> Sign in with Facebook
+                    <i class="ion-social-facebook"></i> Sign up with Facebook
                 </button>
                 <button ng-disabled="disabledGoogleBtn"  ladda="googeBtnLoading" data-style="slide-left" data-size="xs" class="btn btn-block btn-google-plus" style="background-color: #dd4b39; border: 1px solid #d54331" ng-click="authenticate('google')">
-                    <span class="ion-social-googleplus"></span>Sign in with Google
+                    <span class="ion-social-googleplus"></span>Sign up with Google
                 </button>
                 <br/>
 
@@ -42,7 +42,7 @@
                     </div>
 
                     <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.password.$invalid && signupForm.password.$dirty }">
-                        <input password-strength class="form-control input-lg" id="password"  max="30" type="password" name="password" ng-model="user.password" placeholder="Password" required>
+                        <input password-strength class="form-control input-lg" id="password" minlength="4"  maxlength="30" type="password" name="password" ng-model="user.password" placeholder="Password" required>
 
                         <span class="ion-key form-control-feedback"></span>
                         <div class="help-block text-danger" ng-if="signupForm.password.$dirty" ng-messages="signupForm.password.$error">
@@ -52,7 +52,7 @@
                         <password-strength ng-model="user.password"></password-strength>
                     </div>
                     <div class="form-group has-feedback" ng-class="{ 'has-error' : signupForm.confirmPassword.$invalid && signupForm.confirmPassword.$dirty }">
-                        <input field-match="user.password" class="form-control input-lg"  max="30" type="password" name="confirmPassword" ng-model="user.confirmPassword" placeholder="Confirm Password">
+                        <input field-match="user.password" class="form-control input-lg" minlength="4"  maxlength="30" type="password" name="confirmPassword" ng-model="user.confirmPassword" placeholder="Confirm Password" required>
                         <span class="ion-key form-control-feedback"></span>
                         <div class="help-block text-danger" ng-if="signupForm.confirmPassword.$dirty" ng-messages="signupForm.confirmPassword.$error">
                             <div ng-message="passwordMismatch"></div>
@@ -135,7 +135,7 @@
                     </div>
 
 
-                    <p class="text-center text-muted"><small>By clicking on Sign up, you agree to <a href="#/term">terms & conditions</a> and <a href="#/term">privacy policy</a></small></p>
+                    <p class="text-center text-muted"><small>By clicking "Sign Up" you agree to our <a href="#/term"> Terms of Use</a> and <a href="#/term">Privacy Policy.</a></small></p>
                     <button ladda="loginBtnLoading" data-style="slide-left" data-size="xs" type="submit" ng-disabled="signupForm.$invalid" class="btn btn-lg btn-block btn-primary" style="background-color: #0f9d58">Sign up</button>
                     <br/>
                     <p class="text-center text-muted">Already have an account? <a href="#/login" style="color: green" >Log in now</a></p>
