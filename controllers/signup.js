@@ -62,7 +62,7 @@ var app = angular.module('MyApp')
                                 $scope.loginBtnLoading = false; // stop loading
                                 $scope.disabledFacebookBtn = false;
                                 $scope.disabledGoogleBtn = false;
-                                if (response.data.fieldErrors.length !== undefined && response.data.fieldErrors.length > 0) {
+                                if (response.statusText!== "Method Not Allowed" && response.data.fieldErrors.length !== undefined && response.data.fieldErrors.length > 0) {
                                     //TODO make different message for different errors and fix duplicated code  
                                     for (var i = 0; i < response.data.fieldErrors.length; i++) {
                                         if ("UniqueEmail.user.email" === response.data.fieldErrors[i].message) {
@@ -103,7 +103,7 @@ var app = angular.module('MyApp')
             //to populate the year values on singup form
             $scope.tempYear = new Date().getFullYear();
             $scope.minYear = $scope.tempYear - 18;
-            $scope.maxYear = $scope.minYear - 120;
+            $scope.maxYear = $scope.minYear - 80;
 
             $scope.years = [];
             $scope.generateYears = function () {
