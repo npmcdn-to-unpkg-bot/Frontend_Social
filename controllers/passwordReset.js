@@ -17,7 +17,7 @@ var app = angular.module('MyApp')
                             $scope.emailAddress = email;
                             $scope.resetBtnLoading = false;
                             $scope.emailSentMessage = true;
-                            toastr.success('Success! password reset link sent to ' + $scope.emailAddress);
+//                            toastr.success('Success! password reset link sent to ' + $scope.emailAddress);
                         })
                         .catch(function (response) {
                             $rootScope.errorType = response.data;

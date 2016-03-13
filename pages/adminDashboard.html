@@ -11,12 +11,12 @@
     </div>
 </div>
 
-<section id="content" class="gray-area" style="padding-top: 30px">
+<section id="content" class="gray-area">
     <div class="container">
         <div id="main">
             <div class="tab-container full-width-style arrow-left dashboard">
                 <ul class="tabs">
-                    <!--<li  class=""><a data-toggle="tab" href="#dashboard"><i class="soap-icon-anchor circle"></i>Dashboard</a></li>-->
+                    <li  class=""><a data-toggle="tab" href="#dashboard"><i class="soap-icon-anchor circle"></i>Dashboard</a></li>
                     <li id= "profile_tab" class="active"><a data-toggle="tab" id="profile_profile" href="#profile"><i class="soap-icon-user circle"></i>Profile</a></li>
                     <!--<li class=""><a data-toggle="tab" href="#booking"><i class="soap-icon-businessbag circle"></i>Booking</a></li>-->
                     <!--<li class=""><a data-toggle="tab" href="#wishlist"><i class="soap-icon-wishlist circle"></i>Wishlist</a></li>-->
@@ -290,14 +290,14 @@
                                 <figure>
                                     <a title="" href="#"><img  class="img-rounded img-responsive" width="270" height="263" alt=""  ng-src="{{user.picture|| 'images/profile/profile_Img.png'}}"></a>
 
-<!--                                    <div class="star-rating"> 
+                                    <div class="star-rating"> 
                                         <span class="fa fa-star-o" data-rating="1"></span>
                                         <span class="fa fa-star-o" data-rating="2"></span>
                                         <span class="fa fa-star-o" data-rating="3"></span>
                                         <span class="fa fa-star-o" data-rating="4"></span>
                                         <span class="fa fa-star-o" data-rating="5"></span>
                                         <input type="hidden" name="whatever" class="rating-value" value="3">
-                                    </div>-->
+                                    </div>
                                     <hr>
                                      <h2>About You</h2>
                             <div class="intro">
@@ -328,7 +328,7 @@
                                         <dt>State:</dt><dd>{{user.address.states === 'Other' ? user.address.otherState : user.address.states|| "requireds field"}}</dd>
                                         <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
-                                        <dt>Languages:</dt><dd>{{Language|| "requireds field"}}</dd>
+                                        <dt>Languages:</dt><dd>{{languge|| "requireds field"}}</dd>
                                         <dt>Place with experience</dt><dd>{{knownCities|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>
