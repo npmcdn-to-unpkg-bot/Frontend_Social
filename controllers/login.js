@@ -98,5 +98,15 @@ angular.module('MyApp')
 //                }, 0);
 
             };
+//            tjq(document).ready(function () {
+//                tjq("#facebook").click(function (e) {
+//                    e.preventDefault();
+//                    setTimeout(function () {
+//                        toastr.error('something went wrong. Please try again');
+//                    }, 10000);
+//                });
+//
+//
+//            });
 
         });

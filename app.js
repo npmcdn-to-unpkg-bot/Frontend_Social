@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete', 'angular-ladda'])
+var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete', 'angular-ladda','datatables', 'ngResource'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) {
             $stateProvider
                     .state('index', {
@@ -70,7 +70,7 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
 
             }).state('dashboard', {
                 url: '/dashboard',
-//                        controller: 'PasswordResetCtrl',
+                        controller: 'adminCtrl',
                 templateUrl: 'pages/dashboard1.html'
 
             }).state('list', {
@@ -87,6 +87,11 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                 url: '/booking',
                 controller: 'bookingCtrl',
                 templateUrl: 'pages/booking.html'
+
+            }).state('admin', {
+                url: '/admin',
+                controller: 'adminCtrl',
+                templateUrl: 'pages/adminLogin.html'
 
             });
 
@@ -171,7 +176,7 @@ app.run(function (defaultErrorMessageResolver) {
     defaultErrorMessageResolver.getErrorMessages().then(function (errorMessages) {
         errorMessages['minPassword'] = 'Please enter at least 6 characters long ';
         errorMessages['maxPassword'] = 'Please enter at max 15 characters long';
-        errorMessages['passwordMismatch'] = 'Please password must match';
+        errorMessages['passwordMismatch'] = 'Password confirmation does not match Password”';
         errorMessages['emailMismatch'] = 'Please Email must match';
         errorMessages['onlyText'] = 'Please enter letters only';
         errorMessages['numberOnly'] = 'Please enter only number';
