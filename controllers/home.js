@@ -2,7 +2,7 @@
 angular.module('MyApp')
         .controller('homeCtrl', function ($scope, $rootScope, $window, $http, $rootScope) {
             //this is make display on home page content 
-            $rootScope.homePageContent = true;
+//            $rootScope.homePageContent = true;
             //This script run home page slider
             tjq(document).ready(function () {
                 tjq('.revolution-slider').revolution(

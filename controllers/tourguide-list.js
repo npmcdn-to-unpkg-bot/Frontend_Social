@@ -2,7 +2,7 @@
 angular.module('MyApp')
         .controller('listViewCtrl', function ($scope, $rootScope, $window, $http, $rootScope) {
             //this is make display on home page content 
-            $rootScope.homePageContent = false;
+//            $rootScope.homePageContent = false;
             //This script run home page slider
 
             tjq(document).ready(function () {

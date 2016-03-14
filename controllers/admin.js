@@ -253,7 +253,7 @@ function AngularWayChangeDataCtrl($resource,$http, DTOptionsBuilder, DTColumnDef
 
   app.controller('adminCtrl', function ($http , $scope, $location, $auth, toastr, $rootScope, Account, $interval) {
             //Home page content is display only for home page 
-             $rootScope.homePageContent = false;
+//             $rootScope.homePageContent = false;
 //             
 //             var $table = tjq('#table'),
 //        $remove = tjq('#remove'),

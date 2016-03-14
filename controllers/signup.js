@@ -1,7 +1,7 @@
 var app = angular.module('MyApp')
         .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope) {
               //Home page content is display only for home page 
-            $rootScope.homePageContent = false;
+//            $rootScope.homePageContent = false;
             $scope.birthMonth = "";
             $scope.birthDay = "";
             $scope.birthYear = "";
