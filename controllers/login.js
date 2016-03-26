@@ -1,9 +1,12 @@
 angular.module('MyApp')
-        .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $interval) {
+        .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $stateParams) {
             //Home page content is display only for home page 
 //             $rootScope.homePageContent = false;
             $scope.email = "";
             $rootScope.emailDiv = false;
+            $scope.emailVerified = $stateParams.emailVerified;
+            
+  
 //            $rootScope.verifiedEmailNotResetPassword = false;
             $scope.facebookBtnLoading = false; // stop facebook loading
             $scope.googeBtnLoading = false; // stop google loading
