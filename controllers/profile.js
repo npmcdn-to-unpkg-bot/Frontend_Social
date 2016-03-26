@@ -77,7 +77,7 @@ var app = angular.module('MyApp')
 
                             $scope.notification = "";
 
-                            $scope.required = [{"key": "firstName", "value": "First name"}, {"key": "lastName", "value": "Last name"}, {"key": "dateOfBirth", "value": "Date of birth"}, {"key": "email", "value": "Email"}, {"key": "gender", "value": "Gender"}, {"key": "languages", "value": "Languges"}, {"key": "aboutYou", "value": "About you"}, {"key": "address", "value": "Address"}, {"key": "areasOfStrongKnowledges", "value": "Areas of strong knowledges"}, {"key": "knownCities", "value": "known cities"}, {"key": "modeOfTransportation", "value": "Mode of transportation"}];
+                            $scope.required = [{"key": "firstName", "value": "First name"}, {"key": "lastName", "value": "Last name"}, {"key": "dateOfBirth", "value": "Date of birth"}, {"key": "email", "value": "Email"}, {"key": "gender", "value": "Gender"}, {"key": "languages", "value": "Languages"}, {"key": "aboutYou", "value": "About you"}, {"key": "address", "value": "Address"}, {"key": "areasOfStrongKnowledges", "value": "Areas of strong knowledges"}, {"key": "knownCities", "value": "known cities"}, {"key": "modeOfTransportation", "value": "Mode of transportation"}];
                             $scope.requiredArr = ["knownCities", "areasOfStrongKnowledges", "languages", "modeOfTransportation"];
                             for (var i = 0; i < $scope.required.length; i++) {
                                 var tempVal = $scope.required[i].key;
