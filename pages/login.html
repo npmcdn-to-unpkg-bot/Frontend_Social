@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="//cdnjs.cloudflare.com/ajax/libs/ladda-bootstrap/0.9.4/ladda.min.css">       
 </head>
     
-
+ 
 <div class="container" >
     <!--ng-init="emailDiv = false"-->
       <div class="notification-area" style="padding-top: 10px" ng-if="true" ></div>
@@ -35,6 +35,10 @@
           <span class="close"></span>
       </div>
       
+   <div ng-if="emailVerified" >
+    <div ng-controller="VerifiedCtrl">  
+    </div>
+</div>
    <div class="row">
     <div class="center-form panel">
       <div class="panel-body">

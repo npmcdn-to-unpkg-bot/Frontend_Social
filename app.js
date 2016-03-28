@@ -1,4 +1,4 @@
-var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete', 'angular-ladda','datatables', 'ngResource'])
+var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate','toastr', 'ui.router', 'satellizer', 'jcs-autoValidate', 'ngMaterial', 'ngTagsInput', 'ngAutocomplete', 'angular-ladda','datatables', 'ngResource','ui.bootstrap'])
         .config(function ($stateProvider, $urlRouterProvider, $authProvider, $locationProvider) {
             $stateProvider
                     .state('index', {
@@ -18,7 +18,10 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                         controller: 'LoginCtrl',
                         resolve: {
                             skipIfLoggedIn: skipIfLoggedIn
-                        }
+                        },
+                         params: {
+                               emailVerified: null
+                         }
                     })
                     .state('signup', {
                         url: '/signup',
@@ -93,6 +96,12 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate', 'toa
                 controller: 'adminCtrl',
                 templateUrl: 'pages/adminLogin.html'
 
+            }).state('emailVerification', {
+                url: '/emailVerification',
+               controller: function ($state) {
+                     $state.go('login',{emailVerified :true});
+                }
+                 
             });
 
             $urlRouterProvider.otherwise('/');
