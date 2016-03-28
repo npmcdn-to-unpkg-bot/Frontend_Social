@@ -3,15 +3,21 @@
 angular.module('MyApp').controller('VerifiedCtrl', function($scope, $modal) {
     
    $scope.openDemoModal = function() {
-   $modal.open({
+   var modalInstance = $modal.open({
       templateUrl: 'pages/model.html',
-      controller: 'LoginCtrl',
       backdrop: true,
       keyboard: true,
       modalFade: true,
-      scope: $scope
+      scope: $scope,
+     controller:function($modalInstance ,$scope){
+     $scope.close = function () {
+            $modalInstance.dismiss('cancel');
+         };
+
+    }
     });
   };
     $scope.openDemoModal();
+    
   
   });
