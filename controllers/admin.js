@@ -1,17 +1,59 @@
 var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl($resource,$http, DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl($resource,  $scope,$http, DTOptionsBuilder, DTColumnDefBuilder) {
     var vm = this;
-    
+    $scope.userList = null;
+//    $scope.userRole =
 // 
-    $http.get('/sampleData/data.json').success(function(data) {
-    vm.persons = data.results;
+///admin/getUserList
+//    $http.get('/sampleData/data.json').success(function(data) {
+//    vm.persons = data.results;
+//    $scope.userList = data.results;
+//  }).error(function(data, status) {
+//    alert('get data error!');
+//  });
+  
+   $http.get('http://localhost:8080/getUser').success(function(data) {
+    vm.persons = data;
+    $scope.userList = data;
     
   }).error(function(data, status) {
     alert('get data error!');
   });
    
+  
+  
+          $scope.updateUserRole = function (index) {
+        $scope.user.email = $scope.userList[index].email;
+           $scope.user.userRole = $scope.userList[index].userRole;
+            $http.post("http://localhost:8080/updateUserRole" + $scope.user)
+//             $http.get("http://well.run.aws-usw02-pr.ice.predix.io/download"+ "?fileId=" + fileId + "&wellLogId=" + $scope.wellLog.id)
+                .then(function (response) {
+                    
+                    $scope.updatedUser = response.data;
+            $scope.userList[index]= $scope.updatedUser;
+//                    vm.wellLogFileList = $scope.wellLog.fileData;
+//
+//                    $scope.wellLog.jobDate = new Date($scope.wellLog.jobDate);
+//                    $scope.wellLog.jobDateTo = new Date($scope.wellLog.jobDateTo);
+//                    $scope.disableInput = true;
+//                    $scope.disableBtn = false;
+//                    $scope.showFileUploadDiv = false;
+//                    $scope.data = $scope.wellLog.fileData;
+//                    toastr.success('Success! you have successfully removed file');
+                }).catch(function (response) {
+            $scope.disableBtn = false;
+            
+        });
+        };
+  
+  
+  
+  
+  
+  
+ 
     
 //    vm.persons = $resource('sampleData/data.json').query();
 //    vm.persons = $resource('sampleData/data.json').query();
@@ -22,25 +64,32 @@ function AngularWayChangeDataCtrl($resource,$http, DTOptionsBuilder, DTColumnDef
         DTColumnDefBuilder.newColumnDef(2),
         DTColumnDefBuilder.newColumnDef(3).notSortable()
     ];
-    vm.person2Add = _buildPerson2Add(1);
-    vm.addPerson = addPerson;
+//    vm.person2Add = _buildPerson2Add(1);
+//    vm.addPerson = addPerson;
     vm.modifyPerson = modifyPerson;
     vm.removePerson = removePerson;
-
-    function _buildPerson2Add(id) {
-        return {
-            id: id,
-            firstName: 'Foo' + id,
-            lastName: 'Bar' + id
-        };
-    }
-    function addPerson() {
-        vm.persons.push(angular.copy(vm.person2Add));
-        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
-    }
+ vm.removePerson = userRoleChanged;
+//    function _buildPerson2Add(id) {
+//        return {
+//            id: id,
+//            firstName: 'Foo' + id,
+//            lastName: 'Bar' + id
+//        };
+//    }
+//    function addPerson() {
+//        vm.persons.push(angular.copy(vm.person2Add));
+//        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
+//    }
     function modifyPerson(index) {
-        vm.persons.splice(index, 1, angular.copy(vm.person2Add));
-        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
+      $scope.updateUserRole(index);
+//        vm.persons.splice(index, 1, angular.copy(vm.person2Add));
+//        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
+    }
+    
+       function userRoleChanged(index) {
+//      $scope.updateUserRole(index);
+//        vm.persons.splice(index, 1, angular.copy(vm.person2Add));
+//        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
     }
     function removePerson(index) {
         vm.persons.splice(index, 1);

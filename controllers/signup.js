@@ -16,6 +16,7 @@ var app = angular.module('MyApp')
 
                 } else {
                     $scope.dateOfBirthrequired = true;
+                    $scope.loginBtnLoading = false;
                 }
             };
             $scope.facebookBtnLoading = false; // stop facebook loading

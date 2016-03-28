@@ -182,29 +182,32 @@ hr {
                 <th>First</th>
                 <th>Last</th>
                 <th style="width: 10px">Email</th>
-                <th>City</th>
-                <th>State</th>
+                <th>Status</th>
                 <th>Type</th>
+         
                   <!--<th>Status</th>-->
                 <th>User Role</th>
                  <th>Action</th>
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="person in showCase.persons">
+            <tr ng-repeat="user in userList">
                 <td class="col-xs-1"><img title="{{u.user.name.first}}" src="{{person.user.picture}}" class="img-thumbnail img-responsive img-circle"></td> 
-                <td>{{ person.user.name.first }}</td>
-                <td>{{ person.user.name.last }}</td>
-                 <td>{{ person.user.email }}</td>
-                <td>{{ person.user.location.city }}</td>
-                <td>{{ person.user.location.state }}</td>
-                <td>facbook</td>
-                 <!--<td>active</td>-->
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                 <td>{{ user.email }}</td>
+                <td>{{ user.emailVerification }}</td>
+                <td>{{ user.userType }}</td>
+                <td>{{ user.userRole }}</td>
+                
             <td>
-                <select >
-                  <option value="super admin">Super Admin</option>
+                <select ng-model="user.userRole"  >
+                  <option value="">Select Role</option>
+                  <option value="superadmin">Super Admin</option>
                   <option value="admin">Admin</option>
-                  <option value="super user">Super User</option>
+                  <option value="superuser">Super User</option>
+                  <option value="tour_guide">Tour Guide</option>
+                  <option value="tourist">Tourist</option>
 
               </select>
             </td>
