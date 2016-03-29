@@ -196,7 +196,7 @@ app.run(function (defaultErrorMessageResolver) {
         errorMessages['minAge'] = 'Please enter a valid birthday';
         errorMessages['maxAge'] = 'You Do Not meet the  minimum age requirement of 18 years';
         errorMessages['onlyTextAndNumber'] = 'Please enter letter ';
-
+        errorMessages['maxlength'] = 'Please enter at max 25 characters long';
 
 
     });
