@@ -27,17 +27,17 @@
                     </div>
                     <p class="text-center text-muted">Sign up with email account? </p>
                     <div class="form-group has-feedback" >
-                        <input class="form-control input-lg" type="text" maxlength="15" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/"  name="firstName" ng-model="user.firstName" placeholder="First Name" required autofocus>
+                        <input class="form-control input-lg" type="text" ng-maxlength="25" ngMaxlength="maxlength" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/"  name="firstName" ng-model="user.firstName" placeholder="First Name" required autofocus>
                         <span class="ion-person form-control-feedback"></span>
                     </div>
 
                     <div class="form-group has-feedback" >
-                        <input class="form-control input-lg" type="text" maxlength="15" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" name="lastName" ng-model="user.lastName" placeholder="Last Name" required >
+                        <input class="form-control input-lg" type="text" ng-maxlength="25" ngMaxlength="maxlength" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" name="lastName" ng-model="user.lastName" placeholder="Last Name" required >
                         <span class="ion-person form-control-feedback"></span>
 
                     </div>
                     <div class="form-group has-feedback" >
-                        <input class="form-control input-lg" type="email" maxlength="30" id="email" name="email" ng-model="user.email" placeholder="Email" required>
+                        <input class="form-control input-lg" type="email" ng-maxlength="25" ngMaxlength="maxlength" id="email" name="email" ng-model="user.email" placeholder="Email" required>
                         <span class="ion-at form-control-feedback"></span>
                     </div>
 
