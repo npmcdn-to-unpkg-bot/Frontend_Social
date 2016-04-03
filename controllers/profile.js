@@ -118,6 +118,7 @@ var app = angular.module('MyApp')
                             toastr.error(response.data.message, response.status);
                         });
             };
+            
             $scope.updateProfile = function () {
                 $scope.checkDate();
                 $scope.user.dateOfBirth = $scope.birthDate;

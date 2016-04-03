@@ -5,45 +5,7 @@
               <link rel="stylesheet" href="https://cdn.datatables.net/1.10.11/css/jquery.dataTables.min.css">
 </header>                                              
 
-<style>
-/*    .row-index {
-    width: 50px;
-    display: inline-block;
-}*/
-/*                                                            body {
-  background-color: #eee;
-  color:#444;
-}*/
-/*
-.fa {
-  color:#666;
-}
 
-hr {
-  border-color: transparent;
-}
-
-
-#userList {
-  display:none;
-}
-
-#loader {
-  position:absolute;
-  z-index:2;
-  width:100%;
-  text-align:center;
-  top:40%;
-}
-
-.cap:first-letter {
-    text-transform: uppercase;
-}
-
-.alt {
-	background-color:#ccc;
-}*/
-                                                        </style>
 <div class="page-title-container">
     <div class="container">
         <div class="page-title pull-left">
@@ -62,7 +24,7 @@ hr {
             <div class="tab-container full-width-style arrow-left dashboard">
                 <ul class="tabs">
                     <li id="dashboard_tab" class="active"><a data-toggle="tab" id="dashboard_profile" href="#dashboard"><i class="soap-icon-anchor circle"></i>Dashboard</a></li>
-                    <li id= "profile_tab" class=""><a data-toggle="tab" id="profile_profile" href="#profile"><i class="soap-icon-user circle"></i>Profile</a></li>
+                    <li id= "profile_tab" class=""><a data-toggle="tab" id="profile_profile" href=""><i class="soap-icon-user circle"></i>Profile</a></li>
                     <!--<li class=""><a data-toggle="tab" href="#booking"><i class="soap-icon-businessbag circle"></i>Booking</a></li>-->
                     <!--<li class=""><a data-toggle="tab" href="#wishlist"><i class="soap-icon-wishlist circle"></i>Wishlist</a></li>-->
                     <!--<li class=""><a data-toggle="tab" href="#travel-stories"><i class="soap-icon-conference circle"></i>Travel Stories</a></li>-->
@@ -70,7 +32,7 @@ hr {
                 </ul>
                 <div class="tab-content">
                                                <div id="dashboard" class="tab-pane fade in active">
-                                                    <h1 class="no-margin skin-color">Hi Jessica, Welcome to Tourgoat!</h1>
+                                                    <h1 class="no-margin skin-color">Hi {{userName}},{{tourGuideCount}} Welcome to Tourgoat!</h1>
                                                        <br />
                                                     <div class="row block">
                                                         <div class="col-sm-6 col-md-3">
@@ -79,7 +41,7 @@ hr {
                                                                 <div class="fact blue">
                                                                     <div class="numbers counters-box">
                                                                         <dl>
-                                                                            <dt class="display-counter" data-value="3200">0</dt>
+                                                                            <dt class="display-counter"  data-value="{{tourGuideCount}}"></dt>
                                                                             <dd>Tourguides </dd>
                                                                         </dl>
                                                                         <i class="icon soap-icon-user"></i>
@@ -145,80 +107,67 @@ hr {
                                                     </div>
                                                        
                                                        <hr>                  
-<div ng-controller="AngularWayChangeDataCtrl as showCase">
-    <form class="form-inline" ng-submit="showCase.addPerson()">
-        <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
-            <thead>
-<!--            <tr>
-                <th>
-                    <div class="form-group">
-                        <label>
-                            <input class="form-control" type="number" name="id" ng-model="showCase.person2Add.id" value="">
-                        </label>
-                    </div>
-                </th>
-                <th>
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control" name="firstName" ng-model="showCase.person2Add.firstName" value="">
-                        </label>
-                    </div>
-                </th>
-                <th>
-                    <div class="form-group">
-                        <label>
-                            <input type="text" class="form-control" name="lastName" ng-model="showCase.person2Add.lastName" value="">
-                        </label>
-                    </div>
-                </th>
-                <th>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-success"><i class="fa fa-plus"></i></button>
-                    </div>
-                </th>
-            </tr>-->
-            <tr>
-                <th>Picture</th>
-                <th>First</th>
-                <th>Last</th>
-                <th style="width: 10px">Email</th>
-                <th>Status</th>
-                <th>Type</th>
-         
-                  <!--<th>Status</th>-->
-                <th>User Role</th>
-                 <th>Action</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr ng-repeat="user in userList">
-                <td class="col-xs-1"><img title="{{u.user.name.first}}" src="{{person.user.picture}}" class="img-thumbnail img-responsive img-circle"></td> 
-                <td>{{ user.firstName }}</td>
-                <td>{{ user.lastName }}</td>
-                 <td>{{ user.email }}</td>
-                <td>{{ user.emailVerification }}</td>
-                <td>{{ user.userType }}</td>
-                <td>{{ user.userRole }}</td>
-                
-            <td>
-                <select ng-model="user.userRole"  >
-                  <option value="">Select Role</option>
-                  <option value="superadmin">Super Admin</option>
-                  <option value="admin">Admin</option>
-                  <option value="superuser">Super User</option>
-                  <option value="tour_guide">Tour Guide</option>
-                  <option value="tourist">Tourist</option>
+<div ng-controller="AngularWayChangeDataCtrl as admin">
 
-              </select>
-            </td>
-                <td>
-                    <button type="button" ng-click="showCase.modifyPerson($index)" class="btn btn-warning"><i class="fa fa-edit"></i></button>
-                    <button type="button" ng-click="showCase.removePerson($index)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
-                </td>
+<div>
+    <div class="row" ng-show="spinner">
+        <div style="float: none;margin: 0 auto;" class="col-lg-1"> <i class="fa fa-spinner fa-spin fa-3x"></i> </div>
+        
+    </div>
+   
+    <div ng-show="!spinner">
+    <table datatable="ng" dt-options="showCase.dtOptions" dt-column-defs="showCase.dtColumnDefs" class="row-border hover">
+        <thead>
+
+            <tr>
+
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>User Type</th>
+           
+                <th>DOB</th>
+                <th>User Role</th>
+                <th>Account Status</th>
+                 <th>Update User Role</th>
+                <th>Action</th>
             </tr>
-            </tbody>
-        </table>
-    </form>
+        </thead>
+        <tbody>
+            <tr ng-repeat="user in admin.users">
+                <td>{{ user.firstName}}</td>
+                <td>{{ user.lastName}}</td>
+                <td>{{ user.email}}</td>
+                <td>{{ user.userType}}</td>
+               
+                 <td>{{ user.dateOfBirth}}</td>
+                <td>{{ user.userRole}}</td>
+                <td>{{user.isAccountActive===true? "Actived":"Deactivated"}}</td>
+                
+                
+                <td>
+                    <select ng-model="userList[$index].userRole">
+                        <option value="">Select Role</option>
+                        <option value="superadmin">Super Admin</option>
+                        <option value="admin">Admin</option>
+                        <option value="superuser">Super User</option>
+                        <option value="tour_guide">Tour Guide</option>
+                        <option value="tourist">Tourist</option>
+
+                    </select></td>
+                <td>
+
+                    <button type="button" ng-click="admin.changeUserRole($index, userList[$index].userRole)" class="btn btn-danger"><i class="fa fa-lg fa-edit"></i></button>
+ <button type="button" ng-click="admin.updateUserAccount($index)" class="btn btn-danger">{{user.isAccountActive===true? "Disable":"Enable"}}</button>
+
+                </td>
+
+            </tr>
+        </tbody>
+    </table>
+        </div>
+    </div>
+<!--</form>-->
 </div>
 
                                                     
@@ -419,13 +368,13 @@ hr {
                                         <dt>gender:</dt><dd>{{user.gender|| "requireds field"}}</dd>
                                         <!--<dt>Date of birth:</dt><dd>{{user.dateOfBirth|date:'MM/dd/yyyy'|| "requireds field"}}</dd>-->
                                         <dt>phone number:</dt><dd>{{user.address.phone === '' ? "requireds field" : "+" + user.address.countryCode + "-" + user.address.phone}}</dd>
-                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1|| "requireds field"}}</dd>
-                                        <!--<dt>Address 2:</dt><dd>{{user.address.streetAddress2|| "requireds field"}}</dd>-->
+<!--                                        <dt>Address 1:</dt><dd>{{user.address.streetAddress1|| "requireds field"}}</dd>
+                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2|| "requireds field"}}</dd>
                                         <dt>Town / City:</dt><dd>{{user.address.city|| "requireds field"}}</dd>
                                         <dt>State:</dt><dd>{{user.address.states === 'Other' ? user.address.otherState : user.address.states|| "requireds field"}}</dd>
                                         <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
-                                        <!--<dt>Languages:</dt><dd>{{languge|| "requireds field"}}</dd>-->
+                                        <dt>Languages:</dt><dd>{{languge|| "requireds field"}}</dd>-->
 <!--                                        <dt>Place with experience</dt><dd>{{knownCities|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>-->

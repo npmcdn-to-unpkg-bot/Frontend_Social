@@ -1,4 +1,4 @@
-
+<!--
 <div class="page-title-container">
     <div class="container">
         <div class="page-title pull-left">
@@ -18,9 +18,9 @@
                 <ul class="tabs">
                     <li  class=""><a data-toggle="tab" href="#dashboard"><i class="soap-icon-anchor circle"></i>Dashboard</a></li>
                     <li id= "profile_tab" class="active"><a data-toggle="tab" id="profile_profile" href="#profile"><i class="soap-icon-user circle"></i>Profile</a></li>
-                    <!--<li class=""><a data-toggle="tab" href="#booking"><i class="soap-icon-businessbag circle"></i>Booking</a></li>-->
-                    <!--<li class=""><a data-toggle="tab" href="#wishlist"><i class="soap-icon-wishlist circle"></i>Wishlist</a></li>-->
-                    <!--<li class=""><a data-toggle="tab" href="#travel-stories"><i class="soap-icon-conference circle"></i>Travel Stories</a></li>-->
+                    <li class=""><a data-toggle="tab" href="#booking"><i class="soap-icon-businessbag circle"></i>Booking</a></li>
+                    <li class=""><a data-toggle="tab" href="#wishlist"><i class="soap-icon-wishlist circle"></i>Wishlist</a></li>
+                    <li class=""><a data-toggle="tab" href="#travel-stories"><i class="soap-icon-conference circle"></i>Travel Stories</a></li>
                     <li id= "setting_tab" class=""><a data-toggle="tab" id="settings_profile"  href=""><i class="soap-icon-settings circle"></i>Settings</a></li>
                 </ul>
                 <div class="tab-content">
@@ -237,7 +237,7 @@
                                                         </div>
                                                     </div>
                                                     <hr>
-<!--                                                    <div class="row">
+                                                    <div class="row">
                                                         <div class="col-md-4">
                                                             <h4>Benefits of Tavelo Account</h4>
                                                             <ul class="benefits triangle hover">
@@ -281,7 +281,7 @@
                                                                 </address>
                                                             </div>
                                                         </div>
-                                                    </div>-->
+                                                    </div>
                                                 </div>
 
                     <div id="profile" class="tab-pane fade in active">
@@ -313,7 +313,7 @@
                                         <span class="close"></span>
                                     </div>
                                     <a href="#" class="button btn-small pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
-                                    <!--<h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>-->
+                                    <h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>
                                     <h2 class="box-title fullname">{{user.fullname|| "requireds field"}} </h2>
                                     <dl class="term-description">
                                         <dt>user name:</dt><dd>{{user.email|| "requireds field"}}</dd>
@@ -337,9 +337,9 @@
                             </article>
                             <hr>
 
-                            <!--this is to notify the user-->
-                            <!--<div class="notification-area" ng-if="user.isProfileComplete === false">-->
-                                <!--                                <div class="info-box block">
+                            this is to notify the user
+                            <div class="notification-area" ng-if="user.isProfileComplete === false">
+                                                                <div class="info-box block">
                                                                     <span class="close"></span>
                                                                     <p>This is your Dashboard, the place to check your Profile, respond to Reservation Requests, view upcoming Trip Information, and much more.</p>
                                                                     <br />
@@ -347,19 +347,19 @@
                                                                         <li><span class="skin-color">Learn How It Works</span> — Watch a short video that shows you how Travelo works.</li>
                                                                         <li><span class="skin-color">Get Help</span> — View our help section and FAQs to get started on Travelo. </li>
                                                                     </ul>
-                                                                </div>-->
+                                                                </div>
 
                                 
-                            <!--</div>-->
+                            </div>
 
-<!--                            <h2>About You</h2>
+                            <h2>About You</h2>
                             <div class="intro">
                                 <p> {{user.aboutYou || "please tell us about you"}} </p>
                             </div>
 
-                            <hr>-->
-                            <!--<h2>Your profile pictures coming soon</h2>-->
-<!--                            <div class="image-carousel style2" data-animation="slide" data-item-width="170" data-item-margin="22">
+                            <hr>
+                            <h2>Your profile pictures coming soon</h2>
+                            <div class="image-carousel style2" data-animation="slide" data-item-width="170" data-item-margin="22">
                                 <ul class="slides">
                                     <li>
                                         <a href="#" class="hover-effect">
@@ -400,9 +400,9 @@
                                         <h5 class="caption">Adventure</h5>
                                     </li>
                                 </ul>
-                            </div>-->
-                            <!--<hr>-->
-<!--                            <div class="row">
+                            </div>
+                            <hr>
+                            <div class="row">
                                 <div class="col-md-4">
                                     <h4>Benefits of Tavelo Account</h4>
                                     <ul class="benefits triangle hover">
@@ -446,14 +446,14 @@
                                         </address>
                                     </div>
                                 </div>
-                            </div>-->
+                            </div>
                         </div>
                         <div class="edit-profile">
 
                             <form class="edit-profile-form " method="post" ng-submit="updateProfile()" name="signupForm" novalidate="novalidate">
 
                                 <h2>Personal Details</h2>
-                                <!--<fieldset ng-disabled="facebookAndGoogleUser">-->
+                                <fieldset ng-disabled="facebookAndGoogleUser">
                                 <div class="col-sm-9 no-padding no-float">
                                     <div class="row ">
                                         <div class="col-sms-6 col-sm-6 form-group">
@@ -468,10 +468,10 @@
 
                                     <div class="row">
 
-                                        <!--                                        <div class="col-sms-6 col-sm-6 form-group">
+                                                                                <div class="col-sms-6 col-sm-6 form-group">
                                                                                     <label for="date" class="control-label">Date of Birth</label>
                                                                                     <input ng-disabled="facebookOrGoogleDOB" id="date" class="form-control input-text full-width " name="dateOfBirth" type="date" placeholder="MM/DD/YYYY" ng-model="user.dateOfBirth" required>
-                                                                                </div>-->
+                                                                                </div>
 
                                         <div class="form-group col-sms-6 col-sm-6 " > 
                                             <label for="dateOfBirth" class="control-label">Date Of Birth</label>
@@ -891,12 +891,12 @@
                                             <input id="phone" type="text" ng-pattern-err-type="numberOnly" ng-maxlength="15" ng-pattern="/^[0-9]*$/" class=" form-control input-text full-width" name="phone" ng-model="user.address.phone" placeholder="" required >
                                         </div>
                                     </div>
-                                    <!--                                            <div class="row form-group">
+                                                                                <div class="row form-group">
                                                                                     <div class="col-sms-6 col-sm-6">
                                                                                         <label>Zip Code / Postal / Region</label>
                                                                                           <input type="text" class="input-text full-width">
                                                                                     </div>
-                                                                                </div>-->
+                                                                                </div>
                                     <hr>
 
                                     <h2>Other Details</h2>
@@ -984,12 +984,12 @@
                                         <div  class="col-sms-4 col-sm-4 form-group">
                                             <label for="knownCityNoOfYears" class="control-label">How long do you know this place?</label>
                                         </div>
-<!--                                       <div class="col-sms-2 col-sm-2 form-group">     
+                                       <div class="col-sms-2 col-sm-2 form-group">     
                                            <button data-role="none" ng-click="addKnownCity()" class="button btn-medium  pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px"
                                                    ng-disabled="user.knownCities !== undefined && user.knownCities.length > 3" 
                                                    ng-show="user.knownCities !== undefined && user.knownCities.length < 3"><span class="glyphicon glyphicon-plus"></span> Add city</button>
 
-                                        </div>-->
+                                        </div>
                                       </div>
                                         <div class="row">   
                                           <div class="col-sms-6 col-sm-6 form-group">
@@ -1012,7 +1012,7 @@
                                   <div ng-repeat="kc in user.knownCities" ng-hide="$first">
                                         <div class="row"> 
                                             <div data-role="none" class="col-sms-6 col-sm-6 form-group">
-                                                <!--<input type="text" class="full-width form-control input-text " id="knownCity" ng-model="kc.knownCity" ng-autocomplete="kc.knownCity" details="details" options="options"/>-->
+                                                <input type="text" class="full-width form-control input-text " id="knownCity" ng-model="kc.knownCity" ng-autocomplete="kc.knownCity" details="details" options="options"/>
                                             <input type="text" class="full-width form-control input-text " id="guidingCity" ng-autocomplete ng-model="kc.knownCity" options="options" details="details"/>
                                             </div>
                                             <div data-role="none" class="col-sms-3 col-sm-3 form-group">
@@ -1115,7 +1115,7 @@
                             </form>
                         <hr>
                         <hr>
-<!--                        <hr>
+                        <hr>
                             <h2>Upload Profile Photo</h2>
                             <div ng-repeat="step in stepsModel">
                                 <img class="thumb" ng-src="{{step}}" />
@@ -1132,9 +1132,9 @@
                                 .uploader{
                                     clear:both;
                                 }
-                            </style>-->
+                            </style>
 
-                            <!--                                <div class="col-sms-12 col-sm-6 no-float">
+                                                            <div class="col-sms-12 col-sm-6 no-float">
                                                                         <div class=btn-medium>
                                                                             <input type="file"  id="file" name="file"  >
                                                                    
@@ -1145,7 +1145,7 @@
                                                             <img >
                                                             
                                                             <p>{{data}}</p>
-                            -->
+                            
 
                         </div>
                     </div>
@@ -1551,7 +1551,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.newPassword.$invalid && updatePasswordForm.newPassword.$dirty }">
                                     <label>Enter New Password</label>
                                     <input password-strength id="newPassword" ng-disabled="googleOrfacebookUser" max="30" name="newPassword" ng-model="newPassword" type="password" class="form-control input-lg" placeholder="Password" required>
-                                     <!--<span class="ion-key form-control-feedback"></span>-->
+                                     <span class="ion-key form-control-feedback"></span>
                                    <div class="help-block text-danger" ng-if="updatePasswordForm.newPassword.$dirty" ng-messages="updatePasswordForm.newPassword.$error">
                                   <div ng-message="passwordRequired"></div>
                                   </div>
@@ -1563,7 +1563,7 @@
                                 <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.confirmNewPassword.$invalid && updatePasswordForm.confirmNewPassword.$dirty }">
                                     <label>Confirm New password</label>
                                     <input field-match="newPassword" ng-disabled="googleOrfacebookUser" id="confirmNewPassword" name="confirmNewPassword" ng-model="confirmNewPassword" type="password" class="form-control input-lg" placeholder="Confirm Password" required>
-                                    <!--<span class="ion-key form-control-feedback"></span>-->
+                                    <span class="ion-key form-control-feedback"></span>
                                     <div class="help-block text-danger" ng-if="updatePasswordForm.confirmNewPassword.$dirty" ng-messages="updatePasswordForm.confirmNewPassword.$error">
                                     <div ng-message="passwordMismatch"></div>
                                     </div>
@@ -1610,7 +1610,7 @@
                             </div>
                         </form>
                         <hr>
-<!--                        <h5 class="skin-color">Send Me Emails When</h5>
+                        <h5 class="skin-color">Send Me Emails When</h5>
                         <form>
                             <div class="checkbox">
                                 <label>
@@ -1628,7 +1628,7 @@
                                 </label>
                             </div>
                             <button class="btn-medium uppercase">Update All Settings</button>
-                        </form>-->
+                        </form>
                     </div>
                 </div>
             </div>
@@ -1638,5 +1638,5 @@
 
 </section>
 
-<!--</fieldset>-->
-
+</fieldset>
+-->

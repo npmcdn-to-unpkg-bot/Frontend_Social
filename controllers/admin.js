@@ -1,99 +1,178 @@
 var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl($resource,  $scope,$http, DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
+    $scope.spinner = true;
     var vm = this;
     $scope.userList = null;
-//    $scope.userRole =
-// 
-///admin/getUserList
-//    $http.get('/sampleData/data.json').success(function(data) {
-//    vm.persons = data.results;
-//    $scope.userList = data.results;
-//  }).error(function(data, status) {
-//    alert('get data error!');
-//  });
-  
-   $http.get('http://localhost:8080/getUser').success(function(data) {
-    vm.persons = data;
-    $scope.userList = data;
+
+    $scope.userRole = "";
+    $scope.tourGuideCount = 0;
     
-  }).error(function(data, status) {
-    alert('get data error!');
-  });
-   
+    Account.getProfile()
+            .then(function (response) {
+                $scope.user = response.data;
+                $rootScope.userName = $scope.user.firstName;
+            }).catch(function (response) {
+
+        toastr.error('The user name or password is incorrect');
+
+    });
   
-  
-          $scope.updateUserRole = function (index) {
-        $scope.user.email = $scope.userList[index].email;
-           $scope.user.userRole = $scope.userList[index].userRole;
-            $http.post("http://localhost:8080/updateUserRole" + $scope.user)
+    $http.get('http://localhost:8080/getUser').success(function (data) {
+        vm.users = data;
+        $scope.userList = data;
+        $scope.spinner = false;
+       
+
+    }).error(function (data, status) {
+        toastr.error('Unable to get User list');
+    });
+    
+    $http.get('http://localhost:8080/getUserCount').success(function (data) {
+         $scope.tourGuideCount = Number(data);
+
+    }).error(function (data, status) {
+    toastr.error('Unable to get Tou Guide List');
+    });
+
+
+
+    $scope.updateUserRole = function (id, role) {
+
+        $http.get("http://localhost:8080/updateUserRole" + "?id=" + id + "&role=" + role)
 //             $http.get("http://well.run.aws-usw02-pr.ice.predix.io/download"+ "?fileId=" + fileId + "&wellLogId=" + $scope.wellLog.id)
                 .then(function (response) {
-                    
-                    $scope.updatedUser = response.data;
-            $scope.userList[index]= $scope.updatedUser;
-//                    vm.wellLogFileList = $scope.wellLog.fileData;
-//
-//                    $scope.wellLog.jobDate = new Date($scope.wellLog.jobDate);
-//                    $scope.wellLog.jobDateTo = new Date($scope.wellLog.jobDateTo);
-//                    $scope.disableInput = true;
-//                    $scope.disableBtn = false;
-//                    $scope.showFileUploadDiv = false;
-//                    $scope.data = $scope.wellLog.fileData;
-//                    toastr.success('Success! you have successfully removed file');
+
+                    toastr.success('Success! you have successfully update user role');
                 }).catch(function (response) {
             $scope.disableBtn = false;
-            
+
         });
-        };
-  
-  
-  
-  
-  
-  
- 
-    
-//    vm.persons = $resource('sampleData/data.json').query();
-//    vm.persons = $resource('sampleData/data.json').query();
+    };
+
+    $scope.updateUserAccount = function (id) {
+
+        $http.get("http://localhost:8080/updateAccountStatus" + "?id=" + id )
+//             $http.get("http://well.run.aws-usw02-pr.ice.predix.io/download"+ "?fileId=" + fileId + "&wellLogId=" + $scope.wellLog.id)
+                .then(function (response) {
+
+                    toastr.success('Success! you have successfully update user account status');
+                }).catch(function (response) {
+            $scope.disableBtn = false;
+
+        });
+    };
+
     vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');
     vm.dtColumnDefs = [
         DTColumnDefBuilder.newColumnDef(0),
         DTColumnDefBuilder.newColumnDef(1),
         DTColumnDefBuilder.newColumnDef(2),
-        DTColumnDefBuilder.newColumnDef(3).notSortable()
+        DTColumnDefBuilder.newColumnDef(3),
+        DTColumnDefBuilder.newColumnDef(4),
+        DTColumnDefBuilder.newColumnDef(5),
+        DTColumnDefBuilder.newColumnDef(6),
+        DTColumnDefBuilder.newColumnDef(7),
+        DTColumnDefBuilder.newColumnDef(8)
     ];
-//    vm.person2Add = _buildPerson2Add(1);
-//    vm.addPerson = addPerson;
+
     vm.modifyPerson = modifyPerson;
     vm.removePerson = removePerson;
- vm.removePerson = userRoleChanged;
-//    function _buildPerson2Add(id) {
-//        return {
-//            id: id,
-//            firstName: 'Foo' + id,
-//            lastName: 'Bar' + id
-//        };
-//    }
-//    function addPerson() {
-//        vm.persons.push(angular.copy(vm.person2Add));
-//        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
-//    }
+    vm.changeUserRole = changeUserRole;
+    vm.updateUserAccount = updateUserAccount;
+
     function modifyPerson(index) {
-      $scope.updateUserRole(index);
-//        vm.persons.splice(index, 1, angular.copy(vm.person2Add));
-//        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
+        $scope.updateUserRole(index);
+
     }
-    
-       function userRoleChanged(index) {
-//      $scope.updateUserRole(index);
-//        vm.persons.splice(index, 1, angular.copy(vm.person2Add));
-//        vm.person2Add = _buildPerson2Add(vm.person2Add.id + 1);
+
+    function changeUserRole(index, userRole) {
+
+        $scope.updateUserRole(vm.users[index].id, userRole);
+
     }
     function removePerson(index) {
-        vm.persons.splice(index, 1);
+        vm.users.splice(index, 1);
     }
+    function updateUserAccount(index) {
+vm.users[index].isAccountActive = !vm.users[index].isAccountActive;
+        $scope.updateUserAccount(vm.users[index].id);
+    }
+    
+    
+    ///////
+    
+
+   tjq(document).ready(function () {
+        tjq("#cancel").click(function (e) {
+            e.preventDefault();
+            tjq(".view-profile").fadeIn();
+            tjq(".edit-profile").fadeOut();
+        });
+
+//            setTimeout(function() {
+//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
+//            }, 10000);
+    });
+    tjq('a[href="#profiletab"]').on('shown.bs.tab', function (e) {
+        tjq(".view-profile").show();
+        tjq(".edit-profile").hide();
+    });
+
+    //togel between profile and dashboard tab
+    tjq(document).ready(function () {
+        tjq("#dashboard_profile").click(function (e) {
+            e.preventDefault();
+
+            tjq("#profile_tab").removeClass("active");
+            tjq("#dashboard_tab").addClass("active");
+            tjq("#dashboard").addClass("in active");
+
+            tjq("#dashboard").show();
+            tjq(".view-profile").hide();
+            tjq(".edit-profile").hide();
+        });
+
+//            setTimeout(function() {
+//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
+//            }, 10000);
+    });
+
+    //togel between profile and dashboard tab
+    tjq(document).ready(function () {
+        tjq("#profile_profile").click(function (e) {
+            e.preventDefault();
+
+            tjq("#dashboard_tab").removeClass("active");
+            tjq("#profile_tab").addClass("active");
+            tjq("#profile").addClass("in active");
+
+            tjq("#profile").show();
+            tjq(".view-profile").show();
+            tjq(".edit-profile").hide();
+            tjq("#dashboard").hide();
+        });
+
+//            setTimeout(function() {
+//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
+//            }, 10000);
+    });
+    tjq(document).ready(function () {
+        tjq("#profile .edit-profile-btn").click(function (e) {
+            e.preventDefault();
+            tjq(".view-profile").fadeOut();
+            tjq(".edit-profile").fadeIn();
+//                    tjq("#setting_tab").
+        });
+
+//            setTimeout(function() {
+//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
+//            }, 10000);
+    });
+    
+    
+    
 }
 
 //app.controller('ctrlRead', function ($scope, $filter) {
@@ -298,515 +377,3 @@ function AngularWayChangeDataCtrl($resource,  $scope,$http, DTOptionsBuilder, DT
 //}
 //});
 
-
-
-  app.controller('adminCtrl', function ($http , $scope, $location, $auth, toastr, $rootScope, Account, $interval) {
-            //Home page content is display only for home page 
-//             $rootScope.homePageContent = false;
-//             
-//             var $table = tjq('#table'),
-//        $remove = tjq('#remove'),
-//        selections = [];
-//    function initTable() {
-//        $table.bootstrapTable({
-//            height: getHeight(),
-//            columns: [
-//                [
-//                    {
-//                        field: 'state',
-//                        checkbox: true,
-//                        rowspan: 2,
-//                        align: 'center',
-//                        valign: 'middle'
-//                    }, {
-//                        title: 'Item ID',
-//                        field: 'id',
-//                        rowspan: 2,
-//                        align: 'center',
-//                        valign: 'middle',
-//                        sortable: true,
-//                        footerFormatter: totalTextFormatter
-//                    }, {
-//                        title: 'Item Detail',
-//                        colspan: 3,
-//                        align: 'center'
-//                    }
-//                ],
-//                [
-//                    {
-//                        field: 'name',
-//                        title: 'Item Name',
-//                        sortable: true,
-//                        editable: true,
-//                        footerFormatter: totalNameFormatter,
-//                        align: 'center'
-//                    }, {
-//                        field: 'price',
-//                        title: 'Item Price',
-//                        sortable: true,
-//                        align: 'center',
-//                        editable: {
-//                            type: 'text',
-//                            title: 'Item Price',
-//                            validate: function (value) {
-//                                value = $.trim(value);
-//                                if (!value) {
-//                                    return 'This field is required';
-//                                }
-//                                if (!/^$/.test(value)) {
-//                                    return 'This field needs to start width $.'
-//                                }
-//                                var data = $table.bootstrapTable('getData'),
-//                                    index = $(this).parents('tr').data('index');
-//                                console.log(data[index]);
-//                                return '';
-//                            }
-//                        },
-//                        footerFormatter: totalPriceFormatter
-//                    }, {
-//                        field: 'operate',
-//                        title: 'Item Operate',
-//                        align: 'center',
-//                        events: operateEvents,
-//                        formatter: operateFormatter
-//                    }
-//                ]
-//            ]
-//        });
-//        // sometimes footer render error.
-//        setTimeout(function () {
-//            $table.bootstrapTable('resetView');
-//        }, 200);
-//        $table.on('check.bs.table uncheck.bs.table ' +
-//                'check-all.bs.table uncheck-all.bs.table', function () {
-//            $remove.prop('disabled', !$table.bootstrapTable('getSelections').length);
-//            // save your data, here just save the current page
-//            selections = getIdSelections();
-//            // push or splice the selections if you want to save all data selections
-//        });
-//        $table.on('expand-row.bs.table', function (e, index, row, $detail) {
-//            if (index % 2 == 1) {
-//                $detail.html('Loading from ajax request...');
-//                $.get('LICENSE', function (res) {
-//                    $detail.html(res.replace(/\n/g, '<br>'));
-//                });
-//            }
-//        });
-//        $table.on('all.bs.table', function (e, name, args) {
-//            console.log(name, args);
-//        });
-//        $remove.click(function () {
-//            var ids = getIdSelections();
-//            $table.bootstrapTable('remove', {
-//                field: 'id',
-//                values: ids
-//            });
-//            $remove.prop('disabled', true);
-//        });
-//        $(window).resize(function () {
-//            $table.bootstrapTable('resetView', {
-//                height: getHeight()
-//            });
-//        });
-//    }
-//    function getIdSelections() {
-//        return $.map($table.bootstrapTable('getSelections'), function (row) {
-//            return row.id
-//        });
-//    }
-//    function responseHandler(res) {
-//        $.each(res.rows, function (i, row) {
-//            row.state = $.inArray(row.id, selections) !== -1;
-//        });
-//        return res;
-//    }
-//    function detailFormatter(index, row) {
-//        var html = [];
-//        $.each(row, function (key, value) {
-//            html.push('<p><b>' + key + ':</b> ' + value + '</p>');
-//        });
-//        return html.join('');
-//    }
-//    function operateFormatter(value, row, index) {
-//        return [
-//            '<a class="like" href="javascript:void(0)" title="Like">',
-//            '<i class="glyphicon glyphicon-heart"></i>',
-//            '</a>  ',
-//            '<a class="remove" href="javascript:void(0)" title="Remove">',
-//            '<i class="glyphicon glyphicon-remove"></i>',
-//            '</a>'
-//        ].join('');
-//    }
-//    window.operateEvents = {
-//        'click .like': function (e, value, row, index) {
-//            alert('You click like action, row: ' + JSON.stringify(row));
-//        },
-//        'click .remove': function (e, value, row, index) {
-//            $table.bootstrapTable('remove', {
-//                field: 'id',
-//                values: [row.id]
-//            });
-//        }
-//    };
-//    function totalTextFormatter(data) {
-//        return 'Total';
-//    }
-//    function totalNameFormatter(data) {
-//        return data.length;
-//    }
-//    function totalPriceFormatter(data) {
-//        var total = 0;
-//        $.each(data, function (i, row) {
-//            total += +(row.price.substring(1));
-//        });
-//        return '$' + total;
-//    }
-//    function getHeight() {
-//        return $(window).height() - $('h1').outerHeight(true);
-//    }
-//    $(function () {
-//        var scripts = [
-//                location.search.substring(1) || 'assets/bootstrap-table/src/bootstrap-table.js',
-//                'assets/bootstrap-table/src/extensions/export/bootstrap-table-export.js',
-//                'http://rawgit.com/hhurz/tableExport.jquery.plugin/master/tableExport.js',
-//                'assets/bootstrap-table/src/extensions/editable/bootstrap-table-editable.js',
-//                'http://rawgit.com/vitalets/x-editable/master/dist/bootstrap3-editable/js/bootstrap-editable.js'
-//            ],
-//            eachSeries = function (arr, iterator, callback) {
-//                callback = callback || function () {};
-//                if (!arr.length) {
-//                    return callback();
-//                }
-//                var completed = 0;
-//                var iterate = function () {
-//                    iterator(arr[completed], function (err) {
-//                        if (err) {
-//                            callback(err);
-//                            callback = function () {};
-//                        }
-//                        else {
-//                            completed += 1;
-//                            if (completed >= arr.length) {
-//                                callback(null);
-//                            }
-//                            else {
-//                                iterate();
-//                            }
-//                        }
-//                    });
-//                };
-//                iterate();
-//            };
-//        eachSeries(scripts, getScript, initTable);
-//    });
-//    function getScript(url, callback) {
-//        var head = document.getElementsByTagName('head')[0];
-//        var script = document.createElement('script');
-//        script.src = url;
-//        var done = false;
-//        // Attach handlers for all browsers
-//        script.onload = script.onreadystatechange = function() {
-//            if (!done && (!this.readyState ||
-//                    this.readyState == 'loaded' || this.readyState == 'complete')) {
-//                done = true;
-//                if (callback)
-//                    callback();
-//                // Handle memory leak in IE
-//                script.onload = script.onreadystatechange = null;
-//            }
-//        };
-//        head.appendChild(script);
-//        // We handle everything using the script element injection
-//        return undefined;
-//    }
-//                     var data = [{
-//    "name": "bootstrap-table",
-//        "stargazers_count": "10",
-//        "forks_count": "122",
-//        "description": "An extended Bootstrap table"
-//}, {
-//    "name": "multiple-select",
-//        "stargazers_count": "288",
-//        "forks_count": "20",
-//        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
-//}, {
-//    "name": "bootstrap-table",
-//        "stargazers_count": "32",
-//        "forks_count": "11",
-//        "description": "Show/hide password plugin for twitter bootstrap."
-//}, {
-//    "name": "bootstrap-table",
-//        "stargazers_count": "1",
-//        "forks_count": "4",
-//        "description": "my blog"
-//}, {
-//    "name": "scutech-redmine 1",
-//        "stargazers_count": "50",
-//        "forks_count": "3",
-//        "description": "Redmine notification tools for chrome extension."
-//}];
-//
-//tjq(function () {
-//    tjq('#table').bootstrapTable({
-//        data: data
-//    });
-//
-//    tjq(".mybtn-top").click(function () {
-//        tjq('#table').bootstrapTable('scrollTo', 0);
-//    });
-//    
-//    tjq(".mybtn-row").click(function () {
-//        var index = +$('.row-index').val(),
-//            top = 0;
-//        tjq('#table').find('tbody tr').each(function (i) {
-//        	if (i < index) {
-//            	top += $(this).height();
-//            }
-//        });
-//        tjq('#table').bootstrapTable('scrollTo', top);
-//    });
-//    
-//    tjq(".mybtn-btm").click(function () {
-//        tjq('#table').bootstrapTable('scrollTo', 'bottom');
-//    });
-//
-//});
-             
-//             
-//             var data = [{
-//    "name": "bootstrap-table",
-//        "stargazers_count": "10",
-//        "forks_count": "122",
-//        "description": "An extended Bootstrap table"
-//}, {
-//    "name": "multiple-select",
-//        "stargazers_count": "288",
-//        "forks_count": "20",
-//        "description": "A jQuery plugin to select multiple elements with checkboxes :)"
-//}, {
-//    "name": "bootstrap-table",
-//        "stargazers_count": "32",
-//        "forks_count": "11",
-//        "description": "Show/hide password plugin for twitter bootstrap."
-//}, {
-//    "name": "bootstrap-table",
-//        "stargazers_count": "1",
-//        "forks_count": "4",
-//        "description": "my blog"
-//}, {
-//    "name": "scutech-redmine 1",
-//        "stargazers_count": "50",
-//        "forks_count": "3",
-//        "description": "Redmine notification tools for chrome extension."
-//}];
-//
-//$(function () {
-//    $('#table').bootstrapTable({
-//        data: data
-//    });
-//
-//    $(".mybtn-top").click(function () {
-//        $('#table').bootstrapTable('scrollTo', 0);
-//    });
-//    
-//    $(".mybtn-row").click(function () {
-//        var index = +$('.row-index').val(),
-//            top = 0;
-//        $('#table').find('tbody tr').each(function (i) {
-//        	if (i < index) {
-//            	top += $(this).height();
-//            }
-//        });
-//        $('#table').bootstrapTable('scrollTo', top);
-//    });
-//    
-//    $(".mybtn-btm").click(function () {
-//        $('#table').bootstrapTable('scrollTo', 'bottom');
-//    });
-//
-//});
-
-//
-////  $http.get('http://api.randomuser.me/0.6/?results=20').success(function(data) {
-//      $http.get('/controllers/data.json').success(function(data) {
-//    $scope.users1 = data.results;
-//    tjq('#userloader').hide();
-//     tjq('#userList').show();
-//  }).error(function(data, status) {
-//    alert('get data error!');
-//  });
-//  
-//  $scope.showDetail = function (u) {
-//    if($scope.active==="undefined"||$scope.active===""){
-//       $scope.active = u.username; 
-//    }else{
-//       $scope.active = "";  
-//    }
-//   
-//  };
-//  
-//  $scope.doPost = function() {
-//  
-//    $http.get('http://api.randomuser.me/0.4/').success(function(data) {
-//      
-//      var newUser = data.results[0];
-//      newUser.user.text = $('#inputText').val();
-//      newUser.date = new Date();
-//      $scope.users1.push(newUser);
-//   
-//    }).error(function(data, status) {
-//      
-//      alert('get data error!');
-//      
-//    });
-//    
-//  };
-// 
-//
-
-
-
-
-            $scope.adminlogin = function () {
-                $scope.loginBtnLoading = true; // start loading
-                $scope.disabledFacebookBtn = true;
-                $scope.disabledGoogleBtn = true;
-                $auth.login($scope.user)
-                        .then(function (response) {
-                            $scope.loginBtnLoading = false; // stop loading
-                            $scope.disabledFacebookBtn = false;
-                            $scope.disabledGoogleBtn = false;
-                            //toastr.success('You have successfully signed in');
-                            if (!response.data.emailVerified) {
-                                $scope.verifyEmail();
-                            } else {
-                                $location.path('/profile');
-                                toastr.success('You have successfully signed in');
-                            }
-                        })
-                        .catch(function (response) {
-                            $scope.loginBtnLoading = false;
-                            $scope.disabledFacebookBtn = false;
-                            $scope.disabledGoogleBtn = false;
-                            //toastr.error(response.data.message, response.status);
-                            toastr.error('The user name or password is incorrect');
-
-                        });
-            };
-//            $scope.authenticate = function (provider) {
-//                $scope.swapSocialLoginLoading(provider, true);
-//                $auth.authenticate(provider)
-//                        .then(function () {
-//
-//                            //toastr.success('You have successfully signed in with ' + provider);
-//                            $location.path('/profile');
-//                            $scope.swapSocialLoginLoading(provider, false);
-//                        })
-//                        .catch(function (response) {
-//                            $scope.swapSocialLoginLoading(provider, false);
-//                            toastr.error(response.data.message);
-//                        });
-//            };
-            //resend email verification 
-//            $scope.resendEmail = function () {
-//                $rootScope.emailDiv = true;
-//                Account.resendEmail($scope.email)
-//                        .then(function () {
-//                            $rootScope.emailDiv = false;
-//                            $location.path('/login');
-//                            toastr.success('verification email request has been sent to ' + $scope.email);
-//
-//                        })
-//                        .catch(function (response) {
-//                            $scope.resetBtnLoading = false;
-//                            $location.path('/signup');
-//                            $rootScope.emailNotSentMessage = true;
-//                            $rootScope.emailAddress = $scope.email;
-//                            //toastr.error(response.data.message, response.status);
-//                        });
-//            };
-
-            //to verify check user email is verifyed or not
-//            $scope.verifyEmail = function () {
-//                $auth.logout()
-//                        .then(function () {
-//                            toastr.error('Please verify your email');
-//                            $location.path('/login');
-//                        });
-//
-//                $rootScope.emailDiv = true;
-//                //Here it send notification messge on user profile page 
-////                setTimeout(function () {
-//////                    tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p style="color:red; text-align: center"> Please verify your email. Click <a style="color: blue" href="">Here</a> to resend email verification</p></div>');
-////                    tjq(".notification-area").append('<div class="info-box block "><span class="close "></span><p style="color:red; text-align: center"> Please verify your email.</p><div class="row "><div class=" form-inline  col-sms-6"><input class="form-control col-sms-4" type="email"  ng-model="email" required placeholder="enter your email"><button class="btn-medium col-sms-2" ng-click="resendEmail()">Resend Email</button></div></div></div>');
-////
-////                }, 0);
-//
-//            };
-tjq(document).ready(function () {
-                tjq("#cancel").click(function (e) {
-                    e.preventDefault();
-                    tjq(".view-profile").fadeIn();
-                    tjq(".edit-profile").fadeOut();
-                });
-
-//            setTimeout(function() {
-//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
-//            }, 10000);
-            });
-            tjq('a[href="#profiletab"]').on('shown.bs.tab', function (e) {
-                tjq(".view-profile").show();
-                tjq(".edit-profile").hide();
-            });
-            
-            //togel between profile and dashboard tab
-            tjq(document).ready(function () {
-                tjq("#dashboard_profile").click(function (e) {
-                    e.preventDefault();
-
-                    tjq("#profile_tab").removeClass("active");
-                    tjq("#dashboard_tab").addClass("active");
-                    tjq("#dashboard").addClass("in active");
-
-                    tjq("#dashboard").show();
-                    tjq(".view-profile").hide();
-                    tjq(".edit-profile").hide();
-                });
-
-//            setTimeout(function() {
-//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
-//            }, 10000);
-            });
-            
-                   //togel between profile and dashboard tab
-            tjq(document).ready(function () {
-                tjq("#profile_profile").click(function (e) {
-                    e.preventDefault();
-
-                    tjq("#dashboard_tab").removeClass("active");
-                    tjq("#profile_tab").addClass("active");
-                    tjq("#profile").addClass("in active");
-
-                    tjq("#profile").show();
-                    tjq(".view-profile").show();
-                    tjq(".edit-profile").hide();
-                    tjq("#dashboard").hide();
-                });
-
-//            setTimeout(function() {
-//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
-//            }, 10000);
-            });
-                   tjq(document).ready(function () {
-                tjq("#profile .edit-profile-btn").click(function (e) {
-                    e.preventDefault();
-                    tjq(".view-profile").fadeOut();
-                    tjq(".edit-profile").fadeIn();
-//                    tjq("#setting_tab").
-                });
-
-//            setTimeout(function() {
-//                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
-//            }, 10000);
-            });
-        });

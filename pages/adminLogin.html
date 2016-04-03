@@ -6,12 +6,12 @@
                     <div class="text-center yellow-color box" style="font-size: 4em; font-weight: 300; line-height: 1em;">Welcome back!</div>
                     <!--<p class="light-blue-color block" style="font-size: 1.3333em;">Please login to your account.</p>-->
                     <div class="col-sm-8 col-md-6 col-lg-5 no-float no-padding center-block">
-                        <form method="post" ng-submit="login()" class="login-form">
+                        <form method="post" ng-submit="adminlogin()" class="login-form" name="loginForm">
                             <div class="form-group">
                                 <input type="text" class="input-text input-large full-width" ng-model="user.email" placeholder="enter your email or username">
                             </div>
                             <div class="form-group">
-                                <input type="text" class="input-text input-large full-width" ng-model="user.password" placeholder="enter your password">
+                                <input type="password" class="input-text input-large full-width" ng-model="user.password" placeholder="enter your password">
                             </div>
                             
                             <button type="submit" class="btn-large full-width sky-blue1">LOGIN </button>

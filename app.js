@@ -73,8 +73,11 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate','toas
 
             }).state('dashboard', {
                 url: '/dashboard',
-                        controller: 'adminCtrl',
-                templateUrl: 'pages/dashboard1.html'
+                        controller: 'AngularWayChangeDataCtrl',
+                templateUrl: 'pages/admin-dashboard.html',
+                resolve: {
+                           adminloginRequired: adminloginRequired
+                        }
 
             }).state('list', {
                 url: '/list',
@@ -177,6 +180,15 @@ var app = angular.module('MyApp', ['ngResource', 'ngMessages', 'ngAnimate','toas
                     deferred.resolve();
                 } else {
                     $location.path('/login');
+                }
+                return deferred.promise;
+            }
+             function adminloginRequired($q, $location, $auth) {
+                var deferred = $q.defer();
+                if ($auth.isAuthenticated()) {
+                    deferred.resolve();
+                } else {
+                    $location.path('/admin');
                 }
                 return deferred.promise;
             }
