@@ -201,14 +201,14 @@ app.run(function (defaultErrorMessageResolver) {
         errorMessages['emailMismatch'] = 'Please Email must match';
         errorMessages['onlyText'] = 'Please enter letters only';
         errorMessages['numberOnly'] = 'Please enter only number';
-        errorMessages['compareTo'] = 'Confirm field must match';
+        errorMessages['compareTo'] = 'Password confirmation does not match Password';
         errorMessages['passwordRequired'] = 'Password is required';
         errorMessages['badAdderss'] = 'Please enter a valid address';
         errorMessages['aboutYouErrMsg'] = 'Please enter max of 500 characters';
         errorMessages['minAge'] = 'Please enter a valid birthday';
         errorMessages['maxAge'] = 'You Do Not meet the  minimum age requirement of 18 years';
         errorMessages['onlyTextAndNumber'] = 'Please enter letter ';
-
+        errorMessages['maxlength'] = 'Please enter at max 25 characters long';
 
 
     });
