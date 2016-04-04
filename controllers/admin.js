@@ -19,7 +19,8 @@ function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DT
 
     });
   
-    $http.get('http://localhost:8080/getUser').success(function (data) {
+//    $http.get('http://localhost:8080/getUser').success(function (data) {
+         $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/getUser').success(function (data) {
         vm.users = data;
         $scope.userList = data;
         $scope.spinner = false;
@@ -29,7 +30,8 @@ function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DT
         toastr.error('Unable to get User list');
     });
     
-    $http.get('http://localhost:8080/getUserCount').success(function (data) {
+//    $http.get('http://localhost:8080/getUserCount').success(function (data) {
+            $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/getUserCount').success(function (data) {
          $scope.tourGuideCount = Number(data);
 
     }).error(function (data, status) {
@@ -40,8 +42,8 @@ function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DT
 
     $scope.updateUserRole = function (id, role) {
 
-        $http.get("http://localhost:8080/updateUserRole" + "?id=" + id + "&role=" + role)
-//             $http.get("http://well.run.aws-usw02-pr.ice.predix.io/download"+ "?fileId=" + fileId + "&wellLogId=" + $scope.wellLog.id)
+//        $http.get("http://localhost:8080/updateUserRole" + "?id=" + id + "&role=" + role)
+$http.get("http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/updateUserRole" + "?id=" + id + "&role=" + role)
                 .then(function (response) {
 
                     toastr.success('Success! you have successfully update user role');
@@ -53,8 +55,8 @@ function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DT
 
     $scope.updateUserAccount = function (id) {
 
-        $http.get("http://localhost:8080/updateAccountStatus" + "?id=" + id )
-//             $http.get("http://well.run.aws-usw02-pr.ice.predix.io/download"+ "?fileId=" + fileId + "&wellLogId=" + $scope.wellLog.id)
+//        $http.get("http://localhost:8080/updateAccountStatus" + "?id=" + id )
+     $http.get("http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/updateAccountStatus" + "?id=" + id )
                 .then(function (response) {
 
                     toastr.success('Success! you have successfully update user account status');
