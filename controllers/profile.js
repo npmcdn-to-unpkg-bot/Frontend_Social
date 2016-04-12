@@ -76,26 +76,42 @@ var app = angular.module('MyApp')
                             //Here it send notification messge on user profile page 
 
                             $scope.notification = "";
-
+                            $scope.requiredFieldCount = 0;
+                            $scope.requiredFieldPercentage = 0;
                             $scope.required = [{"key": "firstName", "value": "First name"}, {"key": "lastName", "value": "Last name"}, {"key": "dateOfBirth", "value": "Date of birth"}, {"key": "email", "value": "Email"}, {"key": "gender", "value": "Gender"}, {"key": "languages", "value": "Languages"}, {"key": "aboutYou", "value": "About you"}, {"key": "address", "value": "Address"}, {"key": "areasOfStrongKnowledges", "value": "Areas of strong knowledges"}, {"key": "knownCities", "value": "known cities"}, {"key": "modeOfTransportation", "value": "Mode of transportation"}];
                             $scope.requiredArr = ["knownCities", "areasOfStrongKnowledges", "languages", "modeOfTransportation"];
+                            for (var i = 0; i < $scope.requiredArr.length; i++) {
+                                if ($scope.user[$scope.requiredArr[i]].length === 0) {
+                                    $scope.requiredFieldCount++;
+                                }
+                            }
+
+                            if ($scope.user.address === null) {
+                                $scope.requiredFieldCount++;
+                            }
+
                             for (var i = 0; i < $scope.required.length; i++) {
                                 var tempVal = $scope.required[i].key;
                                 var testVal = $scope.user[tempVal];
 
                                 if (testVal === null || testVal.length === 0) {
+                                    $scope.requiredFieldCount++;
                                     if ($scope.notification === "") {
                                         $scope.notification = $scope.required[i].value;
                                     } else {
                                         $scope.notification = $scope.notification + ", " + $scope.required[i].value;
                                     }
-
+                                    $scope.requiredFieldPercentage = (17 -  $scope.requiredFieldCount)*6;
                                 }
+                                
                             }
-
+                            $scope.updateBtn = "UPDATE YOUR PROFILE";
                             $scope.incompleteProfile = false;
                             if ($scope.notification !== "") {
                                 $scope.incompleteProfile = true;
+                            }
+                            if($scope.incompleteProfile === true){
+                                $scope.updateBtn = "COMPLETE YOUR PROFILE";
                             }
 
 //                            setTimeout(function () {

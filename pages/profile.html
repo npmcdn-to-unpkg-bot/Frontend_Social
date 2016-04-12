@@ -308,11 +308,19 @@
 
 
                                 <div class="details">
-                                    <div ng-show="incompleteProfile" class="alert alert-error">
-                                        Welcome to your profile page. <b>{{notification | uppercase}} </b> of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.
+                                    <div ng-show="incompleteProfile" class="alert alert-general "><br>
+                                        <div class="progress">
+                                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{requiredFieldPercentage}}" aria-valuemin="0" aria-valuemax="100" ng-style="{width : ( requiredFieldPercentage + '%' ) }">
+                                            Your profile is {{requiredFieldPercentage}} % Complete.
+                                        </div>
+                                    </div>
+                                        
+                                        <!--Welcome to your profile page. <b>{{notification | uppercase}} </b> of your profile information is incomplete. Please go to “EDIT PROFILE” page to complete.-->
                                         <span class="close"></span>
                                     </div>
-                                    <a href="#" class="button btn-small pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">EDIT PROFILE</a>
+                                  
+
+                                    <a href="#" class="button btn-small pull-right edit-profile-btn" style="color: #00A8FF; font-size: 11px">{{updateBtn}}</a>
                                     <!--<h2 class="box-title fullname">{{user.lastName|| "requireds field"}} {{user.firstName|| "requireds field"}}</h2>-->
                                     <h2 class="box-title fullname">{{user.fullname|| "requireds field"}} </h2>
                                     <dl class="term-description">
@@ -1113,8 +1121,7 @@
 
                                 </div>
                             </form>
-                        <hr>
-                        <hr>
+                        
 <!--                        <hr>
                             <h2>Upload Profile Photo</h2>
                             <div ng-repeat="step in stepsModel">
@@ -1524,7 +1531,7 @@
                                 <span class="close"></span>
                         </div>
                         <div ng-show="errorType.lastPassword" class="alert alert-error">
-                        <span><b>Please type a different password. You cannot repeat your previous password;</b></span>
+                        <span><b>Please type a different password. You can't reuse your old password</b></span>
                         <span class="close"></span>
                         </div>
                          <div ng-show="errorType.passwordMatching" class="alert alert-error">
@@ -1540,7 +1547,7 @@
                                     <input ng-disabled="googleOrfacebookUser"
                                            id="oldPassword" 
                                            name="oldPassword" 
-                                           ng-model="oldPassword" class="form-control input-lg"
+                                           ng-model="oldPassword" class="form-control input-text full-width"
                                            type="password" placeholder="Old Password" required>
                      <span ng-show="updatePasswordForm.oldPassword.$error.required && updatePasswordForm.oldPassword.$dirty">
                      Old password Required
@@ -1550,7 +1557,7 @@
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.newPassword.$invalid && updatePasswordForm.newPassword.$dirty }">
                                     <label>Enter New Password</label>
-                                    <input password-strength id="newPassword" ng-disabled="googleOrfacebookUser" max="30" name="newPassword" ng-model="newPassword" type="password" class="form-control input-lg" placeholder="Password" required>
+                                    <input password-strength id="newPassword" ng-disabled="googleOrfacebookUser" max="30" name="newPassword" ng-model="newPassword" type="password" class="form-control input-text full-width" placeholder="Password" required>
                                      <!--<span class="ion-key form-control-feedback"></span>-->
                                    <div class="help-block text-danger" ng-if="updatePasswordForm.newPassword.$dirty" ng-messages="updatePasswordForm.newPassword.$error">
                                   <div ng-message="passwordRequired"></div>
@@ -1562,7 +1569,7 @@
                             <div class="row form-group">
                                 <div class="col-xs-12 col-sm-6 col-md-4" ng-class="{ 'has-error' : updatePasswordForm.confirmNewPassword.$invalid && updatePasswordForm.confirmNewPassword.$dirty }">
                                     <label>Confirm New password</label>
-                                    <input field-match="newPassword" ng-disabled="googleOrfacebookUser" id="confirmNewPassword" name="confirmNewPassword" ng-model="confirmNewPassword" type="password" class="form-control input-lg" placeholder="Confirm Password" required>
+                                    <input field-match="newPassword" ng-disabled="googleOrfacebookUser" id="confirmNewPassword" name="confirmNewPassword" ng-model="confirmNewPassword" type="password" class="form-control input-text full-width" placeholder="Confirm Password" required>
                                     <!--<span class="ion-key form-control-feedback"></span>-->
                                     <div class="help-block text-danger" ng-if="updatePasswordForm.confirmNewPassword.$dirty" ng-messages="updatePasswordForm.confirmNewPassword.$error">
                                     <div ng-message="passwordMismatch"></div>

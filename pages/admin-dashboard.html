@@ -32,7 +32,7 @@
                 </ul>
                 <div class="tab-content">
                                                <div id="dashboard" class="tab-pane fade in active">
-                                                    <h1 class="no-margin skin-color">Hi {{userName}},{{tourGuideCount}} Welcome to Tourgoat!</h1>
+                                                    <h1 class="no-margin skin-color">Hi {{userName}}, Welcome to Tourgoat!</h1>
                                                        <br />
                                                     <div class="row block">
                                                         <div class="col-sm-6 col-md-3">
@@ -130,7 +130,7 @@
                 <th>User Role</th>
                 <th>Account Status</th>
                  <th>Update User Role</th>
-                <th>Action</th>
+                <th style="width: 140px">Action</th>
             </tr>
         </thead>
         <tbody>
@@ -155,10 +155,10 @@
                         <option value="tourist">Tourist</option>
 
                     </select></td>
-                <td>
+                    <td >
 
                     <button type="button" ng-click="admin.changeUserRole($index, userList[$index].userRole)" class="btn btn-danger"><i class="fa fa-lg fa-edit"></i></button>
- <button type="button" ng-click="admin.updateUserAccount($index)" class="btn btn-danger">{{user.isAccountActive===true? "Disable":"Enable"}}</button>
+                     <button type="button" ng-click="admin.updateUserAccount($index)" class="btn btn-danger">{{user.isAccountActive===true? "Disable":"Enable"}}</button>
 
                 </td>
 

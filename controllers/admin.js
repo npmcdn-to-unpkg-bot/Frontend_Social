@@ -1,7 +1,7 @@
 var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl($rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
     $scope.spinner = true;
     var vm = this;
     $scope.userList = null;
@@ -12,6 +12,11 @@ function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DT
     Account.getProfile()
             .then(function (response) {
                 $scope.user = response.data;
+                if( $scope.user.userRole ==="admin" || $scope.user.userRole ==="superadmin"){
+                     
+                }else{
+                     $location.path('/profile');
+                }
                 $rootScope.userName = $scope.user.firstName;
             }).catch(function (response) {
 
@@ -20,11 +25,11 @@ function AngularWayChangeDataCtrl($rootScope, Account, toastr, $scope, $http, DT
     });
   
 //    $http.get('http://localhost:8080/getUser').success(function (data) {
-         $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/getUser').success(function (data) {
+        $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/getUser').success(function (data) {
         vm.users = data;
         $scope.userList = data;
         $scope.spinner = false;
-       
+
 
     }).error(function (data, status) {
         toastr.error('Unable to get User list');
