@@ -1,4 +1,4 @@
-<div class="container" style="width: 800px">
+<!--<div class="container" style="width: 800px">
     <div class="row">
         <div class=" panel">
             <div class="panel-body">
@@ -31,4 +31,37 @@
             </div>
         </div>
     </div>
-</div>
+</div>-->
+
+
+
+
+<style>
+    .videogular-container video {
+        width: 100%;
+        margin: auto;
+    }
+</style>
+
+<br><br><br>
+<h2 class="text-center">Be a tour guide in your hometown</h2>
+<br>
+
+<div class="container pagination-centered" >
+
+    <div class=" panel">
+        <div class="panel-body">
+
+            <div ng-controller="becomeTourguideCtrl" class="videogular-container" >
+                <videogular vg-theme="config.theme" >
+                    <vg-media vg-src="config.sources" vg-native-controls="config.useNativeControls">
+                    </vg-media>
+                    <!--<vg-poster vg-url='config.posterImage' ></vg-poster>-->
+
+                </videogular>
+            </div>
+        </div> 
+    </div> 
+
+</div><br>
+
