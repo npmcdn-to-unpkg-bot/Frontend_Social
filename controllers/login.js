@@ -38,9 +38,8 @@ angular.module('MyApp')
                             //toastr.success('You have successfully signed in');
                             if (!response.data.emailVerified) {
                                 $scope.verifyEmail();
-                            } else if(!response.data.isActive){
-                                $scope.active = false;
-                                $location.path('/login');
+                            } else if(response.data.emailVerified&&!response.data.active){
+                                $scope.inactiveUser();
                             }else{
                                 $location.path('/profile');
                                 toastr.success('You have successfully signed in');
@@ -104,6 +103,13 @@ angular.module('MyApp')
 //
 //                }, 0);
 
+            };
+            $scope.inactiveUser = function () {
+                $auth.logout()
+                        .then(function () {
+                            $scope.active = false;
+                            $location.path('/login');
+                        });
             };
 //            tjq(document).ready(function () {
 //                tjq("#facebook").click(function (e) {
