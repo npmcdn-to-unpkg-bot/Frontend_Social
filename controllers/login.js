@@ -4,6 +4,7 @@ angular.module('MyApp')
 //             $rootScope.homePageContent = false;
             $scope.email = "";
             $rootScope.emailDiv = false;
+            $scope.active = true;
             $scope.emailVerified = $stateParams.emailVerified;
             
   
@@ -37,7 +38,10 @@ angular.module('MyApp')
                             //toastr.success('You have successfully signed in');
                             if (!response.data.emailVerified) {
                                 $scope.verifyEmail();
-                            } else {
+                            } else if(!response.data.isActive){
+                                $scope.active = false;
+                                $location.path('/login');
+                            }else{
                                 $location.path('/profile');
                                 toastr.success('You have successfully signed in');
                             }
