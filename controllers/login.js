@@ -1,7 +1,7 @@
 angular.module('MyApp')
         .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $stateParams) {
             //Home page content is display only for home page 
-//             $rootScope.homePageContent = false;
+             $rootScope.homePageContent = false;
             $scope.email = "";
             $rootScope.emailDiv = false;
             $scope.active = true;

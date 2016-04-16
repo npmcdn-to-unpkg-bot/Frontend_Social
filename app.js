@@ -212,7 +212,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
         if ($auth.isAuthenticated()) {
             deferred.resolve();
         } else {
-            $location.path('/admin');
+            $location.path('/user_admin');
         }
         return deferred.promise;
     }

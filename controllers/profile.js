@@ -1,8 +1,9 @@
 var app = angular.module('MyApp')
         .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location, $http) {
             //Home page content is display only for home page 
-//            $rootScope.homePageContent = false;
+            $rootScope.homePageContent = false;
             //user profile pictuer and user name global var
+            
             $rootScope.userPictuer = "";
             $rootScope.userName = "";
             $scope.getProfile = function () {
