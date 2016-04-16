@@ -1,7 +1,8 @@
 /* global angular */
 
 angular.module('MyApp').controller('VerifiedCtrl', function($scope, $modal) {
-    
+       //this is make display on home page content 
+            $rootScope.homePageContent = false;
    $scope.openDemoModal = function() {
    var modalInstance = $modal.open({
       templateUrl: 'pages/model.html',

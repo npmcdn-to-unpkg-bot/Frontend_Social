@@ -1,6 +1,7 @@
 angular.module('MyApp')
         .controller('adminCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $stateParams) {
-
+   //this is make display on home page content 
+//            $scope.homePageContent = false;
             $scope.email = "";
             $rootScope.emailDiv = false;
             $scope.emailVerified = $stateParams.emailVerified;

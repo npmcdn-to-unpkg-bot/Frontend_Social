@@ -2,6 +2,8 @@ var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
 function AngularWayChangeDataCtrl($rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
+    //this is make display on home page content 
+            $rootScope.homePageContent = false;
     $scope.spinner = true;
     var vm = this;
     $scope.userList = null;
