@@ -58,14 +58,20 @@ angular.module('MyApp')
                 $scope.swapSocialLoginLoading(provider, true);
                 $auth.authenticate(provider)
                         .then(function () {
-
                             //toastr.success('You have successfully signed in with ' + provider);
                             $location.path('/profile');
                             $scope.swapSocialLoginLoading(provider, false);
+                        
                         })
                         .catch(function (response) {
+                            
+                          if(!response.data.active){
+                                $scope.inactiveUser();
+                                $scope.swapSocialLoginLoading(provider, false);
+                             }else{
                             $scope.swapSocialLoginLoading(provider, false);
                             toastr.error(response.data.message);
+                        }
                         });
             };
             //resend email verification 
@@ -108,7 +114,6 @@ angular.module('MyApp')
                 $auth.logout()
                         .then(function () {
                             $scope.active = false;
-                            $location.path('/login');
                         });
             };
 //            tjq(document).ready(function () {
