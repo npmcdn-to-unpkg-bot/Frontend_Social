@@ -4,6 +4,7 @@ angular.module('MyApp')
              $rootScope.homePageContent = false;
             $scope.email = "";
             $rootScope.emailDiv = false;
+            $scope.active = true;
             $scope.emailVerified = $stateParams.emailVerified;
             
   
@@ -37,7 +38,9 @@ angular.module('MyApp')
                             //toastr.success('You have successfully signed in');
                             if (!response.data.emailVerified) {
                                 $scope.verifyEmail();
-                            } else {
+                            } else if(response.data.emailVerified&&!response.data.active){
+                                $scope.inactiveUser();
+                            }else{
                                 $location.path('/profile');
                                 toastr.success('You have successfully signed in');
                             }
@@ -55,14 +58,20 @@ angular.module('MyApp')
                 $scope.swapSocialLoginLoading(provider, true);
                 $auth.authenticate(provider)
                         .then(function () {
-
                             //toastr.success('You have successfully signed in with ' + provider);
                             $location.path('/profile');
                             $scope.swapSocialLoginLoading(provider, false);
+                        
                         })
                         .catch(function (response) {
+                            
+                          if(!response.data.active){
+                                $scope.inactiveUser();
+                                $scope.swapSocialLoginLoading(provider, false);
+                             }else{
                             $scope.swapSocialLoginLoading(provider, false);
                             toastr.error(response.data.message);
+                        }
                         });
             };
             //resend email verification 
@@ -100,6 +109,12 @@ angular.module('MyApp')
 //
 //                }, 0);
 
+            };
+            $scope.inactiveUser = function () {
+                $auth.logout()
+                        .then(function () {
+                            $scope.active = false;
+                        });
             };
 //            tjq(document).ready(function () {
 //                tjq("#facebook").click(function (e) {

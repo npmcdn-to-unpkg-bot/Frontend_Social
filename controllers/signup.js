@@ -2,7 +2,7 @@ var app = angular.module('MyApp')
         .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope) {
               //Home page content is display only for home page 
             $rootScope.homePageContent = false;
-
+            $scope.active = true;
             $scope.birthMonth = "";
             $scope.birthDay = "";
             $scope.birthYear = "";
@@ -91,17 +91,21 @@ var app = angular.module('MyApp')
             $scope.authenticate = function (provider) {
                 $scope.swapSocialLoginLoading(provider, true);
                 $auth.authenticate(provider)
-                        .then(function () {
+                          .then(function () {
                             toastr.success('You have successfully signed in with ' + provider);
                             $location.path('/profile');
                             $scope.swapSocialLoginLoading(provider, false);
+                        
                         })
                         .catch(function (response) {
+                            if(!response.data.active){
+                                $scope.active = false;
+                             }else{
+                               toastr.error(response.data.message);  
+                             }
                             $scope.swapSocialLoginLoading(provider, false);
-                            toastr.error(response.data.message);
                         });
             };
-
             //to populate the year values on singup form
             $scope.tempYear = new Date().getFullYear();
             $scope.minYear = $scope.tempYear - 18;
