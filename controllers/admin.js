@@ -1,56 +1,60 @@
 var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl($rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl(Account, $rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
     //this is make display on home page content 
-            $rootScope.homePageContent = false;
+    $rootScope.homePageContent = false;
     $scope.spinner = true;
     var vm = this;
     $scope.userList = null;
 
     $scope.userRole = "";
     $scope.tourGuideCount = 0;
-    
+
+    var getCurrentUrl = function () {
+        if (window.location.host === 'localhost:8383') {
+            //for local
+            return 'http://localhost:8080';
+        } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
+            //for cloud
+            return 'http://tourgoat.cfapps.io';
+        } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com') {
+            //for cloud
+            return 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com';
+        }
+    };
+
     Account.getProfile()
             .then(function (response) {
                 $scope.user = response.data;
-                if( $scope.user.userRole ==="admin" || $scope.user.userRole ==="superadmin"){
-                     
-                }else{
-                     $location.path('/profile');
+                if ($scope.user.userRole === "admin" || $scope.user.userRole === "superadmin") {
+
+                } else {
+                    $location.path('/profile');
                 }
                 $rootScope.userName = $scope.user.firstName;
             }).catch(function (response) {
-
         toastr.error('The user name or password is incorrect');
-
     });
-  
-//    $http.get('http://localhost:8080/getUser').success(function (data) {
-        $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/getUser').success(function (data) {
+
+    $http.get(getCurrentUrl() + '/getUser').success(function (data) {
         vm.users = data;
         $scope.userList = data;
         $scope.spinner = false;
-
-
     }).error(function (data, status) {
         toastr.error('Unable to get User list');
     });
-    
-//    $http.get('http://localhost:8080/getUserCount').success(function (data) {
-            $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/getUserCount').success(function (data) {
-         $scope.tourGuideCount = Number(data);
+
+    $http.get(getCurrentUrl() + '/getUserCount').success(function (data) {
+        $scope.tourGuideCount = Number(data);
 
     }).error(function (data, status) {
-    toastr.error('Unable to get Tou Guide List');
+        toastr.error('Unable to get Tou Guide List');
     });
 
-
-
     $scope.updateUserRole = function (id, role) {
+        $http.get(getCurrentUrl() + '/updateUserRole' + '?id=' + id + '&role=' + role)
 
-//        $http.get("http://localhost:8080/updateUserRole" + "?id=" + id + "&role=" + role)
-$http.get("http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/updateUserRole" + "?id=" + id + "&role=" + role)
                 .then(function (response) {
 
                     toastr.success('Success! you have successfully update user role');
@@ -61,15 +65,11 @@ $http.get("http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/updateUserRole"
     };
 
     $scope.updateUserAccount = function (id) {
-
-//        $http.get("http://localhost:8080/updateAccountStatus" + "?id=" + id )
-     $http.get("http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/updateAccountStatus" + "?id=" + id )
+        $http.get(getCurrentUrl() + '/updateAccountStatus' + '?id=' + id)
                 .then(function (response) {
-
                     toastr.success('Success! you have successfully update user account status');
                 }).catch(function (response) {
             $scope.disableBtn = false;
-
         });
     };
 
@@ -105,15 +105,15 @@ $http.get("http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/updateUserRole"
         vm.users.splice(index, 1);
     }
     function updateUserAccount(index) {
-vm.users[index].isAccountActive = !vm.users[index].isAccountActive;
+        vm.users[index].isAccountActive = !vm.users[index].isAccountActive;
         $scope.updateUserAccount(vm.users[index].id);
     }
-    
-    
-    ///////
-    
 
-   tjq(document).ready(function () {
+
+    ///////
+
+
+    tjq(document).ready(function () {
         tjq("#cancel").click(function (e) {
             e.preventDefault();
             tjq(".view-profile").fadeIn();
@@ -179,9 +179,9 @@ vm.users[index].isAccountActive = !vm.users[index].isAccountActive;
 //                tjq(".notification-area").append('<div class="info-box block"><span class="close"></span><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus ab quis a dolorem, placeat eos doloribus esse repellendus quasi libero illum dolore. Esse minima voluptas magni impedit, iusto, obcaecati dignissimos.</p></div>');
 //            }, 10000);
     });
-    
-    
-    
+
+
+
 }
 
 //app.controller('ctrlRead', function ($scope, $filter) {
