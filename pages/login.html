@@ -30,8 +30,8 @@
           <span class="close"></span>
       </div>
       
-       <div ng-show="!active" class="alert alert-error">
-          <span><b>Your account is not active, please contact the administrator.</b></span>
+       <div ng-if="!active" class="alert alert-error" >
+          <span><b>Your account is not active, please contact the administrator. <a  ng-click="openContactForm()">Click Here to send message</a></b></span>
           <span class="close"></span>
       </div>
       <div ng-show="errorType.facebookOrGoogleUser" class="alert alert-error">

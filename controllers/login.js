@@ -1,5 +1,5 @@
 angular.module('MyApp')
-        .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $stateParams) {
+        .controller('LoginCtrl', function ($scope, $location, $auth, toastr, $rootScope, Account, $stateParams,$modal) {
             //Home page content is display only for home page 
              $rootScope.homePageContent = false;
             $scope.email = "";
@@ -66,7 +66,8 @@ angular.module('MyApp')
                         .catch(function (response) {
                             
                           if(!response.data.active){
-                                $scope.inactiveUser();
+                                 $scope.inactiveUser = response.data;
+                                $scope.logoutUser();
                                 $scope.swapSocialLoginLoading(provider, false);
                              }else{
                             $scope.swapSocialLoginLoading(provider, false);
@@ -110,21 +111,44 @@ angular.module('MyApp')
 //                }, 0);
 
             };
-            $scope.inactiveUser = function () {
+            $scope.logoutUser = function () {
                 $auth.logout()
                         .then(function () {
                             $scope.active = false;
                         });
             };
-//            tjq(document).ready(function () {
-//                tjq("#facebook").click(function (e) {
-//                    e.preventDefault();
-//                    setTimeout(function () {
-//                        toastr.error('something went wrong. Please try again');
-//                    }, 10000);
-//                });
-//
-//
-//            });
+//            $scope.openContactForm = function() {
+//		ngDialog.open({template: 'pages/contact_us.html'
+//		});
+//	};
+      
+    $scope.openContactForm = function() {
+    $rootScope.emailAddress=$scope.inactiveUser.emailAddress;
+    if($rootScope.emailAddress==null){
+      $rootScope.emailAddress= $scope.user.email;         
+    }
+   var modalInstance = $modal.open({
+      templateUrl: 'pages/contact_us.html',
+     controller:function($modalInstance ,$scope){
+     $scope.close = function () {
+            $modalInstance.dismiss('cancel');
+         };
+         $scope.submit = function (params) {
+                    Account.sendMessage($scope.emailAddress,params.subject,params.message)
+                        .then(function () {
+                            toastr.success('Account activation request sent, support team will contact you!');
+                              $location.path('/');
+                        })
+                        .catch(function (response) {
+                             $location.path('/');
+                            toastr.error(response.data, response.status);
+                        });
+                        $modalInstance.dismiss('cancel');
+                };
+
+    }
+    });
+  };   
+
 
         });
