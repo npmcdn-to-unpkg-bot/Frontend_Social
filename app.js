@@ -14,7 +14,6 @@ var app = angular.module('MyApp',
             'datatables',
             'ngResource',
             'ui.bootstrap',
-            'ngDialog',
             "ngSanitize",
             "com.2fdevs.videogular",
             "com.2fdevs.videogular.plugins.poster"
