@@ -129,6 +129,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
             $state.go('login', {emailVerified: true});
         }
 
+    }).state('aboutus', {
+        url: '/aboutus',
+        templateUrl: 'pages/about-us.html',
+        controller: 'aboutusCtrl'
+
+
     });
 
     $urlRouterProvider.otherwise('/');
