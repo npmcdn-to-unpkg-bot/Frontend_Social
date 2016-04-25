@@ -17,6 +17,7 @@ var app = angular.module('MyApp',
             "ngSanitize",
             "com.2fdevs.videogular",
             "com.2fdevs.videogular.plugins.poster"
+            
 
 
         ]);

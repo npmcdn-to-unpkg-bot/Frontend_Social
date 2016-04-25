@@ -1,5 +1,5 @@
 var app = angular.module('MyApp')
-        .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope) {
+        .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope,$modal,Account) {
               //Home page content is display only for home page 
             $rootScope.homePageContent = false;
             $scope.active = true;
@@ -99,6 +99,7 @@ var app = angular.module('MyApp')
                         })
                         .catch(function (response) {
                             if(!response.data.active){
+                                $scope.inactiveUser = response.data;
                                 $scope.active = false;
                              }else{
                                toastr.error(response.data.message);  
@@ -121,7 +122,32 @@ var app = angular.module('MyApp')
             };
             $scope.generateYears();
 
-        });
+      
+   $scope.openContactForm = function() {
+    $rootScope.emailAddress=$scope.inactiveUser.emailAddress;
+   var modalInstance = $modal.open({
+      templateUrl: 'pages/contact_us.html',
+     controller:function($modalInstance ,$scope){
+     $scope.close = function () {
+            $modalInstance.dismiss('cancel');
+         };
+         $scope.submit = function (params) {
+                    Account.sendMessage($scope.emailAddress,params.subject,params.message)
+                        .then(function () {
+                            toastr.success('Account activation request sent, support team will contact you!');
+                              $location.path('/');
+                        })
+                        .catch(function (response) {
+                             $location.path('/');
+                            toastr.error(response.data, response.status);
+                        });
+                        $modalInstance.dismiss('cancel');
+                };
+
+    }
+    });
+  }; 
+    });
 app.run(function ($rootScope) {
 //    $scope.tempYear = new Date().getFullYear();
 //    $scope.minYear = $scope.tempYear - 18;
@@ -137,3 +163,4 @@ app.run(function ($rootScope) {
 //        $scope.years = $scope.newOptions;
 //    };
 });
+;

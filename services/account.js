@@ -122,10 +122,19 @@ angular.module('MyApp')
                         return $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/emailUpdate?oldEmail=' + oldEmail + '&newEmail=' + newEmail);
                     }
 
+                },sendMessage:function(emailAddress,subject,message){
+                   if (window.location.host === 'localhost:8383') {
+                        //for local
+                        return $http.get('http://localhost:8080/sendEmail?from=' + emailAddress + '&subject=' + subject+'&message='+message);
+
+                    } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
+                        //for cloud
+                        return $http.get('http://tourgoat.cfapps.io/sendEmail?from=' + emailAddress + '&subject=' + subject+'&message='+message);
+                    } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com') {
+                        //for cloud
+                        return $http.get('http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/sendEmail?from=' + emailAddress + '&subject=' + subject+'&message='+message);
+                    } 
                 }
-
-
-
 
             };
         });
