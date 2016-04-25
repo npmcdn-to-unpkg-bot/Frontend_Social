@@ -1,0 +1,30 @@
+
+
+<style>
+    .videogular-container video {
+        width: 100%;
+        margin: auto;
+    }
+</style>
+
+<br>
+<h2 class="text-center">About Tourgoat</h2>
+
+
+<div class="container pagination-centered" style="width: 85%">
+
+    <div class=" panel">
+        <div class="panel-body">
+
+            <div ng-controller="becomeTourguideCtrl" class="videogular-container" >
+                <videogular vg-theme="config.theme" >
+                    <vg-media vg-src="config.sources" vg-native-controls="config.useNativeControls">
+                    </vg-media>
+                    <!--<vg-poster vg-url='config.posterImage' ></vg-poster>-->
+
+                </videogular>
+            </div>
+        </div> 
+    </div> 
+
+</div>

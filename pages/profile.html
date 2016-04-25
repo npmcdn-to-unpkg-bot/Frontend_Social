@@ -340,6 +340,7 @@
                                         <dt>Place with experience</dt><dd>{{knownCities|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>
+                                         <dt>Availability:</dt><dd>{{user.tourguideAvailability.monday === true ? "Mon," : ""}} {{user.tourguideAvailability.tuesday === true ? " Tues," : ""}} {{user.tourguideAvailability.wednesday === true ? " Wed," : ""}} {{user.tourguideAvailability.thursday === true ? " Thurs," : ""}} {{user.tourguideAvailability.friday === true ? " Fri," : ""}} {{user.tourguideAvailability.saturday === true ? " Sat," : ""}} {{user.tourguideAvailability.sunday === true ? " Sun," : ""}}</dd>
                                     </dl>
                                 </div>
                             </article>
@@ -462,7 +463,7 @@
 
                                 <h2>Personal Details</h2>
                                 <!--<fieldset ng-disabled="facebookAndGoogleUser">-->
-                                <div class="col-sm-9 no-padding no-float">
+                                <div class="col-sm-11 no-padding no-float">
                                     <div class="row ">
                                         <div class="col-sms-6 col-sm-6 form-group">
                                             <label for="firstName" class="control-label">First Name</label>
@@ -1111,6 +1112,35 @@
                                             </select>
 
                                         </div>
+                                        
+
+ <div  class="col-sms-6 col-sm-6 form-group">
+                                            <label for="selectYear" class="control-label">Select your availability</label>
+
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.monday" type="checkbox" id="inlineCheckbox1" value="option1"> Mon
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.tuesday" type="checkbox" id="inlineCheckbox2" value="option2"> Tues
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.wednesday" type="checkbox" id="inlineCheckbox3" value="option3"> Wed
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.thursday" type="checkbox" id="inlineCheckbox4" value="option3"> Thurs
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.friday" type="checkbox" id="inlineCheckbox5" value="option3"> Fri
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.saturday" type="checkbox" id="inlineCheckbox6" value="option3"> Sat
+                                            </label>
+                                            <label class="checkbox-inline">
+                                                <input ng-model="user.tourguideAvailability.sunday" type="checkbox" id="inlineCheckbox7" value="option3"> Sun
+                                            </label>
+
+                                        </div>
+                              
                                     </div> 
                                   
                                <hr>
