@@ -17,16 +17,16 @@ var app = angular.module('MyApp')
                             //set date for profile edit page 
                             $scope.fillDate($scope.user.dateOfBirth);
                             //Here is to concat the lunguge list before display on profile page
-                            $scope.languge = "";
+                            $scope.language = "";
                             for (var i = 0; i < $scope.user.languages.length; i++) {
                                 if (i === 0) {
-                                    $scope.languge = $scope.languge + $scope.user.languages[i].language;
+                                    $scope.language = $scope.language + $scope.user.languages[i].language;
                                 } else if (i === 3) {
-                                    $scope.languge = $scope.languge + "... ";
+                                    $scope.language = $scope.language + "... ";
                                     break;
                                 }
                                 else {
-                                    $scope.languge = $scope.languge + ", " + $scope.user.languages[i].language;
+                                    $scope.language = $scope.language + ", " + $scope.user.languages[i].language;
                                 }
                             }
 
@@ -237,7 +237,7 @@ var app = angular.module('MyApp')
                 }
             };
 
-            //for languge add and removed 
+            //for language add and removed 
             function Model() {
                 this.language = null;
                 this.proficiency = null;

@@ -331,12 +331,12 @@
                                         <dt>Date of birth:</dt><dd>{{user.dateOfBirth|date:'MM/dd/yyyy'|| "requireds field"}}</dd>
                                         <dt>phone number:</dt><dd>{{user.address.phone === '' ? "requireds field" : "+" + user.address.countryCode + "-" + user.address.phone}}</dd>
                                         <dt>Address 1:</dt><dd>{{user.address.streetAddress1|| "requireds field"}}</dd>
-                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2|| "requireds field"}}</dd>
+                                        <dt>Address 2:</dt><dd>{{user.address.streetAddress2||  "N/A"}}</dd>
                                         <dt>Town / City:</dt><dd>{{user.address.city|| "requireds field"}}</dd>
                                         <dt>State:</dt><dd>{{user.address.states === 'Other' ? user.address.otherState : user.address.states|| "requireds field"}}</dd>
                                         <dt>ZIP code / Postal / Region:</dt><dd>{{user.address.zipCode|| "requireds field"}}</dd>
                                         <dt>Country:</dt><dd>{{user.address.country|| "requireds field"}}</dd>
-                                        <dt>Languages:</dt><dd>{{Language|| "requireds field"}}</dd>
+                                        <dt>Languages:</dt><dd>{{language|| "requireds field"}}</dd>
                                         <dt>Place with experience</dt><dd>{{knownCities|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>

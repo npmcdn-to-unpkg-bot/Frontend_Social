@@ -1,7 +1,7 @@
 var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl(Account, $rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl( $auth, Account, $rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
     //this is make display on home page content 
     $rootScope.homePageContent = false;
     $scope.spinner = true;
@@ -30,7 +30,8 @@ function AngularWayChangeDataCtrl(Account, $rootScope, $location, Account, toast
                 if ($scope.user.userRole === "admin" || $scope.user.userRole === "superadmin") {
 
                 } else {
-                    $location.path('/profile');
+                       $auth.logout();
+                    $location.path('/user_admin');
                 }
                 $rootScope.userName = $scope.user.firstName;
             }).catch(function (response) {
