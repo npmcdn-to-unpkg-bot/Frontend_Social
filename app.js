@@ -136,6 +136,18 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
         controller: 'aboutusCtrl'
 
 
+    }).state('contactus', {
+        url: '/contactus',
+        templateUrl: 'pages/contact-us.html',
+        controller: 'contactCtrl'
+
+
+    }).state('coming-soon', {
+        url: '/coming-soon',
+        templateUrl: 'pages/coming-soon.html',
+//        controller: 'contactCtrl'
+
+
     });
 
     $urlRouterProvider.otherwise('/');
