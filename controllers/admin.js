@@ -1,7 +1,7 @@
 var app = angular.module('MyApp');
 app.controller('AngularWayChangeDataCtrl', AngularWayChangeDataCtrl);
 
-function AngularWayChangeDataCtrl( $auth, Account, $rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
+function AngularWayChangeDataCtrl($auth, Account, $rootScope, $location, Account, toastr, $scope, $http, DTOptionsBuilder, DTColumnDefBuilder) {
     //this is make display on home page content 
     $rootScope.homePageContent = false;
     $scope.spinner = true;
@@ -24,13 +24,43 @@ function AngularWayChangeDataCtrl( $auth, Account, $rootScope, $location, Accoun
         }
     };
 
-    Account.getProfile()
+    Account.getProfile(Account.getCurrentUrl())
             .then(function (response) {
                 $scope.user = response.data;
-                if ($scope.user.userRole === "admin" || $scope.user.userRole === "superadmin") {
+                if ($scope.user.userRole === "admin" || $scope.user.userRole === "super_admin") {
+                    //get users  list
+                    Account.getUserList(Account.getCurrentUrl())
+                            .then(function (response) {
+                                $scope.filtered = [];
+                                vm.users = response.data;
+                                $scope.userList = response.data;
+                                $scope.spinner = false;
+                                if ($scope.user.userRole === "admin") {
+                                    angular.forEach($scope.userList, function (item) {
+                                        if (item.userRole === 'super_admin') {
 
+                                        } else {
+                                            $scope.filtered.push(item);
+                                        }
+                                        if ($scope.filtered.length !== 0) {
+                                            vm.users = $scope.filtered;
+                                            $scope.userList = $scope.filtered;
+                                        }
+                                    });
+                                }
+
+                            }).catch(function (response) {
+                        toastr.error('Unable to get Users list');
+                    });
+                    //get users count
+                    Account.getUserCount(Account.getCurrentUrl())
+                            .then(function (response) {
+                                $scope.tourGuideCount = Number(response.data);
+                            }).catch(function (response) {
+                        toastr.error('Unable to get Tou Guide List');
+                    });
                 } else {
-                       $auth.logout();
+                    $auth.logout();
                     $location.path('/user_admin');
                 }
                 $rootScope.userName = $scope.user.firstName;
@@ -38,40 +68,28 @@ function AngularWayChangeDataCtrl( $auth, Account, $rootScope, $location, Accoun
         toastr.error('The user name or password is incorrect');
     });
 
-    $http.get(getCurrentUrl() + '/getUser').success(function (data) {
-        vm.users = data;
-        $scope.userList = data;
-        $scope.spinner = false;
-    }).error(function (data, status) {
-        toastr.error('Unable to get User list');
-    });
-
-    $http.get(getCurrentUrl() + '/getUserCount').success(function (data) {
-        $scope.tourGuideCount = Number(data);
-
-    }).error(function (data, status) {
-        toastr.error('Unable to get Tou Guide List');
-    });
-
     $scope.updateUserRole = function (id, role) {
-        $http.get(getCurrentUrl() + '/updateUserRole' + '?id=' + id + '&role=' + role)
 
+        Account.updateUserRole(Account.getCurrentUrl(), id, role)
                 .then(function (response) {
-
                     toastr.success('Success! you have successfully update user role');
                 }).catch(function (response) {
             $scope.disableBtn = false;
-
+            toastr.error('Error! Update was not made');
         });
+
     };
 
     $scope.updateUserAccount = function (id) {
-        $http.get(getCurrentUrl() + '/updateAccountStatus' + '?id=' + id)
+
+        Account.updateUserAccount(Account.getCurrentUrl(), id)
                 .then(function (response) {
                     toastr.success('Success! you have successfully update user account status');
                 }).catch(function (response) {
             $scope.disableBtn = false;
+            toastr.error('Error! Update was not made');
         });
+
     };
 
     vm.dtOptions = DTOptionsBuilder.newOptions().withPaginationType('full_numbers');

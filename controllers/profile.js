@@ -1,13 +1,14 @@
 var app = angular.module('MyApp')
         .controller('ProfileCtrl', function ($scope, $auth, toastr, Account, $rootScope, $location, $http) {
-            //Home page content is display only for home page 
+            
+              //Home page content is display only for home page 
             $rootScope.homePageContent = false;
             //user profile pictuer and user name global var
             
             $rootScope.userPictuer = "";
             $rootScope.userName = "";
             $scope.getProfile = function () {
-                Account.getProfile()
+                Account.getProfile(Account.getCurrentUrl())
                         .then(function (response) {
                             $scope.user = response.data;
                             $rootScope.emailDiv = false;
@@ -139,7 +140,7 @@ var app = angular.module('MyApp')
             $scope.updateProfile = function () {
                 $scope.checkDate();
                 $scope.user.dateOfBirth = $scope.birthDate;
-                Account.updateProfile($scope.user)
+                Account.updateProfile(Account.getCurrentUrl(), $scope.user)
                         .then(function () {
                             $location.path('/profile');
                             toastr.success('Profile has been updated');
@@ -451,7 +452,7 @@ var app = angular.module('MyApp')
             });
 
             $scope.passwordUpdate = function () {
-                Account.passwordUpdate($scope.user.email, $scope.oldPassword, $scope.confirmNewPassword)
+                Account.passwordUpdate(Account.getCurrentUrl(), $scope.user.email, $scope.oldPassword, $scope.confirmNewPassword)
                         .then(function () {
                             $location.path('/profile');
                             $scope.getProfile();
@@ -478,7 +479,7 @@ var app = angular.module('MyApp')
                     $scope.oldEmailModified = true;
                     return;
                 } else {
-                    Account.emailUpdate($scope.oldEmail, $scope.newEmail)
+                    Account.emailUpdate(Account.getCurrentUrl(),$scope.oldEmail, $scope.newEmail)
                             .then(function () {
                                 $location.path('/profile');
                                 $scope.getProfile();

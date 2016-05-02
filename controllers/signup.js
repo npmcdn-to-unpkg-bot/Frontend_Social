@@ -132,7 +132,7 @@ var app = angular.module('MyApp')
             $modalInstance.dismiss('cancel');
          };
          $scope.submit = function (params) {
-                    Account.sendMessage($scope.emailAddress,params.subject,params.message)
+                    Account.sendMessage(Account.getCurrentUrl(),$scope.emailAddress,params.subject,params.message)
                         .then(function () {
                             toastr.success('Account activation request sent, support team will contact you!');
                               $location.path('/');

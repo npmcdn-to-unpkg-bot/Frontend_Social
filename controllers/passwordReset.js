@@ -11,7 +11,7 @@ var app = angular.module('MyApp')
 
             $scope.passwordReset = function (email) {
                 $scope.resetBtnLoading = true;
-                Account.passwordReset(email)
+                Account.passwordReset(Account.getCurrentUrl(), email)
                         .then(function () {
                             $location.path('/passwordReset');
                             $scope.emailAddress = email;
@@ -41,7 +41,7 @@ var app = angular.module('MyApp')
 
             $scope.changePassword = function () {
                 $scope.resetBtnLoading = true;
-                Account.newPassword($scope.emailAddress, $scope.confirmPassword)
+                Account.newPassword(Account.getCurrentUrl(),$scope.emailAddress, $scope.confirmPassword)
                         .then(function () {
                             $scope.resetBtnLoading = false;
                             $location.path('/login');
