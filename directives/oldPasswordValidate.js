@@ -11,7 +11,7 @@ angular.module('MyApp')
     link : function($scope, element, attrs, ngModel) {
       ngModel.$asyncValidators.oldPasswordMatch = function(viewValue) {
           $scope.oldPassword=ngModel.$viewValue;
-           Account.oldPasswordCheck($scope.user.email,viewValue)
+           Account.oldPasswordCheck(Account.getCurrentUrl(), $scope.user.email,viewValue)
                         .then(function () {
                           return true;  
                         })

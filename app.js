@@ -68,7 +68,8 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
             })
             .state('term', {
                 url: '/term',
-                templateUrl: 'pages/term.html'
+                templateUrl: 'pages/term.html',
+                controller: 'termCtrl'
 
             }).state('becometourguide', {
         url: '/becometourguide',
