@@ -256,6 +256,7 @@ app.run(function (defaultErrorMessageResolver) {
         errorMessages['compareTo'] = 'Password confirmation does not match Password';
         errorMessages['passwordRequired'] = 'Password is required';
         errorMessages['badAdderss'] = 'Please enter a valid address';
+        errorMessages['subjectMsg'] = 'Please enter max of 100 characters';
         errorMessages['aboutYouErrMsg'] = 'Please enter max of 500 characters';
         errorMessages['minAge'] = 'Please enter a valid birthday';
         errorMessages['maxAge'] = 'You Do Not meet the  minimum age requirement of 18 years';

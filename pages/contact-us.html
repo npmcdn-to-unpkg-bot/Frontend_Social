@@ -50,27 +50,31 @@
                 </div>
                 <div class="col-sm-8 col-md-9">
                     <div class="travelo-box">
-                        <form class="contact-form" action="" method="post">
+                        <form class="contact-form" method="post">
                             <h4 class="box-title">Send us a Message</h4>
                             <div class="row form-group">
                                 <div class="col-xs-3">
                                     <label>First Name</label>
-                                    <input type="text" name="name" class="input-text full-width" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" required="">
+                                    <input type="text" name="name" ng-model="firstName" class="input-text full-width" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" required="">
                                 </div>
                                 <div class="col-xs-3">
                                     <label>Last Name</label>
-                                    <input type="text" name="name" class="input-text full-width" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" required="">
+                                    <input type="text" name="name" ng-model="lastName" class="input-text full-width" maxlength="30" ng-pattern-err-type="onlyText" ng-pattern="/^[a-zA-Z]+$/" required="">
                                 </div>
                                 <div class="col-xs-6">
                                     <label>Your Email</label>
-                                    <input type="text" name="email" class="input-text full-width" required="" maxlength="60" >
+                                    <input type="text" name="email" ng-model="emailAddress" class="input-text full-width" required="" maxlength="60" >
                                 </div>
                             </div>
+                             <div class="form-group">
+                                    <label>Subject</label>
+                                    <input type="text" name="name" ng-model="subject" class="input-text full-width" placeholder="Subject" maxlength="60" ng-pattern-err-type="subjectMsg" ng-pattern="/^[ \w#-.,]+$/" required="">
+                                </div>
                             <div class="form-group">
                                 <label>Your Message</label>
-                                <textarea name="message" rows="6" class="input-text full-width" placeholder="write message here" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-.,]+$/" required=""></textarea>
+                                <textarea name="message" ng-model="message" rows="6" class="input-text full-width" placeholder="Write message here" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-.,]+$/" required=""></textarea>
                             </div>
-                            <button type="submit" class="btn-large full-width">SEND MESSAGE</button>
+                            <button type="submit" class="btn-large full-width" ng-click="sendMessage()">SEND MESSAGE</button>
                         </form>
                     </div>
                 </div>

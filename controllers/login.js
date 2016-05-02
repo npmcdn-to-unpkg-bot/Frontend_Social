@@ -39,7 +39,8 @@ angular.module('MyApp')
                             if (!response.data.emailVerified) {
                                 $scope.verifyEmail();
                             } else if(response.data.emailVerified&&!response.data.active){
-                                $scope.inactiveUser();
+                                $scope.inactiveUser = response.data;
+                                $scope.logoutUser();
                             }else{
                                 $location.path('/profile');
                                 toastr.success('You have successfully signed in');
