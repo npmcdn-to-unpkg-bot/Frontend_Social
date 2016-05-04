@@ -147,6 +147,11 @@
 
                                                 <td>
                                                     <select ng-model="userList[$index].userRole">
+                                                        <option ng-repeat="option in optionList" value="{{option.val}}">
+                                                            {{option.show}}
+                                                        </option>
+                                                    </select>
+<!--                                                    <select ng-model="userList[$index].userRole">
                                                         <option value="">Select Role</option>
                                                         <option value="super_admin">Super Admin</option>
                                                         <option value="admin">Admin</option>
@@ -154,7 +159,8 @@
                                                         <option value="tour_guide">Tour Guide</option>
                                                         <option value="tourist">Tourist</option>
 
-                                                    </select></td>
+                                                    </select>-->
+                                                </td>
                                                 <td >
 
                                                     <button type="button" ng-click="admin.changeUserRole($index, userList[$index].userRole)" class="btn btn-danger"><i class="fa fa-lg fa-edit"></i></button>
