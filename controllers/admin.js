@@ -11,6 +11,37 @@ function AngularWayChangeDataCtrl($auth, Account, $rootScope, $location, Account
     $scope.userRole = "";
     $scope.tourGuideCount = 0;
 
+    $scope.optionList = [{
+            val: "admin",
+            show: 'Admin',
+            Selected: false
+        }, {
+            val: "super_admin",
+            show: 'Super Admin',
+            Selected: false
+        }, {
+            val: "tour_guide",
+            show: 'Tour Guide',
+            Selected: false
+        }, {
+            val: "tourist",
+            show: 'Tourist',
+            Selected: false
+        }];
+
+
+    var optionList_admin = [{
+            val: "tour_guide",
+            show: 'Tour Guide',
+            Selected: false
+        }, {
+            val: "tourist",
+            show: 'Tourist',
+            Selected: false
+        }];
+
+
+
     var getCurrentUrl = function () {
         if (window.location.host === 'localhost:8383') {
             //for local
@@ -36,8 +67,9 @@ function AngularWayChangeDataCtrl($auth, Account, $rootScope, $location, Account
                                 $scope.userList = response.data;
                                 $scope.spinner = false;
                                 if ($scope.user.userRole === "admin") {
+                                    $scope.optionList = optionList_admin;
                                     angular.forEach($scope.userList, function (item) {
-                                        if (item.userRole === 'super_admin') {
+                                        if (item.userRole === 'super_admin' || item.userRole === 'admin') {
 
                                         } else {
                                             $scope.filtered.push(item);
