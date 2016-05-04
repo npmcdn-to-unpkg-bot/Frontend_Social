@@ -4,7 +4,7 @@ angular.module('MyApp')
          //this is make display on home page content 
             $rootScope.homePageContent = false;
             $scope.sendMessage = function () {   
-                Account.sendRequest($scope.firstName,$scope.lastName,$scope.emailAddress,$scope.subject,$scope.message)
+                Account.sendRequest(Account.getCurrentUrl(), $scope.firstName,$scope.lastName,$scope.emailAddress,$scope.subject,$scope.message)
                         .then(function () {
                             toastr.success('Message Sent, we will reach you soon!');
                               $location.path('/');

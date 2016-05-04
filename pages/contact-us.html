@@ -50,7 +50,7 @@
                 </div>
                 <div class="col-sm-8 col-md-9">
                     <div class="travelo-box">
-                        <form class="contact-form" method="post">
+                        <form class="contact-form" method="post" ng-submit="sendMessage()">
                             <h4 class="box-title">Send us a Message</h4>
                             <div class="row form-group">
                                 <div class="col-xs-3">
@@ -74,7 +74,7 @@
                                 <label>Your Message</label>
                                 <textarea name="message" ng-model="message" rows="6" class="input-text full-width" placeholder="Write message here" ng-pattern-err-type="aboutYouErrMsg" ng-pattern="/^[ \w#-.,]+$/" required=""></textarea>
                             </div>
-                            <button type="submit" class="btn-large full-width" ng-click="sendMessage()">SEND MESSAGE</button>
+                            <button type="submit" class="btn-large full-width" >SEND MESSAGE</button>
                         </form>
                     </div>
                 </div>

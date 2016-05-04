@@ -79,7 +79,7 @@ angular.module('MyApp')
             //resend email verification 
             $scope.resendEmail = function () {
                 $rootScope.emailDiv = true;
-                Account.resendEmail($scope.email)
+                Account.resendEmail(Account.getCurrentUrl(),$scope.email)
                         .then(function () {
                             $rootScope.emailDiv = false;
                             $location.path('/login');
@@ -135,7 +135,7 @@ angular.module('MyApp')
             $modalInstance.dismiss('cancel');
          };
          $scope.submit = function (params) {
-                    Account.sendMessage($scope.emailAddress,params.subject,params.message)
+                    Account.sendMessage(Account.getCurrentUrl(), $scope.emailAddress,params.subject,params.message)
                         .then(function () {
                             toastr.success('Account activation request sent, support team will contact you!');
                               $location.path('/');

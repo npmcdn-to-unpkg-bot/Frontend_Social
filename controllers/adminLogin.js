@@ -51,7 +51,7 @@ angular.module('MyApp')
             //resend email verification 
             $scope.resendEmail = function () {
                 $rootScope.emailDiv = true;
-                Account.resendEmail($scope.email)
+                Account.resendEmail(Account.getCurrentUrl(), $scope.email)
                         .then(function () {
                             $rootScope.emailDiv = false;
                             $location.path('/login');
