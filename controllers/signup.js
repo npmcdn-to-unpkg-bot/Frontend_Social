@@ -126,7 +126,7 @@ var app = angular.module('MyApp')
    $scope.openContactForm = function() {
     $rootScope.emailAddress=$scope.inactiveUser.emailAddress;
    var modalInstance = $modal.open({
-      templateUrl: 'pages/contact_us.html',
+      templateUrl: 'pages/activationRequest.html',
      controller:function($modalInstance ,$scope){
      $scope.close = function () {
             $modalInstance.dismiss('cancel');
