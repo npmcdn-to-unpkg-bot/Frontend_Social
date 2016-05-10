@@ -8,7 +8,7 @@ angular.module('MyApp')
                     } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
                         //for cloud
                         return 'http://tourgoat.cfapps.io';
-                    } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com') {
+                    } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com' || window.location.host === 'tourgoat.com') {
                         //for cloud
                         return 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com';
                     }

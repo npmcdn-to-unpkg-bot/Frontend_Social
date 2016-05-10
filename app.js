@@ -189,7 +189,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
             redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
         });
     }
-    if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com') {
+    if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com' || window.location.host === 'tourgoat.com') {
         // cloud prod
         $authProvider.baseUrl = 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/';
         $authProvider.facebook({
