@@ -1339,7 +1339,8 @@ img.full-width {
 }
 
 .global-map-area {
-  background: url("/images/homeSlide/sample6.jpg") no-repeat;
+  /*background: url("/images/homeSlide/sample6.jpg") no-repeat;*/
+    background-color: #3c4a59;
 }
 .global-map-area .description p {
   color: #7c9abd;
