@@ -1,5 +1,5 @@
 var app = angular.module('MyApp')
-        .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope,$modal,Account) {
+        .controller('SignupCtrl', function ($scope, $location, $auth, toastr, $rootScope,$modal,Account,$stateParams) {
               //Home page content is display only for home page 
             $rootScope.homePageContent = false;
             $scope.active = true;
@@ -8,6 +8,7 @@ var app = angular.module('MyApp')
             $scope.birthYear = "";
             $scope.birthDate = new Date();
             $scope.dateOfBirthrequired = false;
+            $scope.tourguide = $stateParams.tourguide;
             $scope.checkDate = function () {
                 if ($scope.birthYear !== "" && $scope.birthDay !== "" && $scope.birthMonth !== "") {
                     $scope.dateOfBirthrequired = false;
@@ -43,6 +44,9 @@ var app = angular.module('MyApp')
                 $scope.disabledGoogleBtn = true;
                 $scope.checkDate();
                 if (!$scope.dateOfBirthrequired) {
+                   if($scope.tourguide){
+                     $scope.user.userRole="tour_guide";          
+                    }
                     $scope.user.dateOfBirth = $scope.birthDate;
                     $auth.signup($scope.user)
                             .then(function () {

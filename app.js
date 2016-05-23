@@ -51,6 +51,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
                 controller: 'SignupCtrl',
                 resolve: {
                     skipIfLoggedIn: skipIfLoggedIn
+                },
+                params: {
+                    tourguide: null
                 }
             })
             .state('logout', {

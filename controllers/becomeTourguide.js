@@ -1,8 +1,11 @@
 
 angular.module('MyApp')
-  .controller('becomeTourguideCtrl', function ($scope, $sce, $rootScope) {
+  .controller('becomeTourguideCtrl', function ($scope, $sce, $rootScope,$state) {
 //         //this is make display on home page content 
             $rootScope.homePageContent = false;
+            $scope.signUpTourGuide= function () {
+                $state.go('signup',{tourguide:'true'});
+            }
 //    $scope.config = {
 //      sources: [
 //          {src: $sce.trustAsResourceUrl('http://static.videogular.com/assets/videos/videogular.mp4'), type: 'video/mp4'}
