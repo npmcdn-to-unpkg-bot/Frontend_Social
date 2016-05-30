@@ -51,6 +51,9 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
                 controller: 'SignupCtrl',
                 resolve: {
                     skipIfLoggedIn: skipIfLoggedIn
+                },
+                params: {
+                    tourguide: null
                 }
             })
             .state('logout', {
@@ -189,7 +192,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
             redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
         });
     }
-    if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' || window.location.host === 'http://tourgoat.com' || window.location.host === 'http://www.tourgoat.com' || window.location.host === 'tourgoat.com') {
+    if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' ) {
         // cloud prod
         $authProvider.baseUrl = 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com/';
         $authProvider.facebook({
@@ -205,7 +208,22 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
             redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
         });
     }
-
+ if (  window.location.host === 'www.tourgoat.com' || window.location.origin === 'https://www.tourgoat.com') {
+        // cloud prod
+        $authProvider.baseUrl = 'https://afro-mart.com/';
+        $authProvider.facebook({
+            clientId: '959764637427221',
+            redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
+            url: 'https://afro-mart.com/auth/facebook',
+            scope: ['email', 'user_birthday']
+//                    scope: ['email']
+        });
+        $authProvider.google({
+            clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
+            url: 'https://afro-mart.com/auth/google',
+            redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
+        });
+    }
 
 
     function skipIfLoggedIn($q, $auth) {
