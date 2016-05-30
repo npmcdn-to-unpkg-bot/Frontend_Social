@@ -176,19 +176,19 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
 
         });
     }
-    if (window.location.host === 'app-tourgoat.rhcloud.com') {
+    if (window.location.host === 'qa-tourgoat.rhcloud.com') {
         // cloud QA
-        $authProvider.baseUrl = 'http://tourgoat.cfapps.io/';
+        $authProvider.baseUrl = 'http://qatourgoat.cfapps.io';
         $authProvider.facebook({
             clientId: '959764637427221',
             redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/',
-            url: 'http://tourgoat.cfapps.io/auth/facebook',
+            url: 'http://qatourgoat.cfapps.io/auth/facebook',
             scope: ['email', 'user_birthday']
 //                    scope: ['email']
         });
         $authProvider.google({
             clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
-            url: 'http://tourgoat.cfapps.io/auth/google',
+            url: 'hhttp://qatourgoat.cfapps.io/auth/google',
             redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
         });
     }
