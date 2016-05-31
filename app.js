@@ -177,6 +177,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
         });
     }
     if (window.location.host === 'qa-tourgoat.rhcloud.com') {
+        
         // cloud QA
         $authProvider.baseUrl = 'http://qatourgoat.cfapps.io/';
         $authProvider.facebook({
