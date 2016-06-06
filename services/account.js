@@ -64,6 +64,9 @@ angular.module('MyApp')
                 }, updateUserAccount: function (url, id) {
                     return  $http.get(url + '/updateAccountStatus' + '?id=' + id);
 
+                }, updateUserRole: function (url) {
+                   return $http.get(url + '/updateUserRoleTourguide');
+
                 }
 
             };
