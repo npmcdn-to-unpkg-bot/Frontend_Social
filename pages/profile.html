@@ -342,6 +342,7 @@
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>
                                          <dt>Availability:</dt><dd>{{user.tourguideAvailability.monday === true ? "Mon," : ""}} {{user.tourguideAvailability.tuesday === true ? " Tues," : ""}} {{user.tourguideAvailability.wednesday === true ? " Wed," : ""}} {{user.tourguideAvailability.thursday === true ? " Thurs," : ""}} {{user.tourguideAvailability.friday === true ? " Fri," : ""}} {{user.tourguideAvailability.saturday === true ? " Sat," : ""}} {{user.tourguideAvailability.sunday === true ? " Sun," : ""}}</dd>
+                                          <dt>Your service price:</dt><dd>{{user.price  || "requireds field"}} {{user.price === null ? "" : "$"}} </dd>
                                     </dl>
                                 </div>
                             </article>
@@ -1143,6 +1144,17 @@
                                         </div>
                               
                                     </div> 
+                                   <div class="row">
+
+                                       <div  class="col-sms-6 col-sm-6 form-group">
+                                           <label for="price" class="control-label">Your service Price per hours per person in USD?</label>
+                                           <input type="number" maxlength="6" class="full-width form-control input-text" id="price" placeholder="USD"  ng-model="user.price" options="options" details="details" required />
+
+                                       </div>
+
+
+                                   </div> 
+                                    
                                   
                                <hr>
                                 <div class="from-group">
