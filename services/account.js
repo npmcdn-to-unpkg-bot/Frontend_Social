@@ -5,9 +5,9 @@ angular.module('MyApp')
                     if (window.location.host === 'localhost:8383') {
                         //for local
                         return 'http://localhost:8080';
-                    } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
+                    } else if (window.location.host === 'qa-tourgoat.rhcloud.com') {
                         //for cloud
-                        return 'http://tourgoat.cfapps.io';
+                        return 'http://qatourgoat.cfapps.io';
                     } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com') {
                         //for cloud
                         return 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com';
@@ -63,6 +63,9 @@ angular.module('MyApp')
                     return  $http.get(url + '/updateUserRole' + '?id=' + id + '&role=' + role);
                 }, updateUserAccount: function (url, id) {
                     return  $http.get(url + '/updateAccountStatus' + '?id=' + id);
+
+                }, updateUserRole: function (url) {
+                   return $http.get(url + '/updateUserRoleTourguide');
 
                 }
 

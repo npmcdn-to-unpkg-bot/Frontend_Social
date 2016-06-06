@@ -46,9 +46,9 @@ function AngularWayChangeDataCtrl($auth, Account, $rootScope, $location, Account
         if (window.location.host === 'localhost:8383') {
             //for local
             return 'http://localhost:8080';
-        } else if (window.location.host === 'app-tourgoat.rhcloud.com') {
+        } else if (window.location.host === 'qa-tourgoat.rhcloud.com') {
             //for cloud
-            return 'http://tourgoat.cfapps.io';
+            return 'http://qatourgoat.cfapps.io';
         } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com' ) {
             //for cloud
             return 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com';

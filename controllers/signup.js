@@ -96,12 +96,22 @@ var app = angular.module('MyApp')
                 $scope.swapSocialLoginLoading(provider, true);
                 $auth.authenticate(provider)
                           .then(function () {
-                            toastr.success('You have successfully signed in with ' + provider);
-                            $location.path('/profile');
-                            $scope.swapSocialLoginLoading(provider, false);
-                        
+                     if($scope.tourguide!=null&&$scope.tourguide){
+                          Account.updateUserRole(Account.getCurrentUrl())
+                        .then(function () {
+                           toastr.success('You have successfully signed in with ' + provider);
+                           $location.path('/profile');
+                           $scope.swapSocialLoginLoading(provider, false);
                         })
                         .catch(function (response) {
+                            $location.path('/');
+                            toastr.error(response.data, response.status);
+                        });        
+                      } 
+                      toastr.success('You have successfully signed in with ' + provider);
+                           $location.path('/profile');
+                           $scope.swapSocialLoginLoading(provider, false);
+                     }).catch(function (response) {
                             if(!response.data.active){
                                 $scope.inactiveUser = response.data;
                                 $scope.active = false;

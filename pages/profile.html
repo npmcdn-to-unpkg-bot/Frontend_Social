@@ -341,8 +341,9 @@
                                         <dt>Place with experience</dt><dd>{{knownCities|| "requireds field"}}</dd>
                                         <dt>Mode of transportation:</dt><dd>{{modeoftransportation|| "requireds field"}}</dd>
                                         <dt>Tour guiding experience:</dt><dd>{{user.tourExperienceOfyears +" Years"|| "requireds field"}}</dd>
-                                         <dt>Availability:</dt><dd>{{user.tourguideAvailability.monday === true ? "Mon," : ""}} {{user.tourguideAvailability.tuesday === true ? " Tues," : ""}} {{user.tourguideAvailability.wednesday === true ? " Wed," : ""}} {{user.tourguideAvailability.thursday === true ? " Thurs," : ""}} {{user.tourguideAvailability.friday === true ? " Fri," : ""}} {{user.tourguideAvailability.saturday === true ? " Sat," : ""}} {{user.tourguideAvailability.sunday === true ? " Sun," : ""}}</dd>
-                                          <dt>Your service price:</dt><dd>{{user.price  || "requireds field"}} {{user.price === null ? "" : "$"}} </dd>
+                                        <dt>Availability:</dt><dd>{{user.tourguideAvailability.monday === true ? "Mon," : ""}} {{user.tourguideAvailability.tuesday === true ? " Tues," : ""}} {{user.tourguideAvailability.wednesday === true ? " Wed," : ""}} {{user.tourguideAvailability.thursday === true ? " Thurs," : ""}} {{user.tourguideAvailability.friday === true ? " Fri," : ""}} {{user.tourguideAvailability.saturday === true ? " Sat," : ""}} {{user.tourguideAvailability.sunday === true ? " Sun," : ""}}</dd>
+                                        <dt>Your service price:</dt><dd>{{user.price  || "requireds field"}} {{user.price === null ? "" : "$"}} </dd>
+
                                     </dl>
                                 </div>
                             </article>
@@ -1157,6 +1158,7 @@
                                     
                                   
                                <hr>
+                               
                                 <div class="from-group">
                                     <button   style="margin-right: 8px" type="submit" class="btn-medium col-sms-6 col-sm-4">UPDATE</button>
                                     <button  type="button" id="cancel" class="btn-medium col-sms-6 col-sm-4">CANCEL</button> 
