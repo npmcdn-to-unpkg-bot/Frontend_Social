@@ -189,7 +189,7 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
         });
         $authProvider.google({
             clientId: '1063684996500-2gk0ejdiq02b68thlnggavb8arfmtobu.apps.googleusercontent.com',
-            url: 'hhttp://qatourgoat.cfapps.io/auth/google',
+            url: 'http://qatourgoat.cfapps.io/auth/google',
             redirectUri: (window.location.origin || window.location.protocol + '//' + window.location.host) + '/'
         });
     }
