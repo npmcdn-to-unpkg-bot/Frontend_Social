@@ -1,9 +1,23 @@
 
 angular.module('MyApp')
-        .controller('listViewCtrl', function ($scope, $rootScope, $window, $http, $rootScope) {
+        .controller('listViewCtrl', function (SearchData , $scope, $location, $rootScope, $window, $http, $rootScope, Account, toastr) {
 //            this is make display on home page content 
             $rootScope.homePageContent = false;
             //This script run home page slider
+            $scope.tourguideSeachList = SearchData.getSearchData();
+//             $scope.tourguideUserList =  null;
+//            $scope.tourguideList = function () {
+//                Account.getTourguideList(Account.getCurrentUrl())
+//                        .then(function (response) {
+//                            $scope.tourguideUserList = response.data;
+//                            $location.path('/list');
+////                    toastr.success('Success! you have successfully update user role');
+//                        }).catch(function (response) {
+//
+//                    toastr.error('Error! Please try again');
+//                });
+////
+//            };
 
             tjq(document).ready(function () {
                 tjq("#price-range").slider({

@@ -296,3 +296,19 @@ app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, 
                     $window.ga('send', 'pageview', {page: $location.path()});
                 });
     }]);
+
+
+app.factory('SearchData', function () {
+    var data = {
+        searchList: ''
+    };
+
+    return {
+        getSearchData: function () {
+            return data.searchList;
+        },
+        setSearchData: function (list) {
+            data.searchList = list;
+        }
+    };
+});
