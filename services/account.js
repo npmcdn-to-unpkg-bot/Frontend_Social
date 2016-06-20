@@ -65,12 +65,21 @@ angular.module('MyApp')
                     return  $http.get(url + '/updateAccountStatus' + '?id=' + id);
 
                 }, getTourguideList: function (url, address) {
+ 
+                                      return $http({
+                                              method: 'POST',
+                                                 url: url + '/search',
+                                             headers: {
+                                                     'Content-Type': 'application/json', /*or whatever type is relevant */
+                                                     'Accept': 'application/json' /* ditto */
+                                                      },
+                                                data:address/* You probably need to send some data if you plan to log in */
+    
+                                        });
 
-                   return  $http.get(url + '/search?city='+ address.city);
+              }
 
-                }
-
-            };
+            }
 
 
         });
