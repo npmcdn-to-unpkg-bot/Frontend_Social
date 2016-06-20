@@ -32,7 +32,7 @@ angular.module('MyApp')
 //                          
                             SearchData.setSearchData(response.data);
                             $location.path('/list');
-                            toastr.success('Success! user list  ');
+//                            toastr.success('Success! user list  ');
                         }).catch(function (response) {
 
                     toastr.error('Error! Please try again');
