@@ -191,31 +191,31 @@
                                 </ul>
                             </div>
                             <div class="cruise-list listing-style3 cruise">
-                                <article class="box">
+                                <div ng-repeat="tourguide in tourguideSeachList">
+                               
+                                   <article class="box">
                                     <figure class="col-sm-4">
-                                        <a title="" href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
+                                        <a title="" href="" class=""><img width="200" height="180" style="width: 200px; height: 180px" alt="" ng-src="{{tourguide.profileURL}}" ></a>
                                     </figure>
                                     <div class="details col-sm-8">
                                         <div class="clearfix">
-                                            <h4 class="box-title pull-left">Baja Mexico<small>4 nights</small></h4>
-                                            <span class="price pull-right"><small>from</small>$239</span>
+                                            <h4 class="box-title pull-left">{{tourguide.firstName}} {{tourguide.lastName}}<small>{{tourguide.address.city}} Area</small></h4>
+                                            <span class="price pull-right"><small>from</small>${{tourguide.price || 'images/profile/profile_Img.png'}}/hr</span>
                                         </div>
-                                        <div class="character clearfix">
-                                            <div class="col-xs-3 cruise-logo">
-                                                <img src="http://placehold.it/110x25" alt="" />
-                                            </div>
-                                            <div class="col-xs-4 date">
-                                                <i class="soap-icon-clock yellow-color"></i>
+                                        <div class="character ">
+
+                                            <div class="col-xs-8">
+                                                <!--<i class="soap-icon-clock yellow-color"></i>-->
                                                 <div>
-                                                    <span class="skin-color">Date</span><br>mon, Jan 26, 2014
+                                                    <span class="skin-color">{{tourguide.aboutYou}}</span>
                                                 </div>
                                             </div>
-                                            <div class="col-xs-5 departure">
+<!--                                            <div class="col-xs-5 departure">
                                                 <i class="soap-icon-departure yellow-color"></i>
                                                 <div>
                                                     <span class="skin-color">Departure</span><br>Los Angeles, miami, Florida
                                                 </div>
-                                            </div>
+                                            </div>-->
                                         </div>
                                         <div class="clearfix">
                                             <div class="review pull-left">
@@ -224,11 +224,13 @@
                                                 </div>
                                                 <span>270 reviews</span>
                                             </div>
-                                            <a href="#listDetail" class="button btn-small pull-right">select cruise</a>
+                                            <a href="#listDetail" class="button btn-small pull-right">select</a>
                                         </div>
                                     </div>
                                 </article>
-                                <article class="box">
+                                </div>
+                                
+<!--                                <article class="box">
                                     <figure class="col-sm-4">
                                         <a title="" href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
                                     </figure>
@@ -265,6 +267,7 @@
                                         </div>
                                     </div>
                                 </article>
+<!--   
                                 <article class="box">
                                     <figure class="col-sm-4">
                                         <a title="" href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
@@ -560,7 +563,7 @@
                                             <a href="cruise-detailed.html" class="button btn-small pull-right">select cruise</a>
                                         </div>
                                     </div>
-                                </article>
+                                </article>-->
                             </div>
                             <a href="#" class="uppercase full-width button btn-large">load more listing</a>
                         </div>

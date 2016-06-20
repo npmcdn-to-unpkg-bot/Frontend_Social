@@ -1,0 +1,166 @@
+{
+    "users": [
+        {
+            "firstName": "Super",
+            "lastName": "Admin",
+            "email": "admin@tourgoat.com",
+            "gender": "male",
+            "password": "password1",
+            "profileURL":"http://api.randomuser.me/portraits/men/1.jpg"
+            
+        },
+        {
+            "firstName": "Admin",
+            "lastName": "Admin",
+            "email": "info@tourgoat.com",
+            "gender": "male",
+            "password": "password1",
+            "profileURL":"http://api.randomuser.me/portraits/men/2.jpg"
+        }
+        ,
+        {
+            "firstName": "Seifu",
+            "lastName": "Zerihun",
+            "email": "seifu.zerihun@tourgoat.com",
+            "gender": "male",
+            "password": "password1",
+            "profileURL":"http://api.randomuser.me/portraits/men/35.jpg"
+        },
+        {
+            "firstName": "Fitsum",
+            "lastName": "Negussie",
+            "email": "fitsum.negussie@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/44.jpg"
+        },
+        {
+            "firstName": "weynishet",
+            "lastName": "Zula",
+            "email": "weynile@tourgoat.com",
+            "gender": "female",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/31.jpg"
+        },
+        {
+            "firstName": "Kadir",
+            "lastName": "Kira",
+            "email": "kadir.kira@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/32.jpg"
+        },
+        {
+            "firstName": "Katelyn",
+            "lastName": "Hurst",
+            "email": "katelynhurst@tourgoat.com",
+            "gender": "female",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/7.jpg"
+        },
+        {
+            "firstName": "Mcintyre",
+            "lastName": "Kira",
+            "email": "mcintyre.kira@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/8.jpg"
+        },
+        {
+            "firstName": "Martha",
+            "lastName": "Campbell",
+            "email": "martha.campbell@tourgoat.com",
+            "gender": "female",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/9.jpg"
+        },
+        {
+            "firstName": "Chapman",
+            "lastName": "Cunningham",
+            "email": "chapman.cunningham@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/10.jpg"
+        },
+        {
+            "firstName": "Gamble",
+            "lastName": "Acevedo",
+            "email": "gamble.acevedo@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/11.jpg"
+        },
+        {
+            "firstName": "Hale",
+            "lastName": "Gill",
+            "email": "hale.gill@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/12.jpg"
+        },
+        {
+            "firstName": "Whitney",
+            "lastName": "Lang",
+            "email": "whitney.lang@tourgoat.com",
+            "gender": "female",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/13.jpg"
+        },
+        {
+            "firstName": "Lindsay",
+            "lastName": "Gallagher",
+            "email": "lindsay.gallagher@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/14.jpg"
+        },
+        {
+            "firstName": "Janice",
+            "lastName": "Pate",
+            "email": "janice.pate@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/15.jpg"
+        },
+        {
+            "firstName": "Castillo",
+            "lastName": "Carey",
+            "email": "castillo.carey@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/16.jpg"
+        },
+        {
+            "firstName": "Foley",
+            "lastName": "Buck",
+            "email": "foley.buck@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/17.jpg"
+        },
+        {
+            "firstName": "Fitzgerald",
+            "lastName": "Ramsey",
+            "email": "fitzgerald.ramsey@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/18.jpg"
+        },
+        {
+            "firstName": "Warren",
+            "lastName": "Stark",
+            "email": "warren.stark@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/19.jpg"
+        },
+        {
+            "firstName": "Jeanne",
+            "lastName": "Bullock",
+            "email": "jeanne.bullock@tourgoat.com",
+            "gender": "male",
+            "password": "pass",
+            "profileURL":"http://api.randomuser.me/portraits/men/20.jpg"
+        }
+    ]
+}

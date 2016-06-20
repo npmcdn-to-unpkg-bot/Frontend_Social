@@ -64,12 +64,22 @@ angular.module('MyApp')
                 }, updateUserAccount: function (url, id) {
                     return  $http.get(url + '/updateAccountStatus' + '?id=' + id);
 
-                }, updateUserRole: function (url) {
-                   return $http.get(url + '/updateUserRoleTourguide');
+                }, getTourguideList: function (url, address) {
+ 
+                                      return $http({
+                                              method: 'POST',
+                                                 url: url + '/search',
+                                             headers: {
+                                                     'Content-Type': 'application/json', /*or whatever type is relevant */
+                                                     'Accept': 'application/json' /* ditto */
+                                                      },
+                                                data:address/* You probably need to send some data if you plan to log in */
+    
+                                        });
 
-                }
+              }
 
-            };
+            }
 
 
         });
