@@ -1,16 +1,40 @@
    
- <div class="page-title-container">
-            <div class="container">
-                <div class="page-title pull-left">
-                    <h2 class="entry-title">About Us</h2>
-                </div>
-                <ul class="breadcrumbs pull-right">
-                    <li><a href="#index">HOME</a></li>
-                    <!--<li><a href="#">PAGES</a></li>-->
-                    <li class="active">About Us</li>
-                </ul>
-            </div>
-        </div> 
+
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.min.js"></script>-->
+<!--<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular-sanitize.min.js"></script>-->
+<!--<script src="http://static.videogular.com/scripts/videogular/latest/videogular.js"></script>
+<script src="http://static.videogular.com/scripts/controls/latest/vg-controls.js"></script>
+<script src="http://static.videogular.com/scripts/youtube/latest/youtube.js"></script> 
+
+-->
+
+
+
+
+
+
+
+
+
+
+
+<div class="page-title-container">
+    <div class="container">
+        <div class="page-title pull-left">
+            <h2 class="entry-title">About Us</h2>
+        </div>
+        <ul class="breadcrumbs pull-right">
+            <li><a href="#index">HOME</a></li>
+            <!--<li><a href="#">PAGES</a></li>-->
+            <li class="active">About Us</li>
+        </ul>
+    </div>
+</div> <br><br> 
+
+
+
+
+
 <!--<section id="content" style="margin-top: 20px">
             <div class="container">
                 <div id="main">
@@ -49,14 +73,15 @@
         </section>-->
 
 
+<!--old =================-->
 
-<style>
+<!--<style>
     .videogular-container video {
         width: 100%;
         margin: auto;
     }
-</style>
-
+</style>-->
+<!--old =================-->
 
 <!--  <div class="page-title-container">
             <div class="container">
@@ -70,7 +95,8 @@
                 </ul>
             </div>
         </div><br>-->
-<br><br>
+<!--old =================-->
+<!--<br><br>
 <h2 class="text-center">About Tourgoat</h2>
 
 
@@ -83,11 +109,85 @@
                 <videogular vg-theme="config.theme" >
                     <vg-media vg-src="config.sources" vg-native-controls="config.useNativeControls">
                     </vg-media>
-                    <!--<vg-poster vg-url='config.posterImage' ></vg-poster>-->
+                    <vg-poster vg-url='config.posterImage' ></vg-poster>
 
                 </videogular>
             </div>
         </div> 
     </div> 
 
+</div>-->
+<!--old =================-->
+<style>
+    html, body {
+        margin: 0;
+        padding: 0;
+    }
+
+    .videogular-container {
+        width: 100%;
+        height: 320px;
+        margin: auto;
+        overflow: hidden;
+    }
+
+    @media (min-width: 1200px) {
+        .videogular-container {
+            width: 1170px;
+            height: 658.125px;
+        }
+
+        .videogular-container.audio {
+            width: 1170px;
+            height: 50px;
+        }
+    }
+
+    @media (min-width: 992px) and (max-width: 1199px) {
+        .videogular-container {
+            width: 940px;
+            height: 528.75px;
+        }
+
+        .videogular-container.audio {
+            width: 940px;
+            height: 50px;
+        }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+        .videogular-container {
+            width: 728px;
+            height: 409.5px;
+        }
+
+        .videogular-container.audio {
+            width: 728px;
+            height: 50px;
+        }
+    }
+
+</style>
+
+<div ng-controller="aboutusCtrl as controller" class="videogular-container">
+    <videogular vg-theme="controller.config.theme.url">
+        <vg-media vg-src="controller.config.sources" vg-youtube="rel=1;showinfo=1">
+        </vg-media>
+
+        <vg-controls vg-autohide="controller.config.plugins.controls.autoHide" vg-autohide-time="controller.config.plugins.controls.autoHideTime">
+            <vg-play-pause-button></vg-play-pause-button>
+            <vg-time-display>{{ currentTime | date:'mm:ss':'+0000' }}</vg-time-display>
+            <vg-scrub-bar>
+                <vg-scrub-bar-current-time></vg-scrub-bar-current-time>
+            </vg-scrub-bar>
+            <vg-time-display>{{ timeLeft | date:'mm:ss':'+0000' }}</vg-time-display>
+            <vg-time-display>{{ totalTime | date:'mm:ss':'+0000' }}</vg-time-display>
+            <vg-volume>
+                <vg-mute-button></vg-mute-button>
+                <vg-volume-bar></vg-volume-bar>
+            </vg-volume>
+            <vg-fullscreen-button></vg-fullscreen-button>
+        </vg-controls>
+    </videogular>
 </div>
+
