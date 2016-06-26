@@ -11,7 +11,7 @@ angular.module('MyApp')
                     } else if (window.location.host === 'tourgoat.com.s3-website-us-west-2.amazonaws.com') {
                         //for cloud
                         return 'http://tourgoatapp-env.us-west-2.elasticbeanstalk.com';
-                    } else if ( window.location.origin === 'https://www.tourgoat.com' || window.location.host === 'www.tourgoat.com') {
+                    } else if (window.location.origin === 'https://www.tourgoat.com' || window.location.host === 'www.tourgoat.com') {
                         //for cloud
                         return 'https://afro-mart.com';
                     }
@@ -65,19 +65,19 @@ angular.module('MyApp')
                     return  $http.get(url + '/updateAccountStatus' + '?id=' + id);
 
                 }, getTourguideList: function (url, address) {
- 
-                                      return $http({
-                                              method: 'POST',
-                                                 url: url + '/search',
-                                             headers: {
-                                                     'Content-Type': 'application/json', /*or whatever type is relevant */
-                                                     'Accept': 'application/json' /* ditto */
-                                                      },
-                                                data:address/* You probably need to send some data if you plan to log in */
-    
-                                        });
 
-              }
+                    return $http({
+                        method: 'POST',
+                        url: url + '/search',
+                        headers: {
+                            'Content-Type': 'application/json', /*or whatever type is relevant */
+                            'Accept': 'application/json' /* ditto */
+                        },
+                        data: address/* You probably need to send some data if you plan to log in */
+
+                    });
+
+                }
 
             }
 
