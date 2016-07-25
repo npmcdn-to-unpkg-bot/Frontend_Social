@@ -16,10 +16,12 @@
 //    };
 //});
 
-angular.module('MyApp')
+var app = angular.module('MyApp')
         .controller('aboutusCtrl',
                 ["$sce", function ($sce) {
-                        
+                        //Home page content is display only for home page 
+
+
                         this.config = {
                             preload: "none",
                             sources: [
@@ -39,3 +41,9 @@ angular.module('MyApp')
                         };
                     }]
                 );
+app.run(['$rootScope', '$location', '$window', function ($rootScope, $location, $window) {
+        $rootScope.$on('$stateChangeSuccess',
+                function (event) {
+                    $rootScope.homePageContent = false;
+                });
+    }]);
