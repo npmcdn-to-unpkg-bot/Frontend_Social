@@ -114,6 +114,10 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
         url: '/list',
         controller: 'listViewCtrl',
         templateUrl: 'pages/tourguide-list-view.html'
+     }).state('grid',{
+        url: '/grid',
+        controller: 'listViewCtrl',
+        templateUrl: 'pages/tourguide-grid-view.html'
 
     }).state('listDetail', {
         url: '/listDetail',

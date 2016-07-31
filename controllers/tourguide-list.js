@@ -1,18 +1,25 @@
 
 angular.module('MyApp')
-        .controller('listViewCtrl', function (SearchData , $scope, $location, $rootScope, $window, $http, $rootScope, Account, toastr) {
+        .controller('listViewCtrl', function (SearchData , $scope, $location, $rootScope, $http, $rootScope, Account, toastr) {
 //            this is make display on home page content 
             $rootScope.homePageContent = false;
             //This script run home page slider
             $scope.tourguideSeachList = SearchData.getSearchData();
-            $scope.infiniteList = $scope.tourguideSeachList.slice(0, 2);;
+            $scope.infiniteList = $scope.tourguideSeachList.slice(0, 6);;
     $scope.loadMore = function(){
-        $scope.infiniteList = $scope.tourguideSeachList.slice(0, $scope.infiniteList.length + 2);
+        $scope.infiniteList = $scope.tourguideSeachList.slice(0, $scope.infiniteList.length + 6);
     };
     
       $scope.sortValue = function(keyname){
         $scope.sortKey = keyname;   //set the sortKey to the param passed
         $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
+    
+     $scope.gridView = function(){
+        $location.path('/grid');
+    }
+       $scope.listView = function(){
+        $location.path('/list');
     }
             
 //             $scope.tourguideUserList =  null;
