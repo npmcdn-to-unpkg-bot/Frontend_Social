@@ -22,7 +22,7 @@
                 <div id="main">
                     <div class="row">
                         <div class="col-sm-4 col-md-3">
-                            <h4 class="search-results-title"><i class="soap-icon-search"></i><b>1,984</b> results found.</h4>
+                            <h4 class="search-results-title"><i class="soap-icon-search"></i><b>{{tourguideSeachList.length}}</b> results found.</h4>
                             <div class="toggle-container filters-container">
                                 <div class="panel style1 arrow-right">
                                     <h4 class="panel-title">
@@ -171,8 +171,8 @@
                             <div class="sort-by-section box clearfix">
                                 <h4 class="sort-by-title block-sm">Sort results by:</h4>
                                 <ul class="sort-bar clearfix block-sm">
-                                    <li class="sort-by-name"><a class="sort-by-container" href="#"><span>name</span></a></li>
-                                    <li class="sort-by-price"><a class="sort-by-container" href="#"><span>price</span></a></li>
+                                    <li class="sort-by-name"><a class="sort-by-container" ng-click="sortValue('name')"><span>Name</span></a></li>
+                                    <li class="sort-by-price"><a class="sort-by-container" ng-click="sortValue('price')"><span>Price</span></a></li>
                                     <li class="clearer visible-sms"></li>
                                     <li class="sort-by-date active"><a class="sort-by-container" href="#"><span>date</span></a></li>
                                     <li class="sort-by-cruise-line"><a class="sort-by-container" href="#"><span>cruise line</span></a></li>
@@ -183,7 +183,7 @@
                                         <a href="cruise-list-view.html"><i class="soap-icon-list"></i></a>
                                     </li>
                                     <li class="swap-grid">
-                                        <a href="cruise-grid-view.html"><i class="soap-icon-grid"></i></a>
+                                        <a href="tourguide-grid-view.html"><i class="soap-icon-grid"></i></a>
                                     </li>
                                     <li class="swap-block">
                                         <a href="cruise-block-view.html"><i class="soap-icon-block"></i></a>
@@ -191,7 +191,8 @@
                                 </ul>
                             </div>
                             <div class="cruise-list listing-style3 cruise">
-                                <div ng-repeat="tourguide in tourguideSeachList">
+                                <div infinite-scroll="loadMore()">
+                                 <div ng-repeat="tourguide in infiniteList | orderBy:price">
                                
                                    <article class="box">
                                     <figure class="col-sm-4">
@@ -229,7 +230,7 @@
                                     </div>
                                 </article>
                                 </div>
-                                
+                                </div>
 <!--                                <article class="box">
                                     <figure class="col-sm-4">
                                         <a title="" href="ajax/cruise-slideshow-popup.html" class="hover-effect popup-gallery"><img width="270" height="160" alt="" src="http://placehold.it/270x160"></a>
@@ -565,7 +566,7 @@
                                     </div>
                                 </article>-->
                             </div>
-                            <a href="#" class="uppercase full-width button btn-large">load more listing</a>
+                            <!--<a href="#" class="uppercase full-width button btn-large">load more listing</a>-->
                         </div>
                     </div>
                 </div>

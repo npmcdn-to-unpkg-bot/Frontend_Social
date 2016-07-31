@@ -5,6 +5,16 @@ angular.module('MyApp')
             $rootScope.homePageContent = false;
             //This script run home page slider
             $scope.tourguideSeachList = SearchData.getSearchData();
+            $scope.infiniteList = $scope.tourguideSeachList.slice(0, 2);;
+    $scope.loadMore = function(){
+        $scope.infiniteList = $scope.tourguideSeachList.slice(0, $scope.infiniteList.length + 2);
+    };
+    
+      $scope.sortValue = function(keyname){
+        $scope.sortKey = keyname;   //set the sortKey to the param passed
+        $scope.reverse = !$scope.reverse; //if true make it false and vice versa
+    }
+            
 //             $scope.tourguideUserList =  null;
 //            $scope.tourguideList = function () {
 //                Account.getTourguideList(Account.getCurrentUrl())
