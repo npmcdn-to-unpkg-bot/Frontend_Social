@@ -177,67 +177,39 @@
                                     <li id= "search_list" class="swap-list">
                                         <a ng-click="listView()"><i class="soap-icon-list"></i></a>
                                     </li>
-                                    <li id= "search_grid" class="swap-grid active">
+                                    <li id= "search_grid" class="swap-grid">
                                         <a  ng-click="gridView()" ><i class="soap-icon-grid"></i></a>
                                     </li>
-                                    <li id= "search_block" class="swap-block">
+                                    <li id= "search_block" class="swap-block active">
                                         <a ng-click="blockView()"><i class="soap-icon-block"></i></a>
                                     </li>
                                 </ul>
                             </div>
-                            <div class="cruise-list image-box style3 cruise listing-style1">
-                                 
-                                  <div infinite-scroll="loadMore()">
+                            <div class="cruise-list row image-box listing-style2 add-clearfix">
+                                <div infinite-scroll="loadMore()">
                                  <div ng-repeat="tourguide in infiniteList | orderBy:price">
-                                <div class="col-sm-6 col-md-4">
-                                   <article class="box">
-                                    <figure >
-                                        <a title="" href="" class=""><img width="270" height="160"  style="width: 270px; height: 160px" alt="" ng-src="{{tourguide.profileURL}}"></a>
-                                    </figure>
+                                <div class="col-sms-6 col-sm-6 col-md-4">
+                                    <article class="box">
+                                        <figure>
+                                            <a title="" href="" class=""><img width="270" height="160"  style="width: 270px; height: 160px" alt="" ng-src="{{tourguide.profileURL}}"></a>
+                                        </figure>
                                         <div class="details">
-                                            <h4 class="box-title">{{tourguide.firstName}} {{tourguide.lastName}}<small>{{tourguide.address.city}} Area</small></h4>
-                                            <span class="price "><small>from</small>${{tourguide.price || 'images/profile/profile_Img.png'}}/hr</span>
-                                        
-                                        <div class="row time ">
-
-                                            <div class="col-xs-8">
-                                                <!--<i class="soap-icon-clock yellow-color"></i>-->
-                                                <div>
-                                                    <span class="skin-color">{{tourguide.aboutYou}}</span>
-                                                </div>
-                                            </div>
-<!--                                            <div class="col-xs-5 departure">
-                                                <i class="soap-icon-departure yellow-color"></i>
-                                                <div>
-                                                    <span class="skin-color">Departure</span><br>Los Angeles, miami, Florida
-                                                </div>
-                                            </div>-->
+                                            <a title="" href="#listDetail" class="pull-right button btn-mini uppercase">select</a>
+                                             <h4 class="box-title">{{tourguide.firstName}} {{tourguide.lastName}}<small>{{tourguide.address.city}} Area</small></h4>
+                                             <label class="price-wrapper">
+                                                <span class="price-per-unit">${{tourguide.price || 'images/profile/profile_Img.png'}}/hr</span>
+                                            </label>
                                         </div>
-                                        <div class="clearfix">
-                                            <div class="review pull-left">
-                                                <div class="five-stars-container">
-                                                    <span class="five-stars" style="width: 60%;"></span>
-                                                </div>
-                                                <span>270 reviews</span>
-                                            </div>
-                                            <a href="#listDetail" class="button btn-small pull-right">select</a>
-                                        </div>
-                                       </div>
-                                       
-                                </article>
-                                    </div>
+                                    </article>
                                 </div>
-                                </div> 
-                                
-                                
+                                 </div>
                             </div>
-                            <!--<a href="#" class="uppercase full-width button btn-large">load more listing</a>-->
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
     </div>
   </div>
-
+ 
