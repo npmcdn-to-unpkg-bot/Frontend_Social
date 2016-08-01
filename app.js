@@ -119,7 +119,12 @@ app.config(function ($stateProvider, $urlRouterProvider, $authProvider, $locatio
         controller: 'listViewCtrl',
         templateUrl: 'pages/tourguide-grid-view.html'
 
-    }).state('listDetail', {
+    }).state('block',{
+        url: '/block',
+        controller: 'listViewCtrl',
+        templateUrl: 'pages/tourguide-block-view.html'
+
+    }) .state('listDetail', {
         url: '/listDetail',
         controller: 'listDetailCtrl',
         templateUrl: 'pages/list-detail-view.html'
